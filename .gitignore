@@ -1,0 +1,27 @@
+# Lines starting with '#' are considered comments.
+
+# Ignore any backup files.
+*~
+*.bak
+
+# Ignore kate swap files
+*.kate-swp
+
+# Ignore any build directories
+build*
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+
