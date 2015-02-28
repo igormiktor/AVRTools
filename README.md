@@ -55,7 +55,65 @@ MY_PIN_PORT |= (1<<MY_PIN_NBR)
 
 - You wish you could use a function-like syntax to switch input/output mode, read a pin, or set a pin high or low but still have the compiler generate single-cycle `in` and `out` instructions.
 
-If you fit into either category, then you should review the documentation found in the file AVRToolsDocumentation.pdf that is part
-of the AVRTools package.
+
+## What it is like to use AVRTools ##
+
+Using AVRTools, you can write code like this:
+
+~~~C
+#include "AVRTools/ArduinoPins.h"
+#include "AVRTools/InitSystem.h"
+#include "AVRTools/SystemClock.h"
+
+#define pRed            pPin10
+#define pYellow         pPin07
+#define pGreen          pPin04
+
+int main()
+{
+    initSystem();
+    initSystemClock();
+
+    setGpioPinModeOutput( pGreen );
+    setGpioPinModeOutput( pYellow );
+    setGpioPinModeOutput( pRed );
+
+    setGpioPinHigh( pGreen );
+    setGpioPinHigh( pYellow );
+    setGpioPinHigh( pRed );
+
+    delayMilliseconds( 2000 );
+
+    setGpioPinLow( pGreen );
+    setGpioPinLow( pYellow );
+    setGpioPinLow( pRed );
+
+    while ( 1 )
+    {
+        delayMilliseconds( 1000 );
+
+        setGpioPinLow( pRed );
+        setGpioPinHigh( pGreen );
+
+        delayMilliseconds( 1000 );
+
+        setGpioPinLow( pGreen );
+        setGpioPinHigh( pYellow );
+
+        delayMilliseconds( 1000 );
+
+        setGpioPinLow( pYellow );
+        setGpioPinHigh( pRed );
+    }
+}
+~~~
+
+It is as simple to code and read as Arduino code.  Yet the setGpioPinXXX calls
+translate directly into single-cycle `in`, `out`, `sbi`, `cbi`, `sbic`, or
+`sbis` instructions.
+
+If you find this appealing, download AVRTools and try it out.  You can learn
+more by reviewing the documentation found in the file AVRToolsDocumentation.pdf
+that is part of the AVRTools package.
 
 
