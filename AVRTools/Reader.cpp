@@ -216,6 +216,7 @@ bool Reader::readLong( long* result )
 bool Reader::readLong( long* result, char skipChar )
 {
     bool isNegative = false;
+    bool noDigitsYet = true;
     long value = 0;
 
     // Ignore non-numeric leading characters
@@ -223,8 +224,8 @@ bool Reader::readLong( long* result, char skipChar )
 
     if ( c < 0 )
     {
-        // Return false if time out
-        return false;
+        // Return false if time out without getting at least one digit
+        return noDigitsYet ? false : true;
     }
 
     do
@@ -240,6 +241,7 @@ bool Reader::readLong( long* result, char skipChar )
         else if( c >= '0' && c <= '9' )
         {
             value = value * 10 + c - '0';
+            noDigitsYet = false;
         }
 
         // Consume the character we got with peek
@@ -248,8 +250,8 @@ bool Reader::readLong( long* result, char skipChar )
         c = timedPeek();
         if ( c < 0 )
         {
-            // Return false if time out
-            return false;
+            // Return false if time out without getting at least one digit
+            return noDigitsYet ? false : true;
         }
     }
     while ( ( c >= '0' && c <= '9' ) || c == skipChar );
@@ -284,14 +286,15 @@ bool Reader::readFloat( float* result, char skipChar )
     bool isFraction = false;
     long value = 0;
     float fraction = 1.0;
+    bool noDigitsYet = true;
 
     // Ignore non-numeric leading characters
     int c = peekNextDigit();
 
     if ( c < 0 )
     {
-        // Return false if time out
-        return false;
+        // Return false if time out without getting at least one digit
+        return noDigitsYet ? false : true;
     }
 
     do
@@ -312,6 +315,7 @@ bool Reader::readFloat( float* result, char skipChar )
         {
             // c is a digit
             value = value * 10 + c - '0';
+            noDigitsYet = false;
 
             if ( isFraction )
             {
@@ -325,8 +329,8 @@ bool Reader::readFloat( float* result, char skipChar )
         c = timedPeek();
         if ( c < 0 )
         {
-            // Return false if time out
-            return false;
+            // Return false if time out without getting at least one digit
+            return noDigitsYet ? false : true;
         }
     }
     while ( ( c >= '0' && c <= '9' )  || c == '.' || c == skipChar );

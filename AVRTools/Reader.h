@@ -34,6 +34,7 @@
 
 
 #include <stddef.h>
+#include <stdint.h>
 
 
 #ifndef SERIAL_INPUT_EOL
@@ -209,6 +210,7 @@ public:
      * to be ignored on input.
      *
      * \arg \c result is a pointer to where the long integer will be stored.
+     * \arg \c skipChar is a character that will be ignored on input.
      *
      * \returns true if a valid long integer is found prior to timeout; false otherwise.
      */
@@ -225,6 +227,7 @@ public:
      * to be ignored on input.
      *
      * \arg \c result is a pointer to where the float will be stored.
+     * \arg \c skipChar is a character that will be ignored on input.
      *
      * \returns true if a valid float is found prior to timeout; false otherwise.
      */
@@ -247,7 +250,7 @@ public:
     /*!
      * \brief Read characters from the input stream into a buffer, terminating  when the terminator
      * charactor is encountered, or if length characters
-     * have been read, or if the function times out.  The result is \e NOT null-termimated.
+     * have been read, or if the function times out.  The result is \e NOT null-terminated.
      *
      * \arg \c terminator a character that when encountered causes the function to return.
      * \arg \c buffer a pointer to where the characters read will be stored.
@@ -256,7 +259,38 @@ public:
      * \returns the number of characters placed in the buffer (0 means no data were read prior to
      * timeout or detecting the terminator character).
      */
-   size_t readBytesUntil( char terminator, char *buffer, size_t length );
+   size_t readBytesUntil( char terminator, char* buffer, size_t length );
+
+
+    /*!
+     * \brief Read bytes (uint8_t) from the input stream into a buffer, terminating if length bytes
+     * have been read or the function times out.
+     *
+     * \arg \c buffer a pointer to where the bytes read will be stored.
+     * \arg \c length the maximum number of bytes to read.
+     *
+     * \returns the number of bytes placed in the buffer (0 means no data were read prior to
+     * timeout).
+     */
+    size_t readBytes( uint8_t* buffer, size_t length )
+    { return readBytes( reinterpret_cast<char*>(buffer), length ); }
+
+
+
+    /*!
+     * \brief Read bytes (uint8_t) from the input stream into a buffer, terminating  when the terminator
+     * byte is encountered, or if length bytes
+     * have been read, or if the function times out.
+     *
+     * \arg \c terminator a byte that when encountered causes the function to return.
+     * \arg \c buffer a pointer to where the bytes read will be stored.
+     * \arg \c length the maximum number of bytes to read.
+     *
+     * \returns the number of bytes placed in the buffer (0 means no data were read prior to
+     * timeout or detecting the terminator character).
+     */
+   size_t readBytesUntil( uint8_t terminator, uint8_t* buffer, size_t length )
+   { return readBytesUntil( static_cast<char>(terminator), reinterpret_cast<char*>(buffer), length ); }
 
 
     /*!
