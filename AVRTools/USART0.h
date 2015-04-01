@@ -405,8 +405,7 @@ public:
      * \brief Determine if data is available in the input stream.  This implements the pure
      * virtual function Reader::available().
      *
-     * \returns True if data is available in the stream before timeout expires; false if timeout
-     * expires before any data appears in the stream.
+     * \returns True if data is available in the stream; false if not.
      */
     virtual bool available();
 };
