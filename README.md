@@ -38,7 +38,7 @@ If you are an Arduino programmer, you may want to try out AVRTools if:
 - You are frustrated by the slowness of even simple functions in the official Arduino libraries.
 - Your code doesn't fit into the available memory because the official Arduino libraries are so big.
 
-If you an ATmega328 or ATmega2560 microcontroller programmer, you may want to try out AVRTools if:
+If you are an ATmega328 or ATmega2560 microcontroller programmer, you may want to try out AVRTools if:
 - You are secretly jealous of how easy and convenient it is to use the Arduino libraries.
 - You wish you could bind together DDRs, PORTs, and PINs so you didn't have to write code like:
 
