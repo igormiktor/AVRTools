@@ -10,14 +10,14 @@ FAQ                   {#faq}
 - [_setGpioPinHigh() is defined with 8 arguments, but called with 1: how can that work?] (@ref FaqHowWork)
 - [Why is there a setGpioPinHigh() macro and a setGpioPinHighV() function?] (@ref FaqWhyV)
 
-## Can AVRTools be installed as an Arduino IDE Library? ##      {#FaqIdeLib}
+# Can AVRTools be installed as an Arduino IDE Library? #      {#FaqIdeLib}
 
 No, AVRTools is designed to replace the Arduino Library.  It is designed for use directly
 with the `avr-gcc` compiler (the
 same compiler used by the Arduino IDE).
 
 
-## Why can't I assign pins like pPin01 to a variable? ##      {#FaqPins}
+# Why can't I assign pins like pPin01 to a variable? #      {#FaqPins}
 
 Because pin names like `pPin01` are actually complex macros that expand to a
 comma separated list of other macros.  The macro pin names can only be understood
@@ -31,7 +31,7 @@ that GPIO pin variables come with high costs, both in speed and memory requireme
 
 
 
-## Why is there a setGpioPinHigh() macro and a _setGpioPinHigh() macro? ##          {#FaqWhyUnder}
+# Why is there a setGpioPinHigh() macro and a _setGpioPinHigh() macro? #          {#FaqWhyUnder}
 
 Getting maximum efficiency from the GPIO pin name macros while making them
 easy to use requires a series of recursive macro expansions.  To make this work,
@@ -45,7 +45,7 @@ why they are not formally documented.
 
 
 
-## _setGpioPinHigh() is defined with 8 arguments, but called with 1: how can that work? ##      {#FaqHowWork}
+# _setGpioPinHigh() is defined with 8 arguments, but called with 1: how can that work? #      {#FaqHowWork}
 
 Someone has been reading header files.  It works because of the magic of the
 C/C++ preprocessor rescanning rules.  The rescanning rules are described in
@@ -72,7 +72,7 @@ _setGpioPinHigh().
 
 
 
-## Why is there a setGpioPinHigh() macro and a setGpioPinHighV() function? ##        {#FaqWhyV}
+# Why is there a setGpioPinHigh() macro and a setGpioPinHighV() function? #        {#FaqWhyV}
 
 All of the GPIO pin related "functions" come in two versions.  The versions
 that do not end in a "V" are actually macros and work with the GPIO pin

@@ -1,10 +1,7 @@
-AVRTools                       {#mainpage}
-========
+AVRTools:  A Library for the AVR ATmega328 and ATmega2560 Microcontrollers       {#mainpage}
+==========================================================================
 
-AVRTools: A Library for the AVR ATmega328 and ATmega2560 Microcontrollers       {#AvrOverview}
-=========================================================================
-
-## Overview ##
+# Overview #                                                                    {#AvrOverview}
 
 This library provides an Arduino-like simple-to-use interface to the AVR ATmega328 and ATmega2560 microcontrollers
 without the bloat and slowness of the official Arduino libraries.
@@ -39,7 +36,7 @@ than their Arduino library counterparts.  For example, a call to the Arduino fun
 a call to the equivalent AVRTools function `writeGpioPinDigital()` takes
 1 cycle (it's actually a macro in AVRTools).
 
-### Audience ###
+# Audience #                                                          {#AvrAudience}
 
 If you are an Arduino programmer, you may want to try out AVRTools if:
 - You are comfortable programming the Arduino Uno and Mega directly using the the avr-gcc toolset.
@@ -65,7 +62,7 @@ MY_PIN_PORT |= (1<<MY_PIN_NBR)
 
 If you fit into either category, then you should read further.
 
-### AVRTools is not... ###
+# AVRTools is not... #       {#AvrToolsIsNot}
 
 AVRTools is not a general purpose AVR programming library.  I use the Arduino Uno and the Arduino Mega in my projects, and
 I wrote AVRTools to support these specific needs.  There is conditional code throughout the implementation that is tailored to the
@@ -88,12 +85,12 @@ objects provide the most natural and convenient implementation of a capability (
 `USART0` or `I2cLcd`; note that AVRTools also provides a minimalistic USART interface using functions instead of classes,
 because different needs call for different tools).
 
-## Quick Tour of AVRTools ##        {#QuickTour}
+# Quick Tour of AVRTools #       {#QuickTour}
 
 This section provides an overview of how AVRTools works, starting with the foundational elements and then summarizing the
 modules that provide interfaces into the major hardware subsystems of the ATmega328 and ATmega2560 microcontrollers.
 
-### Foundational Elements and Concepts ###  {#Foundations}
+## Foundational Elements and Concepts ##  {#Foundations}
 
 The foundation of the AVRTools library consists of a collection of macros that
 enable you to refer to "pins" on the chips using a single name that can be used
@@ -120,7 +117,7 @@ a way to create and use variables for the GPIO pins). The AVRTools library does
 include macro-functions to extract any of the components related to a pin name
 so that users can access and manipulate the individual components as needed.
 
-#### What you need to know about pin name macros ####  {#WhatNeedKnow}
+## What you need to know about pin name macros ##  {#WhatNeedKnow}
 
 To access the pin names of the Arduino Uno or Mega, you only need to include the file "ArduinoPins.h".  It will automatically detect
 whether you are compiling for Uno or Mega and it will correspondingly define the macros `pPinNN` (NN = 00 to 13 for Arduino Uno,
@@ -182,7 +179,7 @@ So for example, pin 11 on the Arduino Uno, which corresponds to ATmega328 pin B3
 #define pPin11  GpioPinPwm( B, 3, 2, A )
 ~~~
 
-### The core modules ###        {#CodeModules}
+## The core modules ##        {#CodeModules}
 
 In addition to the macro-based pin naming and access system discussed above, there are seven additional elements that make up the
 core of AVRTools and provide access to basic functional elements of the ATmega328
@@ -202,7 +199,7 @@ Two of the seven modules supplement the C++ implementation provided by the `avr-
 
 Brief descriptions of these modules follow.
 
-#### System initialization module ####  {#SysInit}
+### System initialization module ###  {#SysInit}
 
 This module provides a single function that puts the microcontroller in a clean, known state.  To use it include the
 header file `InitSystem.h` and link against `InitSystem.cpp`.  These files provides a single function:
@@ -213,7 +210,7 @@ void initSystem();
 
 The `initSystem()` function clears any bootloader settings, clears all timers, and turns on interrupts.  This should be the first function your code calls at start up.
 
-#### System clock module ####   {#SysClock}
+### System clock module ###   {#SysClock}
 
 This module provides a system clock functionality similar to that in the Arduino library.  To employ this functionality include
 the header file `SystemClock.h` and link against `SystemClock.cpp`.  Some of key functions provided by this module include:
@@ -227,7 +224,7 @@ void delay( unsigned long ms );
 Note that unlike the Arduino libary, you must explicitly initialize the clock functionality by calling `initSystemClock()`.
 This module also provides additional functions providing a richer interface to the system clock.
 
-#### Analog-to-Digital module ####      {#A2dMod}
+### Analog-to-Digital module ###      {#A2dMod}
 
 This module provides access to the analog read capabilities of the ATmega328 and ATmega2560.  To employ this functionality
 include the header file `Analog2Digital.h` and link against `Analog2Digital.cpp`.  The principle functions provided by
@@ -242,7 +239,7 @@ readGpioPinAnalog( avrPort );   /* implemented as a macro */
 You must initialize the analog-to-digital subsystem by calling `initA2D()`
 before attempting to read any analog pins.
 
-#### PWM module ####            {#PwmMod}
+### PWM module ###            {#PwmMod}
 
 This module provides access to the PWM features available on certain ATmega328 and ATmega2560 pins.  To employ this
 functionality include the header file `Pwm.h` and link against `Pwm.cpp`.  The principle functions provided by this
@@ -264,7 +261,7 @@ need to turned on for any given pin, because that would require adding extra cod
 Instead AVRTools assumes the programmer will check the appropriate references to determine which timers correspond to
 the pins they want to use in PWM mode, and will use that knowledge to initialize the appropriate timers.
 
-#### Minimal USART modules ####     {#MinUsart}
+### Minimal USART modules ###     {#MinUsart}
 
 This module provides a simple and minimal means of reading and writing from the USARTs available on the ATmega328
 and ATmega2560.  To employ this functionality, you must include the header file `USARTMinimal.h` and link against the
@@ -285,19 +282,19 @@ To make use of the USART capability on USART0, first call `initUSART0()` to init
 other purposes, call `releaseUSART0()`.  Similar functions are provided to access the other three USARTs available on
 the ATmega2560.  If you want more advanced serial capabilities, checkout the class Serial0 in USART0.h.
 
-#### ABI module ####        {#AbiMod}
+### ABI module ###        {#AbiMod}
 
 You only need this module if building your code produces link errors regarding missing symbols with strange names
 like `__cxa_XXX` (where `XXX` is some unusual string).  In that case, simply link your code against abi.cpp.  These are symbols related to the way the
 avr-gcc C++ compiler implements abstract virtual functions.
 
-#### New module ####           {#NewMod}
+### New module ###           {#NewMod}
 
 This module implements `operator new` and `operator delete`.  You only need this if you use `new` and `delete` to
 manage objects on the heap.  AVRTools itself does not make any use of heap objects or operators `new` or `delete`.
 
 
-### Sample start up code using AVRTools ###
+# Sample start up code using AVRTools #       {#SampleStartCode}
 
 You can use AVRTools to create an environment that is very similar to the standard Arduino environment.  The
 following sample code illustrates how to do this.  The sample code reads a potentiometer and sets both a
@@ -346,7 +343,7 @@ init main()
 }
 ~~~
 
-### Advanced modules ###
+# Advanced modules #                    {#AdvancedModIntro}
 
 AVRTools also includes modules that provide access to more complex microcontroller capabilities and provide advanced services.
 These modules include both master and slave I2C modules (transmitting and receiving via interrupts), a module for driving
@@ -354,7 +351,7 @@ an LCD display via I2C, a module for reporting memory utilization, and a module 
 various numerical types and strings.  Information on these modules can be found in the [Advanced Features] (@ref AdvancedFeatures) sections of the documentation.
 
 
-## Questions ##
+# Questions #                           {#QuestionsIntro}
 
 If you have questions, please check out the [FAQ] (@ref AvrFaq).
 

@@ -4,8 +4,6 @@ Advanced Features                   {#advfeatpage}
 
 # Advanced Features #              {#AdvancedFeatures}
 
-## Overview ##
-
 The AVRTools library includes four more advanced features:
 
 - [Advanced serial (USART) module] (@ref AdvancedSerial)
@@ -21,7 +19,7 @@ While the core modules of the AVRTools library are basically independent and can
 individually, these advanced features depend in various ways upon the core modules and, sometimes,
 each other.  These dependencies are highlighted in the corresponding sections.
 
-## Advanced serial (USART) module ##       {#AdvancedSerial}
+# Advanced serial (USART) module #       {#AdvancedSerial}
 
 The advanced USART module provides two different high-level interfaces to
 %USART0 hardware available on the Arduino Uno (ATmega328) and the Arduino Mega
@@ -72,7 +70,7 @@ calling initSystemClock() from your start-up code.
 
 
 
-## Memory utilities module ##       {#MemUtil}
+# Memory utilities module #       {#MemUtil}
 
 The [Memory Utilities module] (@ref MemUtils) provides functions that report the available
 memory in SRAM.  These help you gauge in real-time whether your application is approaching
@@ -80,7 +78,7 @@ memory exhaustion.
 
 
 
-## Simple delays module ##       {#SimDelay}
+# Simple delays module #       {#SimDelay}
 
 The [Simple Delays module] (@ref SimpleDelays.h) provides simple delay functions that do not
 involve timers or interrupts.  These functions simply execute a series of
@@ -92,7 +90,7 @@ longer.
 
 
 
-## I2C modules ##                        {#AdvancedI2c}
+# I2C modules #                        {#AdvancedI2c}
 
 These two modules provide two different interfaces to the two-wire serial interface (TWI) hardware
 of the Arduino Uno (ATmega328) and Arduino Mega (ATmega2560), providing a high-level interface to
@@ -111,7 +109,7 @@ dedicated TWI hardware. Similarly, data is received asynchronously and placed in
 
 
 
-### I2C Master module ###              {#AdvI2cMaster}
+## I2C Master module ##              {#AdvI2cMaster}
 
 The [I2C Master module] (@ref I2cMaster) provides I2C-protocol-based interface
 to the TWI hardware that implements the Master portions of the I2C protocol. The
@@ -154,7 +152,7 @@ asynchronous operations are complete.
 use and link against only one of the two modules.
 
 
-### I2C Slave module ###          {#AdvI2cSlave}
+## I2C Slave module ##          {#AdvI2cSlave}
 
 The [I2C Slave module] (@ref I2cSlave) provides I2C-protocol-based interface to
 the TWI hardware that implements the Slave portions of the I2C protocol. The
@@ -177,7 +175,7 @@ directly to the above I2C paradigm.
 
 
 
-## I2C-based LCD module ##               {#AdvancedLcd}
+# I2C-based LCD module #               {#AdvancedLcd}
 
 The [I2C-base LCD module] (@ref I2cLcd) provides a high-level interface to an
 LCD offering an I2C interface. The most common variant of this is HD44780U
@@ -193,7 +191,7 @@ the 5-button keypad generally assocaited with such devices.
 
 
 
-## GPIO pin variables ##                {#AdvancedGpioVars}
+# GPIO pin variables #                {#AdvancedGpioVars}
 
 There is sometimes a desire to assign GPIO pins to variables.  Unfortunately,
 the pin name macros defined for you when you include ArduinoPins.h or that you
@@ -276,7 +274,7 @@ To illustrate how GPIO pin variables can be used, here are two versions of a tri
 the second using variables.
 
 
-### Example using GPIO pin macros ###
+## Example using GPIO pin macros ##                {#AdvancedGpioVarsExampleMacros}
 
 Compiled for an Arduino Uno, the following program is 1,978 bytes.
 
@@ -330,7 +328,7 @@ int main()
 
 
 
-### Example using GPIO pin variables ###
+## Example using GPIO pin variables ##                {#AdvancedGpioVarsExampleVars}
 
 Compiled for an Arduino Uno, the following program is 2,456 bytes (478 bytes larger than the macro version) and uses an
 additional 45 bytes of SRAM compared to the macro version.
