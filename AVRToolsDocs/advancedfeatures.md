@@ -140,7 +140,7 @@ consists of a single byte that passes a "register address" on the device.  It is
 called a register address because it often corresponds directly to a memory
 register on the device.  But it is best to think of it as an instruction code to
 the designated device (e.g., 0x01 = report the temperature; 0x02 = set the units
-to either F or C (depending on additional data sent by the Master); 0x03 =
+to either degrees F or degrees C (depending on additional data sent by the Master); 0x03 =
 report the humidity; etc.)
 
 The interface offered by the [I2C Master module] (@ref I2cMaster) conforms

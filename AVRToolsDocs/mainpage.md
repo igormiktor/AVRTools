@@ -84,7 +84,7 @@ heap objects, handle exceptions, etc.  All that may be true *if you don't unders
 that rewards programmers who know they are doing and punishes those who don't.  One can use C++ because it is a "better C" and
 use C++ features without incurring performance penalties or code bloat.  AVRTools makes use of C++ namespaces
 to compartmentalize functionality into logical units and to avoid name clashes; AVRTools also uses classes in a few cases where
-objects provide the most natural and convenient implementation of a capability (e.g., advanced output classes such as
+objects provide the most natural and convenient implementation of a capability (for example, advanced output classes such as
 `USART0` or `I2cLcd`; note that AVRTools also provides a minimalistic USART interface using functions instead of classes,
 because different needs call for different tools).
 

@@ -67,7 +67,7 @@ And if you then call `FOO(A)` in your code, the preprocessor executes the follow
 - then finally `BAR(B,C)` is expanded to `(B+C)`.
 
 This preprocessor rescanning logic is what powers all of the pin macro magic, not just
-_setGPioPinHigh().
+_setGpioPinHigh().
 
 
 
