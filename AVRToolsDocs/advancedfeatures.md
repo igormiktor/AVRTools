@@ -104,7 +104,7 @@ I2C protocol communications. There are two different modules corresponding to wh
 will function as a [Master] (@ref AdvI2cMaster) (as per the I2C protocol), or as a
 [Slave] (@ref AdvI2cSlave).
 
-\note AVRTools does not support application that function both as I2C Masters and I2C Slaves.  The two
+\note AVRTools does not support applications that function both as I2C Masters and I2C Slaves.  The two
 I2C modules provided by AVRTools are incompatible and cannot be mixed.
 
 Both modules offer interfaces that are buffered for both input and output which operate using interrupts associated
