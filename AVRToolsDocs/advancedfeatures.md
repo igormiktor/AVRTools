@@ -16,7 +16,7 @@ The AVRTools library includes four more advanced features:
 - [GPIO pin variables] (@ref AdvancedGpioVars)
 
 These features provide functionality that is different from that provided by the Arduino
-libraries, either in the design of its interface or in the underlying implementation, or both.
+libraries, either in the design of their interface or in the underlying implementation, or both.
 While the core modules of the AVRTools library are basically independent and can be used
 individually, these advanced features depend in various ways upon the core modules and, sometimes,
 each other.  These dependencies are highlighted in the corresponding sections.
@@ -25,8 +25,8 @@ each other.  These dependencies are highlighted in the corresponding sections.
 
 The advanced USART module provides two different high-level interfaces to
 %USART0 hardware available on the Arduino Uno (ATmega328) and the Arduino Mega
-(ATmega2560). These provided flexible, buffered, and asynchronous serial input
-and output that exploits the interrupts that are associated with the %USART0
+(ATmega2560). These provide serial input and output that is flexible, buffered,
+and asynchronoust by exploiting the interrupts that are associated with the %USART0
 hardware. This means the transmit functions return immediately after queuing
 data in the output buffer for transmission, and the actual transmission happens
 asynchronously while your code continues to execute. Similarly, data is received
@@ -52,19 +52,22 @@ interface to the %USART0 hardware.  Serial0 provides a object-oriented interface
 that includes the ability to read and write numbers of various types and in
 various formats, all asynchronously. Serial0 is implemented using USART0, so you
 may mix the use of USART0 and Serial0 interfaces in your code (although it is
-not recommended)
+not recommended).
 
-To use these the advancde serial capabilities, include USART0.h in your source
-code and link against USART0.cpp.
+To use these the advancde serial capabilities, include the file USART0.h in your source
+code and link against the file USART0.cpp.
 
 \note The advanced serial module is incompatible with the minimal interface to
-%USART0.  If you link against USART0.cpp (even if you don't actually use Serial0
-or USART0), do \e not call initUSART0() or clearUSART0(); the receiveUSART0()
-and transmitUSART0() functions won't work in any case.  You may, however, use
-the minimal interface to access USART1 USART2, and USART3 while simultaneously
-using Serial0 and USART0.
+%USART0.  If you link against the file USART0.cpp (even if you don't actually use Serial0
+or USART0), do \e not call initUSART0() or releaseUSART0(); there is no point in
+any case because the receiveUSART0()
+and transmitUSART0() functions won't work.  You may, however, use
+the minimal interface to access USART1, USART2, and/or USART3 while simultaneously
+using Serial0 and USART0 to access %USART0.
 
-\note Use of the timeout feature requires linking against SystemClock.cpp and
+
+Use of the timeout feature in Serial0
+or USART0 requires linking against SystemClock.cpp and
 calling initSystemClock() from your start-up code.
 
 
@@ -81,7 +84,7 @@ memory exhaustion.
 
 The [Simple Delays module] (@ref SimpleDelays.h) provides simple delay functions that do not
 involve timers or interrupts.  These functions simply execute a series of
-nested loops which known and precise timing.
+nested loops with known and precise timing.
 
 These functions are all implemented directly in assembler to guarantee cycle counts.  However,
 if interrupts are enabled, then the delays will be at least as long as requested, but may actually be
@@ -94,13 +97,13 @@ longer.
 These two modules provide two different interfaces to the two-wire serial interface (TWI) hardware
 of the Arduino Uno (ATmega328) and Arduino Mega (ATmega2560), providing a high-level interface to
 I2C protocol communications. There are two different modules corresponding to whether your application
-will function as a [Master] (@ref AdvI2cMaster) (as defined in the I2C protocol), or as a
+will function as a [Master] (@ref AdvI2cMaster) (as per the I2C protocol), or as a
 [Slave] (@ref AdvI2cSlave).
 
 \note AVRTools does not support application that function both as I2C Masters and I2C Slaves.  The two
 I2C modules provided by AVRTools are incompatible and cannot be mixed.
 
-Both modules offer interfaces that are buffered for both input and output and operate using interrupts associated
+Both modules offer interfaces that are buffered for both input and output which operate using interrupts associated
 with the TWI hardware.  This means the asynchronous transmit functions return immediately after queuing data
 in the output buffer for transmission and the transmission happens asynchronously, using
 dedicated TWI hardware. Similarly, data is received asynchronously and placed into the input buffer.
@@ -108,7 +111,7 @@ dedicated TWI hardware. Similarly, data is received asynchronously and placed in
 
 
 
-### %I2C Master module ###              {#AdvI2cMaster}
+### I2C Master module ###              {#AdvI2cMaster}
 
 The [I2C Master module] (@ref I2cMaster) provides I2C-protocol-based interface
 to the TWI hardware that implements the Master portions of the I2C protocol. The
@@ -134,7 +137,7 @@ device to report the current temperature or to read back some data from its memo
 For very simple devices, the receipt of the message itself can suffice to tell
 it to do something.  More commonly, the instruction to the designated device
 consists of a single byte that passes a "register address" on the device.  It is
-call a register address because it often corresponds directly to a memory
+called a register address because it often corresponds directly to a memory
 register on the device.  But it is best to think of it as an instruction code to
 the designated device (e.g., 0x01 = report the temperature; 0x02 = set the units
 to either F or C (depending on additional data sent by the Master); 0x03 =
@@ -151,7 +154,7 @@ asynchronous operations are complete.
 use and link against only one of the two modules.
 
 
-### %I2C Slave module ###          {#AdvI2cSlave}
+### I2C Slave module ###          {#AdvI2cSlave}
 
 The [I2C Slave module] (@ref I2cSlave) provides I2C-protocol-based interface to
 the TWI hardware that implements the Slave portions of the I2C protocol. The
@@ -179,12 +182,12 @@ directly to the above I2C paradigm.
 The [I2C-base LCD module] (@ref I2cLcd) provides a high-level interface to an
 LCD offering an I2C interface. The most common variant of this is HD44780U
 controlled LCD driven by an MCP23017 that offers an I2C interface (such LCDs are
-available from Adafruit and SparkFun).   This modules allows you to write to the
+available from Adafruit and SparkFun).   This module allows you to write to the
 LCD much as it if were a serial device and includes the ability to write numbers
 of various types in various formats. It also lets you detect button presses on
 the 5-button keypad generally assocaited with such devices.
 
-\note [I2C-base LCD module] (@ref I2cLcd) requires the [I2C Master module] (@ref I2cMaster).
+\note The [I2C-base LCD module] (@ref I2cLcd) requires the [I2C Master module] (@ref I2cMaster).
 
 
 
@@ -213,9 +216,9 @@ are inherently slower than those that manipulate them as constants.  When using
 the GPIO pin macros, most operations map directly to `in` and `out` AVR
 assembler instructions. However, due to the limitations of these instructions,
 when using variables to pass the pins, the compiler must use slower `ld` and
-`st` instruction to access the I/O registers (for more on this issue, see the [AVR-GCC FAQ]
-(http://www.nongnu.org/avr-libc/user-manual/FAQ.html#faq_port_pass)).  In addition,
-when using variables and function calls bit-shifts needed to generate suitable masks have
+`st` instruction to access the I/O registers (for more on this issue, see the section in the
+[AVR-GCC FAQ] (http://www.nongnu.org/avr-libc/user-manual/FAQ.html#faq_port_pass)).  In addition,
+when using variables and function calls the bit-shifts needed to generate suitable masks have
 to be generated at run-time (often using loops) instead of at compile-time.
 
 The second reason is that the variables that store GPIO pins are rather large.
@@ -232,8 +235,8 @@ encoding schemes.
 
 
 In AVRTools, GPIO pin variables have type GpioPinVariable, which is a class defined in GpioPinMacros.h
-(which is automatically included by ArduinoPins.h). There are also three macros that you need to initialize
-vaiables of type GpioPinVariable: makeGpioVarFromGpioPin(), makeGpioVarFromGpioPinAnalog(), and
+(recall that this file is automatically included by ArduinoPins.h). There are also three macros that you can use to initialize
+GPIO pin variables of type GpioPinVariable.  The three are: makeGpioVarFromGpioPin(), makeGpioVarFromGpioPinAnalog(), and
 makeGpioVarFromGpioPinPwm().
 These are used like this:
 
@@ -248,11 +251,11 @@ These are used like this:
     pinArray[2] = makeGpioVarFromGpioPin( pPin07 );
 ~~~
 
-Which macro you choose depends what functionality of the GPIO pin you plan to access: you can use makeGpioVarFromGpioPin()
-with an analog pin macro (e.g., pPinA01) if you just plan to use it the resulting variable digitally, but if you plan to use the analog capabilities of the GPIO pin, you must use makeGpioVarFromGpioPinAnalog() to initialize the variable.  Similarly for PWM
+Which macro you choose depends upon what functionality of the GPIO pin you plan to access: you are free to use makeGpioVarFromGpioPin()
+with an analog pin macro (e.g., pPinA01) if you just plan to use the resulting variable digitally, but if you plan to use the analog capabilities of the GPIO pin, you must use makeGpioVarFromGpioPinAnalog() to initialize the variable.  Similarly for PWM
 functionality.
 
-Once you've create GPIO pin variables using the above macros, these variables can be assign and passed to functions as needed.  To use these GPIO pin variables, there are special function analogs of the pin manipulation macros.  These have the same names as the pin manipulation macros, except with a "V" appended:
+Once you've created GPIO pin variables using the above macros, these variables can be assign and passed to functions as needed.  To use these GPIO pin variables, there are special function analogs of the pin manipulation macros.  These have the same names as the pin manipulation macros, except with a "V" appended:
 
 Macro Version | Function Version  | Purpose
 :------------ | :---------------  | :------

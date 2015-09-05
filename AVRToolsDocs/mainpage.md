@@ -19,16 +19,20 @@ available for conveniently naming any pin on an ATmega328 or ATmega2560 and prov
 the functionality available on that pin (digital I/O, analog-to-digital conversion, PWM, etc).  AVRTools provides
 functions to access the primary functionality of the ATmega328 and ATmega2560 microcontrollers.
 
-On the otherhand, because "you don't pay for what you don't use", when using AVRTools nothing is initialized or configured unless
+On the other hand, because "you don't pay for what you don't use", when using AVRTools nothing is initialized or
+configured unless
 you explicitly do it.  If you need analog inputs, then you must explicitly initialize the analog-to-digital subsystem before
 reading any analog pins.  If you need an Arduino-style system clock (for functions like `delay()` or `millis()`), then
 you must explicitly start a system clock.  AVRTools provides functions to do any necessary initialization, but the
 programmer must explicitly call these function to perform the initialization.
 
 Similarly, because AVRTools "assumes the programmer knows what he or she is doing," it doesn't conduct a lot of checks
-to ensure you don't do something stupid.  For example when you set the output value of a digital pin using the Arduino library
-function `digitalWrite()`, it checks if that pin is currently configured for PWM and if it is, it automatically turns off PWM-mode
-before writing to the pin. The equivalent AVRTools function, `writeGpioPinDigital()` doesn't do that:  it assumes that if
+to ensure you don't do something stupid.  For example when you set the output value of a digital pin using the Arduino
+library
+function `digitalWrite()`, it checks if that pin is currently configured for PWM and if it is, it automatically
+turns off PWM-mode
+before writing to the pin. The equivalent of `digitalWrite()` in the AVRTools library, `writeGpioPinDigital()` doesn't do that:
+it assumes that if
 the programmer previously used the pin in PWM mode that he or she remembered to turn off PWM mode before using the
 pin digitally.  Assuming the programmer knows what he or she is doing allows the functions in AVRTools to be much faster
 than their Arduino library counterparts.  For example, a call to the Arduino function `digitalWrite()` takes about 70 cycles;
@@ -63,14 +67,14 @@ If you fit into either category, then you should read further.
 
 ### AVRTools is not... ###
 
-AVRTools in not a general purpose AVR programming library.  I use the Arduino Uno and the Arduino Mega in my projects, and
+AVRTools is not a general purpose AVR programming library.  I use the Arduino Uno and the Arduino Mega in my projects, and
 I wrote AVRTools to support these specific needs.  There is conditional code throughout the implementation that is tailored to the
 ATmega328 and ATmega2560 microcontrollers.  Additional conditional code could be added to create corresponding implementations for
 other AVR processors in the AT-family, but I haven't done it.  Furthermore, the code assumes the microcontrollers are running at
 16 MHz.  I believe the only place this matters is in clock, timing, and delay related functions, but I haven't tested the code at
 any CPU speed other than 16 MHz.
 
-Finally, the AVRTools interface is designed to meet my needs and coding style.  That means the interfaces are designed in certain ways
+Finally, the AVRTools interface is designed to meet my needs and coding style.  That means the interfaces are designed in ways
 which may not reflect your usage.  A particular example of this is the I2C module, which is designed to support the I2C
 idioms I use in my projects and is significantly different from the I2C interface offered by the Arduino libraries.
 
@@ -78,7 +82,7 @@ AVRTools is a C++ library.  People may say that it is crazy to use C++ to progra
 and overhead, because behind your back the C++ compiler adds lots of code to make unnecessary copies, manage
 heap objects, handle exceptions, etc.  All that may be true *if you don't understand how C++ works.*  Like C, C++ is a language
 that rewards programmers who know they are doing and punishes those who don't.  One can use C++ because it is a "better C" and
-use C++ features without incurring performance penalties or code bloat.  In particular, AVRTools makes use of C++ namespaces
+use C++ features without incurring performance penalties or code bloat.  AVRTools makes use of C++ namespaces
 to compartmentalize functionality into logical units and to avoid name clashes; AVRTools also uses classes in a few cases where
 objects provide the most natural and convenient implementation of a capability (e.g., advanced output classes such as
 `USART0` or `I2cLcd`; note that AVRTools also provides a minimalistic USART interface using functions instead of classes,
@@ -86,16 +90,20 @@ because different needs call for different tools).
 
 ## Quick Tour of AVRTools ##        {#QuickTour}
 
-This section provides an overview of how AVRTools works, starting with the foundational elements and then summarizing the modules that
-provide interfaces into the major hardware subsystes of the ATmega328 and ATmega2560 microcontrollers.
+This section provides an overview of how AVRTools works, starting with the foundational elements and then summarizing the
+modules that provide interfaces into the major hardware subsystems of the ATmega328 and ATmega2560 microcontrollers.
 
 ### Foundational Elements and Concepts ###  {#Foundations}
 
-The foundation of the AVRTools library consists of a collection of macros that enable you to refer to "pins" on the chips using a single
-name that can be used to switch input/output mode, read, or write pin.  This single name provides access, as appropriate, to the
-DDRx, PORTx, PINx registers and also the specific pin number.  For pins that support analog-to-digital conversion, the single name also
-provides access the analog channel associated with the pin.  For pins that support PWM, the single name also provides access to
-control and compare registers and bits needed to configure and control the PWM functionality of that pin.
+The foundation of the AVRTools library consists of a collection of macros that
+enable you to refer to "pins" on the chips using a single name that can be used
+to switch input/output mode, read, or write a pin.  This single name provides
+access, as appropriate, to the DDRx, PORTx, PINx registers and also the specific
+pin number.  For pins that support analog-to-digital conversion, the single name
+also provides access the analog channel associated with the pin.  For pins that
+support PWM, the single name also provides access to control and compare
+registers and bits needed to configure and control the PWM functionality of that
+pin.
 
 This is all done via preprocessor macros, both for the single pin name mechanism
 and for the "functions" that make use of that single pin name. This means that
@@ -106,8 +114,8 @@ complex internal representation of the macros means that the pin names are
 strictly constant and can only be passed to the specialized macro-functions
 designed to manipulate them. Although they may look and feel like simple
 constants, pin names cannot be assigned to variables, or passed to ordinary
-C/C++ functions (however, see the [GPIO Pin Variables section] (@ref
-AdvancedGpioVars) in the [Advanced Features] (@ref AdvancedFeatures) section for
+C/C++ functions (however, see the [GPIO Pin Variables section] (@ref AdvancedGpioVars)
+in the [Advanced Features] (@ref AdvancedFeatures) section for
 a way to create and use variables for the GPIO pins). The AVRTools library does
 include macro-functions to extract any of the components related to a pin name
 so that users can access and manipulate the individual components as needed.
@@ -161,9 +169,10 @@ Most of these macros are automatically defined when you include "ArduinoPins.h",
     }
 ~~~
 
-If you are working directly with an AVR ATmega328 or ATmega2560, you can define pin macros yourself by including "GpioPinMacros.h" (when working with Arduinos, automatically included for you when you include "ArduinoPins.h") and using one of three pin naming macros:
+If you are working directly with an AVR ATmega328 or ATmega2560, you can define pin macros yourself by including "GpioPinMacros.h" (this file is automatically included for you when you include
+"ArduinoPins.h" if you are working on Arduinos) and using one of three pin naming macros:
 
-- `GpioPin( letter, number )`      An ordinary pin located on bank `letter` and bit `number`, e.g., `GpioPin( B, 5 )` for pin PB5.
+- `GpioPin( letter, number )`      An ordinary pin located on bank `letter` and bit `number`; for example the macro `GpioPin( B, 5 )` corresponds to pin PB5.
 - `GpioPinAnalog( letter, number, channel )`    An ADC capable pin on bank `letter` and bit `number` with ADC `channel`, e.g., `GpioPinAnalog( C, 5, 5 )` for Atmega328 pin PC5/ADC5.
 - `GpioPinPwm( letter, number, timer, channel )` A PWM capable pin on bank `letter` and bit `number` with `timer` and `channel` used to select the appropriate OCRn[A/B], TCCRnA registers, and COMn[A/B]1 bits needed to configure the PWM settings, e.g., GpioPinPwm( B, 2, 1, B ) for ATmega328 pin PB2/OC1B.
 
@@ -258,8 +267,9 @@ the pins they want to use in PWM mode, and will use that knowledge to initialize
 #### Minimal USART modules ####     {#MinUsart}
 
 This module provides a simple and minimal means of reading and writing from the USARTs available on the ATmega328
-and ATmega2560.  To employ this functionality, include the header file `USARTMinimal.h` and link against `USARTMinimal.cpp`.
-The principle functions for access the USARTs are:
+and ATmega2560.  To employ this functionality, you must include the header file `USARTMinimal.h` and link against the
+file `USARTMinimal.cpp`.
+The principle functions for accessing the USARTs are:
 
 ~~~C
 void initUSART0( unsigned long baudRate );
@@ -277,8 +287,8 @@ the ATmega2560.  If you want more advanced serial capabilities, checkout the cla
 
 #### ABI module ####        {#AbiMod}
 
-You only need this module if building your code produces link errors regarding missing symbols with names
-like `__cxa_XXX`.  In that case, simply link you code against abi.cpp.  These are symbols related to the way the
+You only need this module if building your code produces link errors regarding missing symbols with strange names
+like `__cxa_XXX` (where `XXX` is some unusual string).  In that case, simply link your code against abi.cpp.  These are symbols related to the way the
 avr-gcc C++ compiler implements abstract virtual functions.
 
 #### New module ####           {#NewMod}
@@ -340,7 +350,7 @@ init main()
 
 AVRTools also includes modules that provide access to more complex microcontroller capabilities and provide advanced services.
 These modules include both master and slave I2C modules (transmitting and receiving via interrupts), a module for driving
-and LCD display via I2C, a module for reporting memory utilization, and a module for more advanced serial input and output of
+an LCD display via I2C, a module for reporting memory utilization, and a module for more advanced serial input and output of
 various numerical types and strings.  Information on these modules can be found in the [Advanced Features] (@ref AdvancedFeatures) sections of the documentation.
 
 

@@ -20,7 +20,7 @@ same compiler used by the Arduino IDE).
 ## Why can't I assign pins like pPin01 to a variable? ##      {#FaqPins}
 
 Because pin names like `pPin01` are actually complex macros that expand to a
-comma separate list of other macros.  The macro pin names can only be understood
+comma separated list of other macros.  The macro pin names can only be understood
 and used by the function macros specifically designed to use them. This is
 explained in greater detail in
 [What you need to know about pin name macros] (@ref WhatNeedKnow).
@@ -34,7 +34,7 @@ that GPIO pin variables come with high costs, both in speed and memory requireme
 ## Why is there a setGpioPinHigh() macro and a _setGpioPinHigh() macro? ##          {#FaqWhyUnder}
 
 Getting maximum efficiency from the GPIO pin name macros while making them
-easy to requires a series of recursive macro expansions.  To make this work,
+easy to use requires a series of recursive macro expansions.  To make this work,
 it is essential to force rescanning of macro expansions, and nested macro
 function calls is a practical way to force macro rescanning.  So all of the
 GPIO pin related macro functions call a helper macro function that has the
@@ -61,12 +61,12 @@ you have the following three macros:
 #define A B,C
 ~~~
 
-And if you then call `FOO(A)` in your code, first `FOO(A)` is expanded to `BAR(A)`, next
-`BAR(A)` is expanded to `BAR(B,C)`, and then finally `BAR(B,C)` is expanded to
-`(B+C)`.
+And if you then call `FOO(A)` in your code, the preprocessor executes the following steps:
+- first `FOO(A)` is expanded to `BAR(A)`
+- next `BAR(A)` is expanded to `BAR(B,C)`
+- then finally `BAR(B,C)` is expanded to `(B+C)`.
 
-
-The preprocessor rescanning logic is what powers all of the pin macro magic, not just
+This preprocessor rescanning logic is what powers all of the pin macro magic, not just
 _setGPioPinHigh().
 
 
