@@ -43,7 +43,7 @@ If you are an Arduino programmer, you may want to try out AVRTools if:
 - You are frustrated by the slowness of even simple functions in the official Arduino libraries.
 - Your code doesn't fit into the available memory because the official Arduino libraries are so big.
 
-If you an ATmega328 or ATmega2560 microcontroller programmer, you may want to try out AVRTools if:
+If you are an ATmega328 or ATmega2560 microcontroller programmer, you may want to try out AVRTools if:
 - You are secretly jealous of how easy and convenient it is to use the Arduino libraries.
 - You wish you could bind together DDRs, PORTs, and PINs so you didn't have to write code like:
 
@@ -75,15 +75,20 @@ Finally, the AVRTools interface is designed to meet my needs and coding style.  
 which may not reflect your usage.  A particular example of this is the I2C module, which is designed to support the I2C
 idioms I use in my projects and is significantly different from the I2C interface offered by the Arduino libraries.
 
-AVRTools is a C++ library.  People may say that it is crazy to use C++ to program a microcontroller because C++ adds bloat
-and overhead, because behind your back the C++ compiler adds lots of code to make unnecessary copies, manage
-heap objects, handle exceptions, etc.  All that may be true *if you don't understand how C++ works.*  Like C, C++ is a language
-that rewards programmers who know they are doing and punishes those who don't.  One can use C++ because it is a "better C" and
-use C++ features without incurring performance penalties or code bloat.  AVRTools makes use of C++ namespaces
-to compartmentalize functionality into logical units and to avoid name clashes; AVRTools also uses classes in a few cases where
-objects provide the most natural and convenient implementation of a capability (for example, advanced output classes such as
-`USART0` or `I2cLcd`; note that AVRTools also provides a minimalistic USART interface using functions instead of classes,
+AVRTools is a C++ library.  People may say that it is crazy to use C++ to
+program a microcontroller because C++ adds bloat and overhead, because behind
+your back the C++ compiler adds lots of code to make unnecessary copies, manage
+heap objects, handle exceptions, etc.  C++, much like C, is a language that
+rewards programmers who know what they are doing and punishes those who don't.
+One can use C++ because it is a "better C" and use C++ features without
+incurring performance penalties or code bloat.  For example, AVRTools uses
+namespaces to compartmentalize functionality into logical units and avoid name
+clashes; AVRTools also uses classes in a few cases where objects provide the
+most natural and convenient implementation of a capability (for example, certain
+advanced output classes such as `USART0` or `I2cLcd`; note that AVRTools also
+provides a minimalistic USART interface using functions instead of classes,
 because different needs call for different tools).
+
 
 # Quick Tour of AVRTools #       {#QuickTour}
 
