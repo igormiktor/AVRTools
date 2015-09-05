@@ -137,5 +137,10 @@
 #define pSDA                pPin20                          // I2C SDA
 #define pSCL                pPin21                          // I2C SCL
 
+#define pSS                 pPin53                          // SPI SS
+#define pMOSI               pPin51                          // SPI MOSI
+#define pMISO               pPin50                          // SPI MISO
+#define pSCK                pPin52                          // SPI SCK
+
 
 #endif
