@@ -1,8 +1,6 @@
-Advanced Features                   {#advfeatpage}
+Advanced Features                   {#AdvancedFeatures}
 =================
 
-
-# Advanced Features #              {#AdvancedFeatures}
 
 The AVRTools library includes four more advanced features:
 
@@ -24,7 +22,7 @@ each other.  These dependencies are highlighted in the corresponding sections.
 The advanced USART module provides two different high-level interfaces to
 %USART0 hardware available on the Arduino Uno (ATmega328) and the Arduino Mega
 (ATmega2560). These provide serial input and output that is flexible, buffered,
-and asynchronoust by exploiting the interrupts that are associated with the %USART0
+and asynchronous by exploiting the interrupts that are associated with the %USART0
 hardware. This means the transmit functions return immediately after queuing
 data in the output buffer for transmission, and the actual transmission happens
 asynchronously while your code continues to execute. Similarly, data is received
@@ -52,7 +50,7 @@ various formats, all asynchronously. Serial0 is implemented using USART0, so you
 may mix the use of USART0 and Serial0 interfaces in your code (although it is
 not recommended).
 
-To use these the advancde serial capabilities, include the file USART0.h in your source
+To use these the advanced serial capabilities, include the file USART0.h in your source
 code and link against the file USART0.cpp.
 
 \note The advanced serial module is incompatible with the minimal interface to
@@ -68,6 +66,14 @@ Use of the timeout feature in Serial0
 or USART0 requires linking against SystemClock.cpp and
 calling initSystemClock() from your start-up code.
 
+If you are coding for the ATmega2560, you can also use USART1, USART2, and
+USART3 and/or Serial1, Serial2, and Serial3 to access the %USART1, %USART2, and
+%USART3 hardware available on the ATmega2560.  These work just like USART0 and
+Serial0.  Again, if you link against USART1.cpp, USART2.cpp, or USART3.cpp then
+you cannot use the corresponding minimal interfaces for %USART1, %USART2, and
+%USART3, and calling initUSART1() or releaseUSART1() (or their corresponding
+equivalents for the other USARTs) will put that USART in an inoperable
+configuration.
 
 
 # Memory utilities module #       {#MemUtil}

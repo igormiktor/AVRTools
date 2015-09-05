@@ -353,7 +353,8 @@ init main()
 AVRTools also includes modules that provide access to more complex microcontroller capabilities and provide advanced services.
 These modules include both master and slave I2C modules (transmitting and receiving via interrupts), a module for driving
 an LCD display via I2C, a module for reporting memory utilization, and a module for more advanced serial input and output of
-various numerical types and strings.  Information on these modules can be found in the [Advanced Features] (@ref AdvancedFeatures) sections of the documentation.
+various numerical types and strings.  Information on these modules can be found in
+the [Advanced Features] (@ref AdvancedFeatures) sections of the documentation.
 
 
 # Questions #                           {#QuestionsIntro}
