@@ -24,7 +24,7 @@
  *
  * \brief This file provides simple delay functions that do not involve
  * timers or interrupts.  These functions simply execute a series of
- * nested loops which known and precise timing.
+ * nested loops with known and precise timing.
  *
  * For precision, these functions are all implemented directly in assembler.
  *
