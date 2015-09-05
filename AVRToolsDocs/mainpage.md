@@ -262,7 +262,7 @@ Depending on which pins you wish to employ in PWM mode, you should initialize th
 `initPwmTimer1()` or `initPwmTimer2()` before writing to the pin in PWM mode.  This module also includes additional functions
 to access the extended PWM capabilities of the ATmega2560.  The philosophical difference between
 the standard Arduino library and AVRTools is evident in this module:  none of these function try to deduce which timers
-need to turned on for any given pin, because that would require adding extra code and look-up tables.
+need to be turned on for any given pin, because that would require adding extra code and look-up tables.
 Instead AVRTools assumes the programmer will check the appropriate references to determine which timers correspond to
 the pins they want to use in PWM mode, and will use that knowledge to initialize the appropriate timers.
 
