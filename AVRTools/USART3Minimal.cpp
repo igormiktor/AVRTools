@@ -33,6 +33,8 @@
 
 
 
+#if defined(__AVR_ATmega2560__)
+
 
 void initUSART3( unsigned long baudRate )
 {
