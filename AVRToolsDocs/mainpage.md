@@ -268,9 +268,9 @@ the pins they want to use in PWM mode, and will use that knowledge to initialize
 
 ### Minimal USART modules ###     {#MinUsart}
 
-This module provides a simple and minimal means of reading and writing from the USARTs available on the ATmega328
-and ATmega2560.  To employ this functionality, you must include the header file `USARTMinimal.h` and link against the
-file `USARTMinimal.cpp`.
+These modules provides a simple and minimal means of reading and writing from the USARTs available on the ATmega328
+and ATmega2560.  To employ this functionality, you must include the header file `USART0Minimal.h` and link against the
+file `USART0Minimal.cpp`.
 The principle functions for accessing the USARTs are:
 
 ~~~C
@@ -282,10 +282,11 @@ void releaseUSART0();
 ~~~
 
 To make use of the USART capability on USART0, first call `initUSART0()` to initialize the USART.  Then you can use
-`transmitUSART0()` and
-`receiveUSART0()` functions to communicate on USART0.  When you are done with USART0 and want to use pins 0 and 1 for
-other purposes, call `releaseUSART0()`.  Similar functions are provided to access the other three USARTs available on
-the ATmega2560.  If you want more advanced serial capabilities, checkout the class Serial0 in USART0.h.
+`transmitUSART0()` and `receiveUSART0()` functions to communicate on USART0.  When you are done with USART0 and
+want to use pins 0 and 1 for other purposes, call `releaseUSART0()`.  Similar functions are provided to access the
+other three USARTs available on the ATmega2560; simply include `USARTnMinimal.h` and link against the
+file `USARTnMinimal.cpp`, where `n = 1, 2,` or `3`.  If you want more advanced serial capabilities, checkout the class
+Serial0 in `USART0.h`.
 
 ### ABI module ###        {#AbiMod}
 
