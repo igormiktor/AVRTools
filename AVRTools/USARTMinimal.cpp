@@ -37,7 +37,7 @@
 
 void initUSART0( unsigned long baudRate )
 {
-    uint16_t baudSetting = F_CPU / ( baudRate * 16UL ) - 1;
+    uint16_t baudSetting = ((F_CPU + baudRate * 8L) / (baudRate * 16L) - 1);
 
     UBRR0H = baudSetting >> 8;                      // shift the register right by 8 bits
     UBRR0L = baudSetting;                           // set baud rate
@@ -91,7 +91,7 @@ void releaseUSART0()
 
 void initUSART1( unsigned long baudRate )
 {
-    uint16_t baudSetting = F_CPU / ( baudRate * 16UL ) - 1;
+    uint16_t baudSetting = ((F_CPU + baudRate * 8L) / (baudRate * 16L) - 1);
 
     UBRR1H = baudSetting >> 8;                      // shift the register right by 8 bits
     UBRR1L = baudSetting;                           // set baud rate
@@ -140,7 +140,7 @@ void releaseUSART1()
 
 void initUSART2( unsigned long baudRate )
 {
-    uint16_t baudSetting = F_CPU / ( baudRate * 16UL ) - 1;
+    uint16_t baudSetting = ((F_CPU + baudRate * 8L) / (baudRate * 16L) - 1);
 
     UBRR2H = baudSetting >> 8;                      // shift the register right by 8 bits
     UBRR2L = baudSetting;                           // set baud rate
@@ -189,7 +189,7 @@ void releaseUSART2()
 
 void initUSART3( unsigned long baudRate )
 {
-    uint16_t baudSetting = F_CPU / ( baudRate * 16UL ) - 1;
+    uint16_t baudSetting = ((F_CPU + baudRate * 8L) / (baudRate * 16L) - 1);
 
     UBRR3H = baudSetting >> 8;                      // shift the register right by 8 bits
     UBRR3L = baudSetting;                           // set baud rate
