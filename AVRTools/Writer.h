@@ -136,7 +136,7 @@ public:
      * a new line character at the end.
      *
      * \arg \c str is the null-terminated string to output.
-     * \arg \c addLn if true, a new line character ('\n') is added at the end of the output; the default is false.
+     * \arg \c addLn if true, a new line character is added at the end of the output; the default is false.
      *
      * \returns the number of bytes sent to the output stream.
      *
@@ -151,7 +151,7 @@ public:
      *
      * \arg \c buf is the buffer containing bytes to output.
      * \arg \c size is the number of bytes from the buffer to output.
-     * \arg \c addLn if true, a new line character ('\n') is added at the end of the output; the default is false.
+     * \arg \c addLn if true, a new line character is added at the end of the output; the default is false.
      *
      * \returns the number of bytes sent to the output stream.
      *
@@ -165,7 +165,7 @@ public:
      * a new line character at the end.
      *
      * \arg \c c is the character to output.
-     * \arg \c addLn if true, a new line character ('\n') is added at the end of the output; the default is false.
+     * \arg \c addLn if true, a new line character is added at the end of the output; the default is false.
      *
      * \returns the number of bytes sent to the output stream.
      *
@@ -181,7 +181,7 @@ public:
      * \arg \c n is the integer to output.
      * \arg \c base is the base used to represent the number; should be one of IntegerOutputBase; defaults to
      * decimal representation (kDec).
-     * \arg \c addLn if true, a new line character ('\n') is added at the end of the output; the default is false.
+     * \arg \c addLn if true, a new line character is added at the end of the output; the default is false.
      *
      * \returns the number of bytes sent to the output stream.
      *
@@ -198,7 +198,7 @@ public:
      * \arg \c n is the unsigned integer to output.
      * \arg \c base is the base used to represent the number; should be one of IntegerOutputBase; defaults to
      * decimal representation (kDec).
-     * \arg \c addLn if true, a new line character ('\n') is added at the end of the output; the default is false.
+     * \arg \c addLn if true, a new line character is added at the end of the output; the default is false.
      *
      * \returns the number of bytes sent to the output stream.
      *
@@ -215,7 +215,7 @@ public:
      * \arg \c n is the long integer to output.
      * \arg \c base is the base used to represent the number; should be one of IntegerOutputBase; defaults to
      * decimal representation (kDec).
-     * \arg \c addLn if true, a new line character ('\n') is added at the end of the output; the default is false.
+     * \arg \c addLn if true, a new line character is added at the end of the output; the default is false.
      *
      * \returns the number of bytes sent to the output stream.
      *
@@ -231,7 +231,7 @@ public:
      * \arg \c n is the unsigned long integer to output.
      * \arg \c base is the base used to represent the number; should be one of IntegerOutputBase; defaults to
      * decimal representation (kDec).
-     * \arg \c addLn if true, a new line character ('\n') is added at the end of the output; the default is false.
+     * \arg \c addLn if true, a new line character is added at the end of the output; the default is false.
      *
      * \returns the number of bytes sent to the output stream.
      *
@@ -246,7 +246,7 @@ public:
      *
      * \arg \c d is the floating point number to output.
      * \arg \c digits is the number of decimal digits to output; the default is 2.
-     * \arg \c addLn if true, a new line character ('\n') is added at the end of the output; the default is false.
+     * \arg \c addLn if true, a new line character is added at the end of the output; the default is false.
      *
      * \returns the number of bytes sent to the output stream.
      *
@@ -370,7 +370,7 @@ public:
     size_t println( double d, int digits = 2 )              { print( d, digits, true ); }
 
     /*!
-     * \brief Print a new line ('\n') to the output stream.
+     * \brief Print a new line to the output stream.
      */
     size_t println();
 
