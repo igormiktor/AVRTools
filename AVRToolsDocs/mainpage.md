@@ -7,16 +7,16 @@ This library provides an Arduino-like simple-to-use interface to the AVR ATmega3
 without the bloat and slowness of the official Arduino libraries.
 
 AVRTools is an attempt to provide the convenience of the Ardiuno library interface while embracing the fundametal C/C++
-philosopy of "you don't pay for what you don't use" and "assume the programmer knows what he or she is doing"
+philosopy of "you don't pay for what you don't use" and "assume the programmer knows what he or she is doing."
 
 Like the Arduino libraries, AVRTools allows you to refer to pins on an Arduino via simple names such as `pPin07` for
 digital pin 7 or `pPinA03` for analog pin 3.  Unlike the Arduino libraries, these names are pure macros so that
 `setGpioPinHigh( pPin12 )` always translates directly into `PORTB |= (1<<4)` on an Arduino Uno.  Similar macros are
-available for conveniently naming any pin on an ATmega328 or ATmega2560 and provide easy and efficient access to all
+available for conveniently naming any pin on an ATmega328 or ATmega2560 to provide easy and efficient access to all
 the functionality available on that pin (digital I/O, analog-to-digital conversion, PWM, etc).  AVRTools provides
-functions to access the primary functionality of the ATmega328 and ATmega2560 microcontrollers.
+functions to access the primary subsystems and functionality of the ATmega328 and ATmega2560 microcontrollers.
 
-On the other hand, because "you don't pay for what you don't use", when using AVRTools nothing is initialized or
+On the other hand, because "you don't pay for what you don't use," when using AVRTools nothing is initialized or
 configured unless
 you explicitly do it.  If you need analog inputs, then you must explicitly initialize the analog-to-digital subsystem before
 reading any analog pins.  If you need an Arduino-style system clock (for functions like `delay()` or `millis()`), then
@@ -24,7 +24,7 @@ you must explicitly start a system clock.  AVRTools provides functions to do any
 programmer must explicitly call these function to perform the initialization.
 
 Similarly, because AVRTools "assumes the programmer knows what he or she is doing," it doesn't conduct a lot of checks
-to ensure you don't do something stupid.  For example when you set the output value of a digital pin using the Arduino
+to ensure you don't do something stupid.  For example, when you set the output value of a digital pin using the Arduino
 library
 function `digitalWrite()`, it checks if that pin is currently configured for PWM and if it is, it automatically
 turns off PWM-mode
@@ -147,7 +147,7 @@ macro-functions to operate on the pin names.  These include:
 - `setGpioPinHigh( pin )`               Set the corresponding PORTn bit
 - `setGpioPinLow( pin )`                Clear the corresponding PORTn bit
 - `readGpioPinAnalog( pin )`            Read an analog value from the corresponding ADC channel
-- `writeGpioPinPwm( pin, value )`       Set the corresonding PWM output level for that pin
+- `writeGpioPinPwm( pin, value )`       Set the corresponding PWM output level for that pin
 
 Most of these macros are automatically defined when you include "ArduinoPins.h", although to define the last two you need to include
 "Analog2Digital.h" and "Pwm.h" (respectively).  These macros allow you to write code such as:
@@ -268,8 +268,8 @@ the pins they want to use in PWM mode, and will use that knowledge to initialize
 
 ### Minimal USART modules ###     {#MinUsart}
 
-These modules provides a simple and minimal means of reading and writing from the USARTs available on the ATmega328
-and ATmega2560.  To employ this functionality, you must include the header file `USART0Minimal.h` and link against the
+These modules provide basic functionality for reading and writing from the USARTs available on the ATmega328
+and ATmega2560.  To employ the %USART0 functionality, you must include the header file `USART0Minimal.h` and link against the
 file `USART0Minimal.cpp`.
 The principle functions for accessing the USARTs are:
 
@@ -281,8 +281,8 @@ unsigned char receiveUSART0();
 void releaseUSART0();
 ~~~
 
-To make use of the USART capability on USART0, first call `initUSART0()` to initialize the USART.  Then you can use
-`transmitUSART0()` and `receiveUSART0()` functions to communicate on USART0.  When you are done with USART0 and
+To make use of the %USART0 capability, first call `initUSART0()` to initialize the USART.  Then you can use
+`transmitUSART0()` and `receiveUSART0()` functions to communicate on %USART0.  When you are done with %USART0 and
 want to use pins 0 and 1 for other purposes, call `releaseUSART0()`.  Similar functions are provided to access the
 other three USARTs available on the ATmega2560; simply include `USARTnMinimal.h` and link against the
 file `USARTnMinimal.cpp`, where `n = 1, 2,` or `3`.  If you want more advanced serial capabilities, checkout the class
