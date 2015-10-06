@@ -10,10 +10,11 @@ AVRTools is an attempt to provide the convenience of the Ardiuno library interfa
 philosopy of "you don't pay for what you don't use" and "assume the programmer knows what he or she is doing."
 
 Like the Arduino libraries, AVRTools allows you to refer to pins on an Arduino via simple names such as `pPin07` for
-digital pin 7 or `pPinA03` for analog pin 3.  Unlike the Arduino libraries, these names are pure macros so that
-`setGpioPinHigh( pPin12 )` always translates directly into `PORTB |= (1<<4)` on an Arduino Uno.  Similar macros are
-available for conveniently naming any pin on an ATmega328 or ATmega2560 to provide easy and efficient access to all
-the functionality available on that pin (digital I/O, analog-to-digital conversion, PWM, etc).  AVRTools provides
+digital pin 7 or `pPinA03` for analog pin 3.  However, unlike the Arduino libraries, these names are pure macros so that
+`setGpioPinHigh( pPin12 )` always translates directly into `PORTB |= (1<<PORTB4)` on an Arduino Uno.  Similar macros are
+available for conveniently naming any pin on an ATmega328 or ATmega2560, providing easy and efficient access to all
+the functionality available on that pin (digital I/O, analog-to-digital conversion, PWM, etc).  In combination with
+these pin name macros, AVRTools provides
 functions to access the primary subsystems and functionality of the ATmega328 and ATmega2560 microcontrollers.
 
 On the other hand, because "you don't pay for what you don't use," when using AVRTools nothing is initialized or
