@@ -6,9 +6,13 @@ FAQ                   {#faq}
 
 - [Can AVRTools be installed as an Arduino IDE Library?] (@ref FaqIdeLib)
 - [Why can't I assign pins like pPin01 to a variable?] (@ref FaqPins)
+- [Why isn't the SPI module asynchronous?] (@ref FaqSpiAsynch)
+- [Why does the SPI module only implement master mode?] (@ref FaqSpiMaster)
 - [Why is there a setGpioPinHigh() macro and a _setGpioPinHigh() macro?] (@ref FaqWhyUnder)
 - [_setGpioPinHigh() is defined with 8 arguments, but called with 1: how can that work?] (@ref FaqHowWork)
 - [Why is there a setGpioPinHigh() macro and a setGpioPinHighV() function?] (@ref FaqWhyV)
+
+
 
 # Can AVRTools be installed as an Arduino IDE Library? #      {#FaqIdeLib}
 
@@ -29,6 +33,31 @@ If you really need GPIO pin variables, there is a way to do it.
 See the section on [GPIO pin variables] (@ref AdvancedGpioVars). Note in particular
 that GPIO pin variables come with high costs, both in speed and memory requirements.
 
+
+
+# Why isn't the SPI module asynchronous? #                                      {#FaqSpiAsynch}
+
+The SPI module is implemented synchronously using polling loops because actual testing
+has shown this to be nearly twice as fast as implementing the functionality
+asynchronously using interrupts.  Tomaž Šolc has done the research and posted the
+results on his
+[blog] (https://www.tablix.org/~avian/blog/archives/2012/06/spi_interrupts_versus_polling/).
+Check it out (and check out the other articles, his blog is pretty interesting).
+
+
+
+
+# Why does the SPI module only implement master mode? #                     {#FaqSpiMaster}
+
+Easy answer: I have never needed anything other than %SPI master mode.  In every case I
+use %SPI, the AVR microcontroller is the master talking to some external sensor or device
+that is the slave.  While AVR's %SPI hardware supports slave mode, I don't think it
+is common.  If you want to use %SPI to communicate across two AVR microcontrollers,
+obviously one of them would have to be in slave mode.  But in that situation, I'd
+probably have them communicate via a serial connection.
+
+If you need a slave mode %SPI interface, let me know.  It's pretty straightforward to
+code.  I may well get around to doing it one day in any case, just for completeness.
 
 
 # Why is there a setGpioPinHigh() macro and a _setGpioPinHigh() macro? #          {#FaqWhyUnder}
