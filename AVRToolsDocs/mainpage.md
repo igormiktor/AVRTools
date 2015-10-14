@@ -268,7 +268,7 @@ the pins they want to use in PWM mode, and will use that knowledge to initialize
 
 ### Minimal USART modules ###     {#MinUsart}
 
-These modules provides a simple and minimal means of reading and writing from the USARTs available on the ATmega328
+These modules provide a simple and minimal means of reading and writing from the hardware USARTs available on the ATmega328
 and ATmega2560.  To employ this functionality, you must include the header file `USART0Minimal.h` and link against the
 file `USART0Minimal.cpp`.
 The principle functions for accessing the USARTs are:
@@ -352,10 +352,12 @@ init main()
 # Advanced modules #                    {#AdvancedModIntro}
 
 AVRTools also includes modules that provide access to more complex microcontroller capabilities and provide advanced services.
-These modules include both master and slave I2C modules (transmitting and receiving via interrupts), a module for driving
-an LCD display via I2C, a module for reporting memory utilization, and a module for more advanced serial input and output of
-various numerical types and strings.  Information on these modules can be found in
-the [Advanced Features] (@ref AdvancedFeatures) sections of the documentation.
+These include modules for I2C communication (both master and slave mode), a module for %SPI communications,
+a module for more advanced serial input and output (including conversion of various numerical types and strings),
+a module for temporarily surpressing selected interrupts, a module for driving an LCD display via I2C, a module for
+reporting memory utilization, a module for very precise delays, and a module for manipulating GPIO pins as actual
+variables.  Information on these modules can be found in the [Advanced Features] (@ref AdvancedFeatures) sections of
+the documentation.
 
 
 # Questions #                           {#QuestionsIntro}

@@ -2,13 +2,15 @@ Advanced Features                   {#AdvancedFeatures}
 =================
 
 
-The AVRTools library includes four more advanced features:
+The AVRTools library includes either more advanced features:
 
 - [Advanced serial (USART) module] (@ref AdvancedSerial)
-- [Memory utilities module] (@ref MemUtil)
-- [Simple delays module] (@ref SimDelay)
 - [I2C modules] (@ref AdvancedI2c)
 - [I2C-based LCD module] (@ref AdvancedLcd)
+- [Interrupt utilities module] (@ref InterruptUtils)
+- [SPI module] (@ref SPI)
+- [Memory utilities module] (@ref MemUtil)
+- [Simple delays module] (@ref SimDelay)
 - [GPIO pin variables] (@ref AdvancedGpioVars)
 
 These features provide functionality that is different from that provided by the Arduino
@@ -74,25 +76,6 @@ you cannot use the corresponding minimal interfaces for %USART1, %USART2, and
 %USART3, and calling initUSART1() or releaseUSART1() (or their corresponding
 equivalents for the other USARTs) will put that USART in an inoperable
 configuration.
-
-
-# Memory utilities module #       {#MemUtil}
-
-The [Memory Utilities module] (@ref MemUtils) provides functions that report the available
-memory in SRAM.  These help you gauge in real-time whether your application is approaching
-memory exhaustion.
-
-
-
-# Simple delays module #       {#SimDelay}
-
-The [Simple Delays module] (@ref SimpleDelays.h) provides simple delay functions that do not
-involve timers or interrupts.  These functions simply execute a series of
-nested loops with known and precise timing.
-
-These functions are all implemented directly in assembler to guarantee cycle counts.  However,
-if interrupts are enabled, then the delays will be at least as long as requested, but may actually be
-longer.
 
 
 
@@ -183,7 +166,7 @@ directly to the above I2C paradigm.
 
 # I2C-based LCD module #               {#AdvancedLcd}
 
-The [I2C-base LCD module] (@ref I2cLcd) provides a high-level interface to an
+The [I2C-based LCD module] (@ref I2cLcd) provides a high-level interface to an
 LCD offering an I2C interface. The most common variant of this is HD44780U
 controlled LCD driven by an MCP23017 that offers an I2C interface (such LCDs are
 available from Adafruit and SparkFun).   This module allows you to write to the
@@ -191,9 +174,164 @@ LCD much as it if were a serial device and includes the ability to write numbers
 of various types in various formats. It also lets you detect button presses on
 the 5-button keypad generally assocaited with such devices.
 
-\note The [I2C-base LCD module] (@ref I2cLcd) requires the [I2C Master module] (@ref I2cMaster).
+\note The [I2C-based LCD module] (@ref I2cLcd) requires the [I2C Master module] (@ref I2cMaster).
 
 
+
+# Interrupt utilities module #               {#InterruptUtils}
+
+It is often necessary to suppress interrupts to avoid conflicts between
+the main thread of code execution and code that runs in interrupts.  While
+it is easy to suppress all interrupts using the AVR `cli()` function,
+often a more selective approach is desireable.  And when interrupts
+are suppressed, it is also easy to forget to re-enable them.
+
+The Interrupts module addresses these problems by providing simple utility C++
+classes whose constructors disable certain kinds of interrupts and corresponding
+destructors re-enable them.  A block of code can suppress interrupts by simply
+declaring an object of one of these classes; interrupts will be automatically
+restored when the block of code is exited for any reason.  For example, if you
+want to suppress two of the pin change interrupts in a certain block of code,
+you would do this:
+
+~~~{.cpp}
+#include "AVRTools/InterruptUtils.h"
+
+//
+// ... snip ...
+//
+
+void dontLetPinChangeInterruptsHappenHere( uint8_t data )
+{
+    // Pin change interrupts 1 and 2 conflict with this function, so suppress these
+    // two pin change interrupts for the duration of this function
+    Interrupts::PinChangeOff interruptsOff( kPinChangeInterrupt1 | kPinChangeInterrupt2 );
+
+    // Here is some code that would conflict with the interrupt routines
+    // assigned to pin change interrupt 1 and 2...
+    // ... snip ...
+
+    // Pin change interrupts 1 and 2 are automatically restored when this
+    // function exits
+}
+~~~
+
+One common application for this is when using %SPI transmissions in both main thread code
+and interrupt routines.  See the documentation for the [SPI module] (@ref SPI) for an
+example.
+
+
+
+# SPI module #               {#SPI}
+
+The SPI module provides a high-level interface to the %SPI hardware subsystem present
+on the AVR ATMega328p (Arduino Uno) and ATMega2560 (Arduino Mega) microcontrollers. This
+module provides functions to initialize the %SPI hardware, configure it appropriately for
+your needs, and transmit (and receive) data.  While the %SPI hardware supports asynchronous
+transmission via an interrupt functions (analogous to the %I2C hardware), AVRTools does not
+implement asynchronous %SPI transmission, instead implementing sychronous transmission that
+polls the appropriate %SPI status register to determine when transmission of a byte has
+completed.  The reason for this is that testing of polling and interrupt implementations by
+[Tomaž Šolc] (https://www.tablix.org/~avian/blog/archives/2012/06/spi_interrupts_versus_polling/)
+has shown that polling implementations are faster than interrupt-based implementations by nearly
+a factor of 2.  This is because %SPI can work at half the CPU frequency; at this speed, the
+CPU can only execute about 16 instructions per byte sent via %SPI.  When the CPU is calling
+interrupts so often, the overhead of calling the interrupt function dominates, and is greater
+than the overhead of a simple polling loop.
+
+The SPI module only implements %SPI operation in master mode.  Slave mode %SPI operation is
+not supported at this time.  In master mode, you may use any free pin as the Slave Select (SS)
+for the remote device.
+
+The SPI module contains functions to enable and disable the SPI hardware.  Note that
+when enabled the %SPI hardware takes control of the MOSI, MISO, and CLK pins. It also
+sets the local SS pin to output mode to prevent inadvertent automatic triggering of
+slave-mode by the %SPI hardware.  This happens if a low signal is received on the SS pin.
+The SS pin can still be used as a general purpose output port, because it doesn't affect
+%SPI operations as long as it remains in output mode.
+
+To use the SPI module, call the SPI::enable() function as part of your initialization.
+Then when you are aready to transmit, configure the hardware appropriately using
+SPI::configure(), write the receiving device's slave select pin LOW, call SPI::transmit() (or any one
+of the related transmit functions) any number of times to transfer data, and finally write the
+receiving device's SS pin HIGH to indicate that transmission has ended.
+
+One potential complication may occur if you use %SPI to transmit data from inside an interrupt
+routine and also use %SPI in the main execution thread.  In this situation, you have to make sure that
+a %SPI transmission in the main thread is not interrupted by a %SPI transmission from an interrupt
+routine.  You can do this very easily by disabling the appropriate interrupt (or interrupts) during the
+period of time that an %SPI transmission occurs in the main thread.  The classes in InterruptUtils
+allow you to selectively disable interrupts.
+
+The following example code illustrates how to do this.  Assume that %SPI is used by interrupt routines
+associated with pin change interrupts 0 and 1, and with external interrupt 1.  Your main thread code
+would then look like this:
+
+
+~~~{.cpp}
+
+// ... snip ...
+
+#include "AVRTools/SPI.h"
+#include "AVRTools/InterruptUtils.h"
+
+// ... snip ...
+
+void initializeEverything()
+{
+    // ... snip ...
+
+    // Initialize the SPI subsystem
+    SPI::enable();
+}
+
+// ... snip ...
+
+uint8_t sendData( uint8_t data )
+{
+  // SPI is used by the interrupt functions that respond to pin change interrupts 0 and 1,
+  // and external interrupt 1.  To prevent clashes, we suppress these three interrupts
+  // for the duration of this function
+  Interrupts::PinChangeOff pinChangeOff( kPinChangeInterrupt0 | kPinChangeInterrupt1 );
+  Interrupts::ExternalOff externalOff( kExternalInterrupt1 );
+
+  // Configure SPI
+  SPI::configure( SPISettings( 4000000, kLsbFirst, kSpiMode2 ) );
+
+  // Set the remote slave SS pin low to initiate a transmission
+  setGpioPinLow( pConnectedToSlaveSS )
+
+  // Transmit (and receive)
+  uint8_t retVal = SPI::transmit( data );
+
+  // Set the remote slave SS pin high to terminate the transmission
+  setGpioPinLow( pConnectedToSlaveSSpin )
+
+  // Interrupts automatically reset when this function exits
+  return retVal;
+}
+~~~
+
+
+
+
+# Memory utilities module #       {#MemUtil}
+
+The [Memory Utilities module] (@ref MemUtils) provides functions that report the available
+memory in SRAM.  These help you gauge in real-time whether your application is approaching
+memory exhaustion.
+
+
+
+# Simple delays module #       {#SimDelay}
+
+The [Simple Delays module] (@ref SimpleDelays.h) provides simple delay functions that do not
+involve timers or interrupts.  These functions simply execute a series of
+nested loops with known and precise timing.
+
+These functions are all implemented directly in assembler to guarantee cycle counts.  However,
+if interrupts are enabled, then the delays will be at least as long as requested, but may actually be
+longer.
 
 
 
