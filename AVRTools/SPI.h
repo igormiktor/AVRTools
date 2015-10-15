@@ -477,7 +477,7 @@ namespace SPI
         if ( SPCR & _BV(DORD) )
         {
             SPDR = in.lsb;
-            asm volatile( "nop" );              // See transfer(uint8_t) function
+            asm volatile( "nop" );              // See transmit( uint8_t ) function
             while ( !( SPSR & _BV(SPIF) ) )
                 ;
             out.lsb = SPDR;
@@ -491,7 +491,7 @@ namespace SPI
         else
         {
             SPDR = in.msb;
-            asm volatile( "nop" );                // See transfer(uint8_t) function
+            asm volatile( "nop" );                // See transmit( uint8_t ) function
             while ( !( SPSR & _BV(SPIF) ) )
                 ;
             out.msb = SPDR;

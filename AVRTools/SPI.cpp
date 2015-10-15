@@ -106,7 +106,7 @@ uint32_t SPI::transmit32( uint32_t data )
     if ( SPCR & _BV(DORD) )
     {
         SPDR = in.b0;
-        asm volatile( "nop" );              // See transfer(uint8_t) function
+        asm volatile( "nop" );              // See transmit( uint8_t ) function
         while ( !( SPSR & _BV(SPIF) ) )
             ;
         out.b0 = SPDR;
@@ -132,7 +132,7 @@ uint32_t SPI::transmit32( uint32_t data )
     else
     {
         SPDR = in.b3;
-        asm volatile( "nop" );              // See transfer(uint8_t) function
+        asm volatile( "nop" );              // See transmit( uint8_t ) function
         while ( !( SPSR & _BV(SPIF) ) )
             ;
         out.b3 = SPDR;
