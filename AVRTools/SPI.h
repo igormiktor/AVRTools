@@ -86,16 +86,16 @@
  *   Interrupts::ExternalOff interruptsOff( kExternalInterrupt0 | kExternalInterrupt1 );
  *
  *   // Configure SPI
- *   SPI::configure( SPISettings( 4000000, kLsbFirst, kSpiMode2 ) );
+ *   SPI::configure( SPISettings( 4000000, SPI::kLsbFirst, SPI::kSpiMode2 ) );
  *
  *   // Set the remote slave SS pin low to initiate a transmission
- *   setGpioPinLow( pConnectedToSlaveSSpin )
+ *   setGpioPinLow( pConnectedToSlaveSSpin );
  *
  *   // Transmit
  *   uint8_t retVal = SPI::transmit( data );
  *
  *   // Set the remote slave SS pin high to terminate the transmission
- *   setGpioPinLow( pConnectedToSlaveSSpin )
+ *   setGpioPinLow( pConnectedToSlaveSSpin );
  *
  *   // Interrupts automatically reset when this function exits
  *   return retVal;
@@ -400,16 +400,16 @@ namespace SPI
      *   Interrupts::ExternalOff interruptsOff( kExternalInterrupt0 | kExternalInterrupt1 );
      *
      *   // Configure SPI
-     *   SPI::configure( SPISettings( 4000000, kLsbFirst, kSpiMode2 ) );
+     *   SPI::configure( SPISettings( 4000000, SPI::kLsbFirst, SPI::kSpiMode2 ) );
      *
      *   // Set the remote slave SS pin low to initiate a transmission
-     *   setGpioPinLow( pConnectedToSlaveSSpin )
+     *   setGpioPinLow( pConnectedToSlaveSSpin );
      *
      *   // Transmit
      *   uint8_t retVal = SPI::transmit( data );
      *
      *   // Set the remote slave SS pin high to terminate the transmission
-     *   setGpioPinLow( pConnectedToSlaveSSpin )
+     *   setGpioPinLow( pConnectedToSlaveSSpin );
      *
      *   // Interrupts automatically reset when this function exits
      *   return retVal;
