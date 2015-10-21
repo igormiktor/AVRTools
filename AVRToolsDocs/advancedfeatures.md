@@ -296,16 +296,16 @@ uint8_t sendData( uint8_t data )
   Interrupts::ExternalOff externalOff( kExternalInterrupt1 );
 
   // Configure SPI
-  SPI::configure( SPISettings( 4000000, kLsbFirst, kSpiMode2 ) );
+  SPI::configure( SPISettings( 4000000, SPI::kLsbFirst, SPI::kSpiMode2 ) );
 
   // Set the remote slave SS pin low to initiate a transmission
-  setGpioPinLow( pConnectedToSlaveSS )
+  setGpioPinLow( pConnectedToSlaveSS );
 
   // Transmit (and receive)
   uint8_t retVal = SPI::transmit( data );
 
   // Set the remote slave SS pin high to terminate the transmission
-  setGpioPinLow( pConnectedToSlaveSSpin )
+  setGpioPinHigh( pConnectedToSlaveSSpin );
 
   // Interrupts automatically reset when this function exits
   return retVal;
