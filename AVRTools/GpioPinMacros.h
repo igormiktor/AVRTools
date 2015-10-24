@@ -74,7 +74,7 @@ enum
 
 #define _isGpioPinModeOutput( ddr, port, pin, nbr, adc, ocr, com, tccr )        ( ddr & (1<<nbr) )
 
-#define _isGpioPinModeInput( ddr, port, pin, nbr, adc, ocr, com, tccr )         !( ddr & (1<<nbr) )
+#define _isGpioPinModeInput( ddr, port, pin, nbr, adc, ocr, com, tccr )         (!( ddr & (1<<nbr) ))
 
 #define _setGpioPinModeOutput( ddr, port, pin, nbr, adc, ocr, com, tccr )       ddr |= (1<<nbr)
 
