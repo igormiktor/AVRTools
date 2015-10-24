@@ -201,8 +201,8 @@ delayTenthsOfSeconds:
 ; Register r24 (tenthOfSecCounter) is passed as parameter
 
 ; Executing the following combination of inner and outer loop cycles takes almost precisely 0.1 seconds
-.set kOuterCount,           7           ;63
-.set kInnerCount,           57142       ; 63491
+.set kOuterCount,           7
+.set kInnerCount,           57142
 
 ; r24 = number of tenths-of-seconds to count (comes in as argument)
 ;     = number of times to execute the outer+inner loops combined
