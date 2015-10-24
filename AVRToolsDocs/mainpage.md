@@ -143,6 +143,8 @@ macro-functions to operate on the pin names.  These include:
 - `setGpioPinModeOutput( pin )`         Enable the corresponding DDRn bit
 - `setGpioPinModeInput( pin )`          Clear the corresponding DDRn bit
 - `setGpioPinModeInputPullup( pin )`    Clear the corresponding DDRn and PORTn bits
+- `isGpioPinModeOutput( pin )`          Is the corresponding DDRn bit set?
+- `isGpioPinModeInput( pin )`           Is the corresponding DDRn bit clear?
 - `readGpioPinDigital( pin )`           Return the corresponding PINn bit
 - `writeGpioPinDigital( pin, value )`   Write a 0 or 1 to the corresponding PORTn bit
 - `setGpioPinHigh( pin )`               Set the corresponding PORTn bit
