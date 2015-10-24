@@ -133,29 +133,29 @@ delayWholeMilliSeconds:
 ; Top of loop for number of milliseconds
 1:
     ; Initialize outer loop (uses a byte counter and counts down)
-    ldi r25, kOuterCount
+    ldi r25, kOuterCount                        ; 1 cycle
 
 ; Top of outer loop
 2:
     ; Initialze inner loop (uses a word counter and counts down)
-    ldi r26, lo8( kInnerCount )
-    ldi r27, hi8( kInnerCount )
+    ldi r26, lo8( kInnerCount )                 ; 1 cycle
+    ldi r27, hi8( kInnerCount )                 ; 1 cycle
 
 ; Top of inner loop
 3:
     ; Decrement and test inner loop
-    sbiw r26, 1
-    brne 3b
+    sbiw r26, 1                                 ; 2 cycles
+    brne 3b                                     ; 1 cycle if false, 2 cycles if true
     ; Done with inner loop
 
     ; Decrement and test outer loop
-    subi r25, 1
-    brne 2b
+    subi r25, 1                                 ; 1 cycle
+    brne 2b                                     ; 1 cycle if false, 2 cycles if true
     ; Done with inner loop
 
     ; Decrement and test millisecond loop
-    subi r24, 1
-    brne 1b
+    subi r24, 1                                 ; 1 cycle
+    brne 1b                                     ; 1 cycle if false, 2 cycles if true
     ; Done with the requested number of milliseconds
 
     ret
@@ -201,8 +201,8 @@ delayTenthsOfSeconds:
 ; Register r24 (tenthOfSecCounter) is passed as parameter
 
 ; Executing the following combination of inner and outer loop cycles takes almost precisely 0.1 seconds
-.set kOuterCount,           63
-.set kInnerCount,           63491
+.set kOuterCount,           7           ;63
+.set kInnerCount,           57142       ; 63491
 
 ; r24 = number of tenths-of-seconds to count (comes in as argument)
 ;     = number of times to execute the outer+inner loops combined
@@ -215,29 +215,29 @@ delayTenthsOfSeconds:
 ; Top of loop for number of tenths-of-seconds
 1:
     ; Initialize outer loop (uses a byte counter and counts down)
-    ldi r25, kOuterCount
+    ldi r25, kOuterCount                        ; 1 cycle
 
 ; Top of outer loop
 2:
     ; Initialze inner loop (uses a word counter and counts down)
-    ldi r26, lo8( kInnerCount )
-    ldi r27, hi8( kInnerCount )
+    ldi r26, lo8( kInnerCount )                 ; 1 cycle
+    ldi r27, hi8( kInnerCount )                 ; 1 cycle
 
 ; Top of inner loop
 3:
     ; Decrement and test inner loop
-    sbiw r26, 1
-    brne 3b
-    ; Done with inner loop
+    sbiw r26, 1                                 ; 2 cycles
+    brne 3b                                     ; 1 cycle if false, 2 cycles if true
+    ; Done with inner loop -- total 2 + 63491 * 4 + 3 = 190476 cycles
 
     ; Decrement and test outer loop
-    subi r25, 1
-    brne 2b
-    ; Done with inner loop
+    subi r25, 1                                 ; 1 cycle
+    brne 2b                                     ; 1 cycle if false, 2 cycles if true
+    ; Done with outer loop -- total 1 + 63 * ( 190476 + 1 ) + 1 = 12000053
 
     ; Decrement and test tenth-of-second loop
-    subi r24, 1
-    brne 1b
+    subi r24, 1                                 ; 1 cycle
+    brne 1b                                     ; 1 cycle if false, 2 cycles if true
     ; Done with the requested number of tenths-of-seconds
 
     ret
