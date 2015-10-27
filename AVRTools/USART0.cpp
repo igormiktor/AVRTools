@@ -115,11 +115,11 @@ ISR( USART_UDRE_vect )
 void USART0::start( unsigned long baudRate, UsartSerialConfiguration config )
 {
     bool use2x = true;
-    uint16_t baudSetting = F_CPU / ( 8UL * baudRate ) - 1;
+    uint16_t baudSetting = (F_CPU + baudRate * 4L) / ( 8L * baudRate ) - 1;
     if ( baudSetting > 4095 || baudRate == 57600)
     {
         use2x = false;
-        baudSetting = F_CPU / ( 16UL * baudRate ) - 1;
+        baudSetting = (F_CPU + baudRate * 8L) / (baudRate * 16L) - 1;
     }
 
     ATOMIC_BLOCK( ATOMIC_RESTORESTATE )
