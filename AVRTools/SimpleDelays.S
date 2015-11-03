@@ -46,39 +46,47 @@
 
 delayQuartersOfMicroSeconds:
 
-; Register r24 is passed as parameter (the number of quarter
+; Register r25:24 is passed as parameter (the number of quarter
 ; microseconds to delay)
+
+; r24 = LSB quarter microseconds to delay
+; r25 = MSB quarter microseconds to delay
+
+#define rDelayL     r24
+#define rDelayH     r25
 
 ; Function call/return overhead takes about 1+1/8 microseconds, or 18 cycles,
 ; or between 4 and 5 quarter microseconds.
 ; Takes 4 cycles (= 1 quarter microsecond) to determine the requested delay is small,
 ; so return for any delay of less than 7 quarter microseconds;
 
-.set kMinDelay,     6
+#define kMinDelay       6
 
-    cpi r25, 0                  ; 1 cycle
-    brne 1f                     ; 1 cycle if false, 2 cycles if true
-    cpi r24, (kMinDelay + 1)    ; 1 cycle
-    brge 2f                     ; 1 cycle if false, 2 cycles if true
-    ret                         ; Getting to here takes 4 cycles = 1 quarter microsecond
-                                ; or 22 cycles including the function call overhead
-                                ; We are two cycles short if r24 == 6, but long if r24 < 6
+    cpi rDelayH, 0                  ; 1 cycle
+    brne 1f                         ; 1 cycle if false, 2 cycles if true
+    cpi rDelayL, (kMinDelay + 1)    ; 1 cycle
+    brge 2f                         ; 1 cycle if false, 2 cycles if true
+    ret                             ; Getting to here takes 4 cycles = 1 quarter microsecond
+                                    ; or 22 cycles including the function call overhead
+                                    ; We are two cycles short if r24 == 6, but long if r24 < 6
 
 1:
-    nop                         ; need to add a little extra delay if we branched at first brne
+    nop                             ; need to add a little extra delay if we branched at first brne
     nop
 
 2:
-    sbiw r24, kMinDelay         ; 2 cycles
+    sbiw rDelayL, kMinDelay         ; 2 cycles
 
-3:                              ; Getting to here takes 7 cycles (1 short of 2 delay loops),
-                                ; for a total of 25 cycles including function call overhead.
-                                ; We're always 1 cycle short on loop exit, so things balance out.
-    sbiw 24, 1                  ; 2 cycles
-    brne 3b                     ; 1 cycle on exit, 2 cycles on loop
+3:                                  ; Getting to here takes 7 cycles (1 short of 2 delay loops),
+                                    ; for a total of 25 cycles including function call overhead.
+                                    ; We're always 1 cycle short on loop exit, so things balance out.
+    sbiw rDelayL, 1                 ; 2 cycles
+    brne 3b                         ; 1 cycle on exit, 2 cycles on loop
     ret
 
-
+#undef rDelayL
+#undef rDelayH
+#undef kMinDelay
 
 
 
@@ -124,41 +132,52 @@ delayWholeMilliSeconds:
 ; r26 = low byte of inner loop counter word
 ; r27 = high byte of inner loop counter word
 
+#define rMillis         r24
+#define rOuter          r25
+#define rInnerL         r26
+#define rInnerH         r27
 
 ; Executing the following combination of inner and outer loop cycles takes almost precisely 1 millisecond
-.set kOuterCount,           2
-.set kInnerCount,           1997
+#define kOuterCount     2
+#define kInnerCount     1997
 
 
 ; Top of loop for number of milliseconds
 1:
     ; Initialize outer loop (uses a byte counter and counts down)
-    ldi r25, kOuterCount                        ; 1 cycle
+    ldi rOuter, kOuterCount
 
 ; Top of outer loop
 2:
     ; Initialze inner loop (uses a word counter and counts down)
-    ldi r26, lo8( kInnerCount )                 ; 1 cycle
-    ldi r27, hi8( kInnerCount )                 ; 1 cycle
+    ldi rInnerL, lo8( kInnerCount )
+    ldi rInnerH, hi8( kInnerCount )
 
 ; Top of inner loop
 3:
     ; Decrement and test inner loop
-    sbiw r26, 1                                 ; 2 cycles
-    brne 3b                                     ; 1 cycle if false, 2 cycles if true
+    sbiw rInnerL, 1
+    brne 3b
     ; Done with inner loop
 
     ; Decrement and test outer loop
-    subi r25, 1                                 ; 1 cycle
-    brne 2b                                     ; 1 cycle if false, 2 cycles if true
+    subi rOuter, 1
+    brne 2b
     ; Done with inner loop
 
     ; Decrement and test millisecond loop
-    subi r24, 1                                 ; 1 cycle
-    brne 1b                                     ; 1 cycle if false, 2 cycles if true
+    subi rMillis, 1
+    brne 1b
     ; Done with the requested number of milliseconds
 
     ret
+
+#undef rMillis
+#undef rOuter
+#undef rInnerL
+#undef rInnerH
+#undef kOuterCount
+#undef kInnerCount
 
 
 
@@ -199,46 +218,56 @@ delayWholeMilliSeconds:
 delayTenthsOfSeconds:
 
 ; Register r24 (tenthOfSecCounter) is passed as parameter
-
-; Executing the following combination of inner and outer loop cycles takes almost precisely 0.1 seconds
-.set kOuterCount,           7
-.set kInnerCount,           57142
-
 ; r24 = number of tenths-of-seconds to count (comes in as argument)
 ;     = number of times to execute the outer+inner loops combined
 ; r25 = outer loop counter byte
 ; r26 = low byte of inner loop counter word
 ; r27 = high byte of inner loop counter word
 
+#define r10ths          r24
+#define rOuter          r25
+#define rInnerL         r26
+#define rInnerH         r27
+
+; Executing the following combination of inner and outer loop cycles takes almost precisely 0.1 seconds
+#define kOuterCount     7
+#define kInnerCount     57142
+
 
 
 ; Top of loop for number of tenths-of-seconds
 1:
     ; Initialize outer loop (uses a byte counter and counts down)
-    ldi r25, kOuterCount                        ; 1 cycle
+    ldi rOuter, kOuterCount
 
 ; Top of outer loop
 2:
     ; Initialze inner loop (uses a word counter and counts down)
-    ldi r26, lo8( kInnerCount )                 ; 1 cycle
-    ldi r27, hi8( kInnerCount )                 ; 1 cycle
+    ldi rInnerL, lo8( kInnerCount )
+    ldi rInnerH, hi8( kInnerCount )
 
 ; Top of inner loop
 3:
     ; Decrement and test inner loop
-    sbiw r26, 1                                 ; 2 cycles
-    brne 3b                                     ; 1 cycle if false, 2 cycles if true
-    ; Done with inner loop -- total 2 + 63491 * 4 + 3 = 190476 cycles
+    sbiw rInnerL, 1
+    brne 3b
+    ; Done with inner loop
 
     ; Decrement and test outer loop
-    subi r25, 1                                 ; 1 cycle
-    brne 2b                                     ; 1 cycle if false, 2 cycles if true
-    ; Done with outer loop -- total 1 + 63 * ( 190476 + 1 ) + 1 = 12000053
+    subi rOuter, 1
+    brne 2b
+    ; Done with inner loop
 
     ; Decrement and test tenth-of-second loop
-    subi r24, 1                                 ; 1 cycle
-    brne 1b                                     ; 1 cycle if false, 2 cycles if true
+    subi r10ths, 1
+    brne 1b
     ; Done with the requested number of tenths-of-seconds
 
     ret
 
+#undef r10ths
+#undef rOuter
+#undef rInnerL
+#undef rInnerH
+#undef kInnerCount
+#undef kOuterCount
