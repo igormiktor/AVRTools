@@ -319,7 +319,8 @@ uint8_t sendData( uint8_t data )
 
 The [Memory Utilities module] (@ref MemUtils) provides functions that report the available
 memory in SRAM.  These help you gauge in real-time whether your application is approaching
-memory exhaustion.
+memory exhaustion. The primary function is `freeRam()` which returns the number of free bytes
+remaining in SRAM.
 
 
 
@@ -331,8 +332,11 @@ nested loops with known and precise timing.
 
 These functions are all implemented directly in assembler to guarantee cycle counts.  However,
 if interrupts are enabled, then the delays will be at least as long as requested, but may actually be
-longer.
+longer.  These delay functions are:
 
+- delayQuartersOfMicroSeconds( uint16_t nbrOfQuartersOfMicroSeconds );
+- delayWholeMilliSeconds( uint8_t nbrOfMilliSeconds );
+- delayTenthsOfSeconds( uint8_t nbrOfTenthsOfSeconds );
 
 
 # GPIO pin variables #                {#AdvancedGpioVars}
@@ -384,8 +388,8 @@ These are used like this:
 
 ~~~C
     GpioPinVariable  pinA( makeGpioVarFromGpioPin( pPin10 ) );
-    GpioPinVariable  pinB( makeGpioVarFromGpioPinAnalog( pPinA01 ) );
-    GpioPinVariable  pinC = makeGpioVarFromGpioPinPwm( pPin03 );
+    GpioPinVariable  pinB = makeGpioVarFromGpioPinAnalog( pPinA01 );
+    GpioPinVariable  pinC( makeGpioVarFromGpioPinPwm( pPin03 ) );
 
     GpioPinVariable pinArray[3];
     pinArray[0] = pinA;
