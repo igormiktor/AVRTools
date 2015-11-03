@@ -40,7 +40,10 @@ enum A2DPrescalar
 };
 
 
-
+namespace
+{
+    int8_t  sCurrentChannel;
+};
 
 
 
@@ -60,6 +63,8 @@ void initA2D( uint8_t ref )
 
     // Enable (turn on) ADC
     ADCSRA |= (1 << ADEN);
+
+    sCurrentChannel = 0;
 }
 
 
@@ -91,8 +96,11 @@ int readA2D( int8_t channel )
         return 0;
     }
 
-    // Set MUX5 if channel > 7 (i.e, bit 3 set); otherwise clear it
-    ADCSRB = ( ADCSRB & ~MUX5 ) | ( ( channel & 0x08 ) ? ( 1 << MUX5 ) : 0  );
+    if ( sCurrentChannel != channel )
+    {
+        // Set MUX5 if channel > 7 (i.e, bit 3 set); otherwise clear it
+        ADCSRB = ( ADCSRB & ~(1<< MUX5) ) | ( ( channel & (1 << 3) ) ? ( 1 << MUX5 ) : 0  );
+    }
 
 #else  // ATmega328p
 
@@ -104,11 +112,16 @@ int readA2D( int8_t channel )
 
 #endif
 
-    // Set MUX2-0
-    ADMUX = ( ADMUX & ~0x1f ) | ( channel & 0x07 );
+    if ( sCurrentChannel != channel )
+    {
+        // Set MUX2-0
+        ADMUX = ( ADMUX & ~0x1f ) | ( channel & 0x07 );
 
-    // Need to let ADC system restablize
-    _delay_us( 125 );
+        // Need to let ADC system restablize
+        _delay_us( 125 );
+
+        sCurrentChannel = channel;
+    }
 
     // Start A2D conversion
     ADCSRA |= ( 1 << ADSC );
