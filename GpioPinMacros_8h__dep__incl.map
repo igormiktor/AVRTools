@@ -1,0 +1,7 @@
+<map id="GpioPinMacros.h" name="GpioPinMacros.h">
+<area shape="rect" id="node3" href="$Analog2Digital_8h.html" title="This file provides functions that access the analog&#45;to&#45;digital conversion capability of the ATmega328..." alt="" coords="5,83,123,112"/>
+<area shape="rect" id="node5" href="$ArduinoMegaPins_8h.html" title="This file defines the standard Arduino Uno pin name macros. It may be included directly by user code..." alt="" coords="147,83,280,112"/>
+<area shape="rect" id="node9" href="$ArduinoUnoPins_8h.html" title="This file defines the standard Arduino Uno pin name macros. It may be included directly by user code..." alt="" coords="304,83,429,112"/>
+<area shape="rect" id="node11" href="$Pwm_8h.html" title="This file provides functions that access the PWM capability of the ATmega328 and ATmega2560 microcont..." alt="" coords="453,83,515,112"/>
+<area shape="rect" id="node7" href="$ArduinoPins_8h.html" title="This file is the primary one that users should include to access and use the pin name macros..." alt="" coords="163,160,264,189"/>
+</map>

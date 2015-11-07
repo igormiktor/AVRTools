@@ -1,0 +1,4 @@
+<map id="Serial2" name="Serial2">
+<area shape="rect" id="node2" href="$classWriter.html" title="This is an abstract class defining a generic interface to write numbers and strings to a sequential s..." alt="" coords="5,5,61,35"/>
+<area shape="rect" id="node4" href="$classReader.html" title="This is an abstract class defining a generic interface to read numbers and strings from a sequential ..." alt="" coords="85,5,149,35"/>
+</map>

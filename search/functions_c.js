@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['read',['read',['../classReader.html#aaefe160913f4198ccf2c77642d5cebb7',1,'Reader::read()'],['../classSerial0.html#a03f6cdf92b103b43340a68896704591a',1,'Serial0::read()'],['../classSerial1.html#a349ffa99cc68894d9049fec666a58256',1,'Serial1::read()'],['../classSerial2.html#a05c2a291f63b82f939672214d62c0c3a',1,'Serial2::read()'],['../classSerial3.html#addc2a0e2bb05aa36e33f1954b0de9920',1,'Serial3::read()'],['../namespaceUSART0.html#a9e17a2cdb9f5ebed7656c020c47e21d4',1,'USART0::read()'],['../namespaceUSART1.html#ae5058af99b0274c7666fa7da864aeb44',1,'USART1::read()'],['../namespaceUSART2.html#aa9bc72534d24b6b487ff1d2afdd77e63',1,'USART2::read()'],['../namespaceUSART3.html#ad49da2a0e6798fd545252f47126083fa',1,'USART3::read()']]],
+  ['reada2d',['readA2D',['../Analog2Digital_8h.html#a5b49c55993142a0f00f396fafb8b30d2',1,'Analog2Digital.cpp']]],
+  ['readasync',['readAsync',['../namespaceI2cMaster.html#a817bd14c8540395eed0ebd4d5149b7b2',1,'I2cMaster::readAsync(uint8_t address, uint8_t numberBytes, volatile uint8_t *destination, volatile uint8_t *bytesRead, volatile uint8_t *status)'],['../namespaceI2cMaster.html#abcad5ae556b935b5b38a264af8bb2ac2',1,'I2cMaster::readAsync(uint8_t address, uint8_t registerAddress, uint8_t numberBytes, volatile uint8_t *destination, volatile uint8_t *bytesRead, volatile uint8_t *status)']]],
+  ['readbuttons',['readButtons',['../classI2cLcd.html#a787b7568f0ad2e40a055cfd7e1b9e3d4',1,'I2cLcd']]],
+  ['readbytes',['readBytes',['../classReader.html#a1056e1aed49d568e8162a80a20813877',1,'Reader::readBytes(char *buffer, size_t length)'],['../classReader.html#a3a74a7a9836c831825971046e09b2018',1,'Reader::readBytes(uint8_t *buffer, size_t length)']]],
+  ['readbytesuntil',['readBytesUntil',['../classReader.html#a42d25170b8a862b911dfe37344b1bf2a',1,'Reader::readBytesUntil(char terminator, char *buffer, size_t length)'],['../classReader.html#a6aef3809b547f08d8ea0ebeb7c19e523',1,'Reader::readBytesUntil(uint8_t terminator, uint8_t *buffer, size_t length)']]],
+  ['reader',['Reader',['../classReader.html#adcda31b507720ab44044d7a21686fba2',1,'Reader']]],
+  ['readfloat',['readFloat',['../classReader.html#aeb0ceb57268bca02bb2c0b499b8b3ddc',1,'Reader::readFloat(float *result)'],['../classReader.html#aece0134611d823c6388ab45b53aa2dcf',1,'Reader::readFloat(float *result, char skipChar)']]],
+  ['readgpiopinanalogv',['readGpioPinAnalogV',['../Analog2Digital_8h.html#af524f355d7999c4b4f0d3f2285374676',1,'Analog2Digital.h']]],
+  ['readgpiopindigitalv',['readGpioPinDigitalV',['../GpioPinMacros_8h.html#a9562677f5917b53739f5cc00b053e9e9',1,'GpioPinMacros.h']]],
+  ['readline',['readLine',['../classReader.html#a773c612dc4c8e38ef844e6c110fb4118',1,'Reader']]],
+  ['readlong',['readLong',['../classReader.html#a1ba74f31b1e1146b0f7c0947303b5f86',1,'Reader::readLong(long *result)'],['../classReader.html#a41c5bdcaa0321ca320ba77f18b2ddd07',1,'Reader::readLong(long *result, char skipChar)']]],
+  ['readsync',['readSync',['../namespaceI2cMaster.html#ad50eb37ed46981c09c5e0fb93832b685',1,'I2cMaster::readSync(uint8_t address, uint8_t numberBytes, uint8_t *destination)'],['../namespaceI2cMaster.html#af884da3907c785422f6387c4108652cc',1,'I2cMaster::readSync(uint8_t address, uint8_t registerAddress, uint8_t numberBytes, uint8_t *destination)']]],
+  ['receiveusart0',['receiveUSART0',['../USART0Minimal_8h.html#ab8088594df45071a7b3ab6f9c9eba433',1,'USART0Minimal.cpp']]],
+  ['receiveusart1',['receiveUSART1',['../USART1Minimal_8h.html#a8b91edbaabcf5508e4165e6a42bd74f3',1,'USART1Minimal.cpp']]],
+  ['receiveusart2',['receiveUSART2',['../USART2Minimal_8h.html#a5ce5fe23583a6fac81e1623db8f53a3c',1,'USART2Minimal.cpp']]],
+  ['receiveusart3',['receiveUSART3',['../USART3Minimal_8h.html#a1053d2d60d1fad0c848f63940e2acc97',1,'USART3Minimal.cpp']]],
+  ['releaseusart0',['releaseUSART0',['../USART0Minimal_8h.html#a3e99fdd93a3ace96152127ac994d419d',1,'USART0Minimal.cpp']]],
+  ['releaseusart1',['releaseUSART1',['../USART1Minimal_8h.html#a6ea899853b102102aeffc78e2bd653af',1,'USART1Minimal.cpp']]],
+  ['releaseusart2',['releaseUSART2',['../USART2Minimal_8h.html#af8a55d8dcab37f71b6ebbe68546fcea7',1,'USART2Minimal.cpp']]],
+  ['releaseusart3',['releaseUSART3',['../USART3Minimal_8h.html#aa390410f27ca0727aec1b980201b3c77',1,'USART3Minimal.cpp']]],
+  ['ringbuffer',['RingBuffer',['../classRingBuffer.html#af687e25596aca4113034b3f4a7545e20',1,'RingBuffer']]],
+  ['ringbuffert',['RingBufferT',['../classRingBufferT.html#aebca8ea5b4d1948cec12d3597d6f9426',1,'RingBufferT']]]
+];
