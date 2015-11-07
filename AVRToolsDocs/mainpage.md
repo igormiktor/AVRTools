@@ -95,6 +95,8 @@ because different needs call for different tools).
 
 This section provides an overview of how AVRTools works, starting with the foundational elements and then summarizing the
 modules that provide interfaces into the major hardware subsystems of the ATmega328 and ATmega2560 microcontrollers.
+Complete documentation is available in PDF form in the repository, or
+[online in HTML form] (http://igormiktor.github.io/AVRTools/).
 
 ## Foundational Elements and Concepts ##  {#Foundations}
 
@@ -361,6 +363,11 @@ a module for temporarily surpressing selected interrupts, a module for driving a
 reporting memory utilization, a module for very precise delays, and a module for manipulating GPIO pins as actual
 variables.  Information on these modules can be found in the [Advanced Features] (@ref AdvancedFeatures) sections of
 the documentation.
+
+# Documentation #
+
+Detailed documentation is available in PDF form in the repository, or
+[online in HTML form] (http://igormiktor.github.io/AVRTools/).
 
 
 # Questions #                           {#QuestionsIntro}
