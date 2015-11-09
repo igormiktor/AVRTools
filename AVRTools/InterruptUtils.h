@@ -154,7 +154,7 @@ namespace Interrupts
          *
          */
 
-        ExternalOff( uint8_t whichOnesToTurnOff = kExternalInterruptMask )
+        ExternalOff( uint8_t whichOnesToTurnOff = kExternalInterruptAll )
         : mExternalInterruptsToSuppress( whichOnesToTurnOff & kExternalInterruptMask )
         {
             // Disable the selected interrupts
@@ -228,7 +228,7 @@ namespace Interrupts
          * If the argument is omitted, all pin change interrupts will be disabled.
          *
          */
-        PinChangeOff( uint8_t whichOnesToTurnOff = kPinChangeInterruptMask )
+        PinChangeOff( uint8_t whichOnesToTurnOff = kPinChangeInterruptAll )
         : mPinChangeInterruptsToSuppress( whichOnesToTurnOff & kPinChangeInterruptMask )
         {
             // Disable the selected interrupts
