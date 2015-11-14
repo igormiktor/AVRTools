@@ -251,7 +251,7 @@ before attempting to read any analog pins.
 
 This module provides access to the PWM features available on certain ATmega328 and ATmega2560 pins.  To employ this
 functionality include the header file `Pwm.h` and link against `Pwm.cpp`.  The principle functions provided by this
-module include:
+module include (among others):
 
 ~~~C
 void initPwmTimer1();
@@ -261,13 +261,15 @@ void clearTimer2();
 writeGpioPinPwm( avrPort, value );  /* implemented as a macro */
 ~~~
 
-Depending on which pins you wish to employ in PWM mode, you should initialize the appropriate timers by calling either
-`initPwmTimer1()` or `initPwmTimer2()` before writing to the pin in PWM mode.  This module also includes additional functions
+Depending on which pins you wish to employ in PWM mode, you should initialize the appropriate timers by calling the appropriate
+`initPwmTimerN()` function (where `N` is the appropriate timer number) before writing to the pin in PWM mode.
+This module also includes additional functions
 to access the extended PWM capabilities of the ATmega2560.  The philosophical difference between
 the standard Arduino library and AVRTools is evident in this module:  none of these function try to deduce which timers
 need to be turned on for any given pin, because that would require adding extra code and look-up tables.
 Instead AVRTools assumes the programmer will check the appropriate references to determine which timers correspond to
-the pins they want to use in PWM mode, and will use that knowledge to initialize the appropriate timers.
+the pins they want to use in PWM mode, and will use that knowledge to initialize the appropriate timers.  For convenience,
+tables of PWM-capable pins and corresponding timers are included in the `Pwm.h` documentation.
 
 ### Minimal USART modules ###     {#MinUsart}
 
