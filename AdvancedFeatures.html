@@ -135,7 +135,7 @@ I2C-based LCD module</h1>
 <dl class="section note"><dt>Note</dt><dd>The <a class="el" href="classI2cLcd.html">I2C-based LCD module</a> requires the <a class="el" href="namespaceI2cMaster.html">I2C Master module</a>.</dd></dl>
 <h1><a class="anchor" id="InterruptUtils"></a>
 Interrupt utilities module</h1>
-<p>It is often necessary to suppress interrupts to avoid conflicts between the main thread of code execution and code that runs in interrupts. While it is easy to suppress all interrupts using the AVR <code>cli()</code> function, often a more selective approach is desireable. And when interrupts are suppressed, it is also easy to forget to re-enable them.</p>
+<p>It is often necessary to suppress interrupts to avoid conflicts between the main thread of code execution and code that runs in interrupts. While it is easy to suppress all interrupts using the <code>avr-gcc</code> built-in <code>cli()</code> function, often a more selective approach is desireable. And when interrupts are suppressed, it is also easy to forget to re-enable them.</p>
 <p>The <a class="el" href="namespaceInterrupts.html" title="This namespace bundles various utility classes designed to suppress selected interrupts using the RAI...">Interrupts</a> module addresses these problems by providing simple utility C++ classes whose constructors disable certain kinds of interrupts and corresponding destructors re-enable them. A block of code can suppress interrupts by simply declaring an object of one of these classes; interrupts will be automatically restored when the block of code is exited for any reason. For example, if you want to suppress two of the pin change interrupts in a certain block of code, you would do this:</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="InterruptUtils_8h.html">AVRTools/InterruptUtils.h</a>&quot;</span></div>
 <div class="line"></div>
@@ -353,7 +353,7 @@ Example using GPIO pin variables</h2>
 </div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 2 2015 21:16:35 for AVRTools by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Nov 14 2015 14:49:32 for AVRTools by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
