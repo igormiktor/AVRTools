@@ -182,7 +182,7 @@ the 5-button keypad generally assocaited with such devices.
 
 It is often necessary to suppress interrupts to avoid conflicts between
 the main thread of code execution and code that runs in interrupts.  While
-it is easy to suppress all interrupts using the AVR `cli()` function,
+it is easy to suppress all interrupts using the `avr-gcc` built-in `cli()` function,
 often a more selective approach is desireable.  And when interrupts
 are suppressed, it is also easy to forget to re-enable them.
 
