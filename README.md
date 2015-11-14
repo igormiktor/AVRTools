@@ -65,45 +65,45 @@ Using AVRTools, you can write code like this:
 #include "AVRTools/InitSystem.h"
 #include "AVRTools/SystemClock.h"
 
-#define pRed            pPin10
-#define pYellow         pPin07
-#define pGreen          pPin04
+#define pRedLed            pPin10
+#define pYellowLed         pPin07
+#define pGreenLed          pPin04
 
 int main()
 {
     initSystem();
     initSystemClock();
 
-    setGpioPinModeOutput( pGreen );
-    setGpioPinModeOutput( pYellow );
-    setGpioPinModeOutput( pRed );
+    setGpioPinModeOutput( pGreenLed );
+    setGpioPinModeOutput( pYellowLed );
+    setGpioPinModeOutput( pRedLed );
 
-    setGpioPinHigh( pGreen );
-    setGpioPinHigh( pYellow );
-    setGpioPinHigh( pRed );
+    setGpioPinHigh( pGreenLed );
+    setGpioPinHigh( pYellowLed );
+    setGpioPinHigh( pRedLed );
 
     delayMilliseconds( 2000 );
 
-    setGpioPinLow( pGreen );
-    setGpioPinLow( pYellow );
-    setGpioPinLow( pRed );
+    setGpioPinLow( pGreenLed );
+    setGpioPinLow( pYellowLed );
+    setGpioPinLow( pRedLed );
 
     while ( 1 )
     {
         delayMilliseconds( 1000 );
 
-        setGpioPinLow( pRed );
-        setGpioPinHigh( pGreen );
+        setGpioPinLow( pRedLed );
+        setGpioPinHigh( pGreenLed );
 
         delayMilliseconds( 1000 );
 
-        setGpioPinLow( pGreen );
-        setGpioPinHigh( pYellow );
+        setGpioPinLow( pGreenLed );
+        setGpioPinHigh( pYellowLed );
 
         delayMilliseconds( 1000 );
 
-        setGpioPinLow( pYellow );
-        setGpioPinHigh( pRed );
+        setGpioPinLow( pYellowLed );
+        setGpioPinHigh( pRedLed );
     }
 }
 ~~~
