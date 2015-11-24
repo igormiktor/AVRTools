@@ -548,6 +548,33 @@ private:
 
 
 /*!
+ * \brief Test if the mode of the GPIO pin is output (i.e., the corresponding DDRn bit is set).
+ *
+ * \arg \c pinVar a GPIO pin variable of type GpioPinVariable.
+ */
+
+inline bool isGpioPinModeOutputV( const GpioPinVariable& pinVar )
+{
+    return *(pinVar.ddr()) & ( 1 << pinVar.bitNbr() );
+}
+
+
+/*!
+ * \brief Test if the mode of the GPIO pin is input (i.e., the corresponding DDRn is clear).
+ *
+ * \arg \c pinVar a GPIO pin variable of type GpioPinVariable.
+ */
+
+inline bool isGpioPinModeInputV( const GpioPinVariable& pinVar )
+{
+    return  !( *(pinVar.ddr()) & ( 1 << pinVar.bitNbr() ) );
+}
+
+
+
+
+
+/*!
  * \brief Set the mode of the GPIO pin to output (i.e., set the corresponding DDRn bit).
  *
  * \arg \c pinVar a GPIO pin variable of type GpioPinVariable.
