@@ -154,7 +154,7 @@ namespace Interrupts
          *
          */
 
-        ExternalOff( uint8_t whichOnesToTurnOff = kExternalInterruptAll )
+        ExternalOff( uint8_t whichOnesToTurnOff = kExternalInterruptMask )
         : mExternalInterruptsToSuppress( whichOnesToTurnOff & kExternalInterruptMask )
         {
             // Disable the selected interrupts
@@ -203,9 +203,9 @@ namespace Interrupts
 
     enum PinChangeInterrupts
     {
-        kPinChangeInterrupt0     = ( 1 << INT0 ),           //!< Pin change interrupt 0  \hideinitializer
-        kPinChangeInterrupt1     = ( 1 << INT1 ),           //!< Pin change interrupt 1  \hideinitializer
-        kPinChangeInterrupt2     = ( 1 << INT2 ),           //!< Pin change interrupt 2  \hideinitializer
+        kPinChangeInterrupt0     = ( 1 << PCINT0 ),           //!< Pin change interrupt 0  \hideinitializer
+        kPinChangeInterrupt1     = ( 1 << PCINT1 ),           //!< Pin change interrupt 1  \hideinitializer
+        kPinChangeInterrupt2     = ( 1 << PCINT2 ),           //!< Pin change interrupt 2  \hideinitializer
         kPinChangeInterruptAll   = kPinChangeInterruptMask  //!< All pin change interrupts  \hideinitializer
     };
 
@@ -228,7 +228,7 @@ namespace Interrupts
          * If the argument is omitted, all pin change interrupts will be disabled.
          *
          */
-        PinChangeOff( uint8_t whichOnesToTurnOff = kPinChangeInterruptAll )
+        PinChangeOff( uint8_t whichOnesToTurnOff = kPinChangeInterruptMask )
         : mPinChangeInterruptsToSuppress( whichOnesToTurnOff & kPinChangeInterruptMask )
         {
             // Disable the selected interrupts
