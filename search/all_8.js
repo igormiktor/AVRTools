@@ -31,7 +31,9 @@ var searchData=
   ['isempty',['isEmpty',['../classRingBuffer.html#a74c1b8941f14ca85ba27898d3dba46e6',1,'RingBuffer::isEmpty()'],['../classRingBufferT.html#a9588c14f76557222e1714165cd4f3c9b',1,'RingBufferT::isEmpty()']]],
   ['isfull',['isFull',['../classRingBuffer.html#a1b82f430802f81d1cbf7a6fbb374394d',1,'RingBuffer::isFull()'],['../classRingBufferT.html#a8e148f679453a109b6fa08e84b2ec7de',1,'RingBufferT::isFull()']]],
   ['isgpiopinmodeinput',['isGpioPinModeInput',['../GpioPinMacros_8h.html#a80d626fa0cfee642acf7bbc78db91c7b',1,'GpioPinMacros.h']]],
+  ['isgpiopinmodeinputv',['isGpioPinModeInputV',['../GpioPinMacros_8h.html#a747468ba121dd137c9115c67f72ecd9e',1,'GpioPinMacros.h']]],
   ['isgpiopinmodeoutput',['isGpioPinModeOutput',['../GpioPinMacros_8h.html#a9b8f9345e37f8122fc8d71fdcb9147b5',1,'GpioPinMacros.h']]],
+  ['isgpiopinmodeoutputv',['isGpioPinModeOutputV',['../GpioPinMacros_8h.html#ae3a770f4ebdd34827d99102721cb10ba',1,'GpioPinMacros.h']]],
   ['isnotempty',['isNotEmpty',['../classRingBuffer.html#a899e69260a4cd394417ae41b34f41a6e',1,'RingBuffer::isNotEmpty()'],['../classRingBufferT.html#ac38498cefbe777979aadf5fb132fdcf1',1,'RingBufferT::isNotEmpty()']]],
   ['isnotfull',['isNotFull',['../classRingBuffer.html#a311b00ba3a0f23aee154a8ef8d08c24f',1,'RingBuffer::isNotFull()'],['../classRingBufferT.html#a75ae5081372bf3247466130aaf2afbeb',1,'RingBufferT::isNotFull()']]]
 ];

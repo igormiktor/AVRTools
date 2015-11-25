@@ -203,6 +203,12 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:ae3a770f4ebdd34827d99102721cb10ba"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GpioPinMacros_8h.html#ae3a770f4ebdd34827d99102721cb10ba">isGpioPinModeOutputV</a> (const <a class="el" href="classGpioPinVariable.html">GpioPinVariable</a> &amp;pinVar)</td></tr>
+<tr class="memdesc:ae3a770f4ebdd34827d99102721cb10ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test if the mode of the GPIO pin is output (i.e., the corresponding DDRn bit is set).  <a href="#ae3a770f4ebdd34827d99102721cb10ba">More...</a><br /></td></tr>
+<tr class="separator:ae3a770f4ebdd34827d99102721cb10ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a747468ba121dd137c9115c67f72ecd9e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GpioPinMacros_8h.html#a747468ba121dd137c9115c67f72ecd9e">isGpioPinModeInputV</a> (const <a class="el" href="classGpioPinVariable.html">GpioPinVariable</a> &amp;pinVar)</td></tr>
+<tr class="memdesc:a747468ba121dd137c9115c67f72ecd9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test if the mode of the GPIO pin is input (i.e., the corresponding DDRn is clear).  <a href="#a747468ba121dd137c9115c67f72ecd9e">More...</a><br /></td></tr>
+<tr class="separator:a747468ba121dd137c9115c67f72ecd9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a35f1608c15e9ca9aec4a373f65316f94"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GpioPinMacros_8h.html#a35f1608c15e9ca9aec4a373f65316f94">setGpioPinModeOutputV</a> (const <a class="el" href="classGpioPinVariable.html">GpioPinVariable</a> &amp;pinVar)</td></tr>
 <tr class="memdesc:a35f1608c15e9ca9aec4a373f65316f94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the mode of the GPIO pin to output (i.e., set the corresponding DDRn bit).  <a href="#a35f1608c15e9ca9aec4a373f65316f94">More...</a><br /></td></tr>
 <tr class="separator:a35f1608c15e9ca9aec4a373f65316f94"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -813,6 +819,64 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a747468ba121dd137c9115c67f72ecd9e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isGpioPinModeInputV </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classGpioPinVariable.html">GpioPinVariable</a> &amp;&#160;</td>
+          <td class="paramname"><em>pinVar</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Test if the mode of the GPIO pin is input (i.e., the corresponding DDRn is clear). </p>
+<ul>
+<li><code>pinVar</code> a GPIO pin variable of type <a class="el" href="classGpioPinVariable.html" title="This class defines a type that can encode a GPIO pin as a variable. Read the section on GPIO Pin Vari...">GpioPinVariable</a>. </li>
+</ul>
+
+</div>
+</div>
+<a class="anchor" id="ae3a770f4ebdd34827d99102721cb10ba"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isGpioPinModeOutputV </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classGpioPinVariable.html">GpioPinVariable</a> &amp;&#160;</td>
+          <td class="paramname"><em>pinVar</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Test if the mode of the GPIO pin is output (i.e., the corresponding DDRn bit is set). </p>
+<ul>
+<li><code>pinVar</code> a GPIO pin variable of type <a class="el" href="classGpioPinVariable.html" title="This class defines a type that can encode a GPIO pin as a variable. Read the section on GPIO Pin Vari...">GpioPinVariable</a>. </li>
+</ul>
+
+</div>
+</div>
 <a class="anchor" id="a9562677f5917b53739f5cc00b053e9e9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1031,7 +1095,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 14 2015 14:49:32 for AVRTools by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 24 2015 20:45:22 for AVRTools by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
