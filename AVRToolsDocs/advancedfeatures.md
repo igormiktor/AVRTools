@@ -398,13 +398,15 @@ These are used like this:
 ~~~
 
 Which macro you choose depends upon what functionality of the GPIO pin you plan to access: you are free to use makeGpioVarFromGpioPin()
-with an analog pin macro (e.g., pPinA01) if you just plan to use the resulting variable digitally, but if you plan to use the analog capabilities of the GPIO pin, you must use makeGpioVarFromGpioPinAnalog() to initialize the variable.  Similarly for PWM
+with an analog pin macro (e.g., pPinA01) if you only plan to use the resulting variable digitally, but if you plan to use the analog capabilities of the GPIO pin, you must use makeGpioVarFromGpioPinAnalog() to initialize the variable.  Similarly for PWM
 functionality.
 
 Once you've created GPIO pin variables using the above macros, these variables can be assign and passed to functions as needed.  To use these GPIO pin variables, there are special function analogs of the pin manipulation macros.  These have the same names as the pin manipulation macros, except with a "V" appended:
 
 Macro Version | Function Version  | Purpose
 :------------ | :---------------  | :------
+isGpioPinModeOutput( pinMacro ) | isGpioPinModeOutputV( const GpioPinVariable& pinVar ) | Is the corresponding DDRn bit set?
+isGpioPinModeInput( pinMacro ) | isGpioPinModeInputV( const GpioPinVariable& pinVar ) | Is the corresponding DDRn bit clear?
 setGpioPinModeOutput( pinMacro ) | setGpioPinModeOutputV( const GpioPinVariable& pinVar ) | Enable the corresponding DDRn bit
 setGpioPinModeInput( pinMacro ) | setGpioPinModeInputV( const GpioPinVariable& pinVar ) | Clear the corresponding DDRn bit
 setGpioPinModeInputPullup( pinMacro ) | setGpioPinModeInputPullupV( const GpioPinVariable& pinVar )  | Clear the corresponding DDRn and PORTn bits
