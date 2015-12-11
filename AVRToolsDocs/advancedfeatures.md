@@ -345,9 +345,9 @@ There is sometimes a desire to assign GPIO pins to variables.  Unfortunately,
 the pin name macros defined for you when you include ArduinoPins.h or that you
 define yourself using GpioPin(), GpioPinAnalog(), or GpioPinPwm() cannot be
 assigned to variables or used for anything other than passing them to the
-specialize macro functions designed to handle them.  This is normally not a big
+specialized macro functions designed to handle them.  This is normally not a big
 limitation: the use of GPIO pins is generally encapsulated in functions or classes that
-function much like software drivers, hiding the pins from the rest of the application.
+function much like software drivers for hardware, hiding the pins from the rest of the application.
 Treating the pins as macro constants usually works well in such
 situations.  However, there do sometimes arise situations in which it would be
 convenient to be able to assign GPIO pins to variables and manipulate GPIO pins via those
@@ -360,7 +360,7 @@ comes at a very significant cost for two reasons.
 The first reason is that functions that manipulate AVR I/O registers via variables
 are inherently slower than those that manipulate them as constants.  When using
 the GPIO pin macros, most operations map directly to `in` and `out` AVR
-assembler instructions. However, due to the limitations of these instructions,
+assembler instructions. However, due to the constraints on these instructions,
 when using variables to pass the pins, the compiler must use slower `ld` and
 `st` instruction to access the I/O registers (for more on this issue, see the section in the
 [AVR-GCC FAQ] (http://www.nongnu.org/avr-libc/user-manual/FAQ.html#faq_port_pass)).  In addition,
@@ -398,10 +398,13 @@ These are used like this:
 ~~~
 
 Which macro you choose depends upon what functionality of the GPIO pin you plan to access: you are free to use makeGpioVarFromGpioPin()
-with an analog pin macro (e.g., pPinA01) if you only plan to use the resulting variable digitally, but if you plan to use the analog capabilities of the GPIO pin, you must use makeGpioVarFromGpioPinAnalog() to initialize the variable.  Similarly for PWM
+with an analog pin macro (e.g., pPinA01) if you only plan to use the resulting variable digitally. But if you plan to use the analog
+capabilities of the GPIO pin, you must use makeGpioVarFromGpioPinAnalog() to initialize the variable.  Similarly for PWM
 functionality.
 
-Once you've created GPIO pin variables using the above macros, these variables can be assign and passed to functions as needed.  To use these GPIO pin variables, there are special function analogs of the pin manipulation macros.  These have the same names as the pin manipulation macros, except with a "V" appended:
+Once you've created GPIO pin variables using the above macros, these variables can be assigned and passed to functions as needed.  To
+use these GPIO pin variables, there are special function analogs of the pin manipulation macros.  These have the same names as the
+pin manipulation macros, except with a "V" appended:
 
 Macro Version | Function Version  | Purpose
 :------------ | :---------------  | :------
