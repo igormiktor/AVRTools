@@ -45,7 +45,7 @@ namespace
     const unsigned long kMillisInc = ( kMicrosecondsPerOverflowTIMER0 / 1000 );
 
     // The fractional number of milliseconds per timer0 overflow. Shift right
-    // by three to fit these numbers into a byte. (for 16 MHz this doesn't lose precision.)
+    // by three to fit these numbers into a byte (for 8 MHz and 16 MHz this doesn't lose precision).
     const uint8_t kFractInc =  ( ( kMicrosecondsPerOverflowTIMER0 % 1000 ) >> 3 );
     const uint8_t kFractMax =  ( 1000 >> 3 );
 
@@ -138,31 +138,61 @@ void delayMilliseconds( unsigned long ms )
 
 
 
-/* Delay for the given number of microseconds.  Assumes a 8 or 16 MHz clock. */
+// Delay for the given number of microseconds.  Assumes an 8 MHz or 16 MHz clock.
 void delayMicroseconds( unsigned int us )
 {
-    // calling avrlib's delay_us() function with low values (e.g. 1 or
+    // Code adapted from wiring.c, Copyright (c) 2005-2006 David A. Mellis
+
+    // Calling avrlib's delay_us() function with low values (e.g. 1 or
     // 2 microseconds) gives delays longer than desired.
-    //delay_us(us);
+    // delay_us( us);
 
-    // for the 16 MHz clock on most Arduino boards
+#if F_CPU == 16000000L
 
-    // for a one-microsecond delay, simply return.  the overhead
+    // For the 16 MHz clock on most Arduino boards
+
+    // For a one-microsecond delay, simply return.  The overhead
     // of the function call yields a delay of approximately 1 1/8 us.
     if ( --us == 0 )
     {
         return;
     }
 
-    // the following loop takes a quarter of a microsecond (4 cycles)
-    // per iteration, so execute it four times for each microsecond of
-    // delay requested.
+    // The following loop takes a quarter of a microsecond (4 cycles)
+    // per iteration, so execute it four times for each microsecond of delay requested.
     us <<= 2;
 
-    // account for the time taken in the preceeding commands.
+    // Account for the time taken in the preceeding commands.
     us -= 2;
 
-    // busy wait
+#elif F_CPU == 8000000L
+
+    // For the 8 MHz internal clock on the ATmega168
+
+    // For a one- or two-microsecond delay, simply return.  The overhead of
+    // the function calls takes more than two microseconds.  Can't just
+    // subtract two, since us is unsigned; we'd overflow.
+    if (--us == 0)
+        return;
+    if (--us == 0)
+        return;
+
+    // The following loop takes half of a microsecond (4 cycles)
+    // per iteration, so execute it twice for each microsecond of
+    // delay requested.
+    us <<= 1;
+
+    // Partially compensate for the time taken by the preceeding commands.
+    // we can't subtract any more than this or we'd overflow w/ small delays.
+    us--;
+
+#else
+
+#error "delayMicroseconds() is not implemented for CPU speeds other than 8 MHz or 16 MHz."
+
+#endif
+
+    // Busy wait
     __asm__ __volatile__
     (
         "1: sbiw %0,1" "\n\t" // 2 cycles

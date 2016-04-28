@@ -70,6 +70,8 @@ void initSystemClock();
  *
  * \arg \c us the number of microseconds to delay.
  *
+ * \note This function only works for CPU clocks running at either 8 MHz or 16 MHz.
+ *
  */
 
 void delayMicroseconds( unsigned int us );
@@ -113,8 +115,6 @@ unsigned long micros();
 
 /*!
  * \brief Return the number of elasped milliseconds since the system clock was turned on.
- *
- * The millisecond count will overflow back to zero in approximately 50 days.
  *
  * \returns the number of elapsed milliseconds.
  *

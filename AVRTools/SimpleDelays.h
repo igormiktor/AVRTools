@@ -28,7 +28,8 @@
  *
  * For precision, these functions are all implemented directly in assembler.
  *
- * \note These functions all assume a 16 MHz clock cycle.
+ * \note These functions are implemented for (and automatically adjust to) either
+ * an 8 MHz or a 16 MHz clock cycle.
  *
  */
 
@@ -51,24 +52,30 @@ extern "C" {
 
 /*!
  * \brief Delay a given number of quarter microseconds.  Due to function call
- * overhead, the smallest possible delay is just under 6 quarter microseconds (~1.5 microseconds).
- * Delays of 7 quarter microseconds or greater are reasonably accurate.
+ * overhead, at 16 MHz the smallest possible delay is just under 6 quarter microseconds (~1.5 microseconds).
+ * Delays of 7 quarter microseconds or greater are reasonably accurate.  At 8 MHz the
+ * smallest possible delay is just under 12 quarter microseconds (~3 microseconds).  Delays of
+ * 13 quarter microseconds or greater are reasonably accurate
  *
- * Delays of less than 7 quarter microseconds produce a
- * delay of just under 6 quarter microseconds (~1.5 microseconds).  The maximum
- * delay is 65535 quarter microseconds (equal to 16,383.75 microseconds, or
+ * At 16 MHz delays of less than 7 quarter microseconds produce a delay of just under
+ * 6 quarter microseconds (~1.5 microseconds). At 8 MHz delays of less than 12 quarter
+ * microseconds produce a delay of just under 12 quarter microseconds (~3 microseconds).
+ *
+ * The maximum delay is 65535 quarter microseconds (equal to 16,383.75 microseconds, or
  * about 16.4 milliseconds).
  *
  * \arg \c nbrOfQuartersOfMicroSeconds the number of quarter microseconds to delay.
- * Arguments less than 7 quarter microseconds all produce delays of just under 6 quarter
- * microseconds.
+ * For 16 MHz clocks, arguments less than 7 quarter microseconds for 16 MHz clocks
+ * all produce delays of just under 6 quarter microseconds.  For 8 MHz clocks,
+ * arguments less than 13 quarter microseconds all produce delays of about
+ * 12 quarter microseconds.
  *
  * \note This delay function is only accurate if interrupts are disabled.  If interrupts
  * are enabled, the delays will be at least as long as requested, but may actually be
  * longer.  If accurate delays are desired, disable interrupts before calling this
  * function (remember to enable interrupts afterwards).
  *
- * \note This function assumes a 16 MHz clock rate.
+ * \note This function only works for CPU clocks running at either 8 MHz or 16 MHz.
  *
  * For precision, this function is implemented directly in assembler.
  */
@@ -92,7 +99,7 @@ void delayQuartersOfMicroSeconds( uint16_t nbrOfQuartersOfMicroSeconds );
  * longer.  If accurate delays are desired, disable interrupts before calling this
  * function (remember to enable interrupts afterwards).
  *
- * \note This function assumes a 16 MHz clock rate.
+ * \note This function only works for CPU clocks running at either 8 MHz or 16 MHz.
  *
  * For precision, this function is implemented directly in assembler.
  */
@@ -116,7 +123,7 @@ void delayWholeMilliSeconds( uint8_t nbrOfMilliSeconds );
  * longer.  If accurate delays are desired, disable interrupts before calling this
  * function (remember to enable interrupts afterwards).
  *
- * \note This function assumes a 16 MHz clock rate.
+ * \note This function only works for CPU clocks running at either 8 MHz or 16 MHz.
  *
  * For precision, this function is implemented directly in assembler.
  */
