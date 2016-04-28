@@ -213,7 +213,7 @@ Simple delays module</h1>
 <p>The <a class="el" href="SimpleDelays_8h.html">Simple Delays module</a> provides simple delay functions that do not involve timers or interrupts. These functions simply execute a series of nested loops with known and precise timing.</p>
 <p>These functions are all implemented directly in assembler to guarantee cycle counts. However, if interrupts are enabled, then the delays will be at least as long as requested, but may actually be longer. These delay functions are:</p>
 <ul>
-<li><a class="el" href="SimpleDelays_8h.html#a28e4e83c687b9e9cbe7dc0d8a2d4459b" title="Delay a given number of quarter microseconds. Due to function call overhead, the smallest possible de...">delayQuartersOfMicroSeconds( uint16_t nbrOfQuartersOfMicroSeconds )</a>;</li>
+<li><a class="el" href="SimpleDelays_8h.html#a28e4e83c687b9e9cbe7dc0d8a2d4459b" title="Delay a given number of quarter microseconds. Due to function call overhead, at 16 MHz the smallest p...">delayQuartersOfMicroSeconds( uint16_t nbrOfQuartersOfMicroSeconds )</a>;</li>
 <li><a class="el" href="SimpleDelays_8h.html#a11c15b958da6b2377e7c0b7597e39724" title="Delay a given number of milliseconds. Despite function call overhead, this function is accurate withi...">delayWholeMilliSeconds( uint8_t nbrOfMilliSeconds )</a>;</li>
 <li><a class="el" href="SimpleDelays_8h.html#a796be98fbdc09e016755b61c4fcadcd0" title="Delay a given number of tenths of a seconds. Despite function call overhead, this function is accurat...">delayTenthsOfSeconds( uint8_t nbrOfTenthsOfSeconds )</a>;</li>
 </ul>
@@ -357,7 +357,7 @@ Example using GPIO pin variables</h2>
 </div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 10 2015 20:37:47 for AVRTools by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 26 2016 22:46:06 for AVRTools by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

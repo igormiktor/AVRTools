@@ -108,7 +108,7 @@ Include dependency graph for SimpleDelays.h:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a28e4e83c687b9e9cbe7dc0d8a2d4459b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SimpleDelays_8h.html#a28e4e83c687b9e9cbe7dc0d8a2d4459b">delayQuartersOfMicroSeconds</a> (uint16_t nbrOfQuartersOfMicroSeconds)</td></tr>
-<tr class="memdesc:a28e4e83c687b9e9cbe7dc0d8a2d4459b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delay a given number of quarter microseconds. Due to function call overhead, the smallest possible delay is just under 6 quarter microseconds (~1.5 microseconds). Delays of 7 quarter microseconds or greater are reasonably accurate.  <a href="#a28e4e83c687b9e9cbe7dc0d8a2d4459b">More...</a><br /></td></tr>
+<tr class="memdesc:a28e4e83c687b9e9cbe7dc0d8a2d4459b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delay a given number of quarter microseconds. Due to function call overhead, at 16 MHz the smallest possible delay is just under 6 quarter microseconds (~1.5 microseconds). Delays of 7 quarter microseconds or greater are reasonably accurate. At 8 MHz the smallest possible delay is just under 12 quarter microseconds (~3 microseconds). Delays of 13 quarter microseconds or greater are reasonably accurate.  <a href="#a28e4e83c687b9e9cbe7dc0d8a2d4459b">More...</a><br /></td></tr>
 <tr class="separator:a28e4e83c687b9e9cbe7dc0d8a2d4459b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11c15b958da6b2377e7c0b7597e39724"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SimpleDelays_8h.html#a11c15b958da6b2377e7c0b7597e39724">delayWholeMilliSeconds</a> (uint8_t nbrOfMilliSeconds)</td></tr>
 <tr class="memdesc:a11c15b958da6b2377e7c0b7597e39724"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delay a given number of milliseconds. Despite function call overhead, this function is accurate within a few hundreds of microseconds.  <a href="#a11c15b958da6b2377e7c0b7597e39724">More...</a><br /></td></tr>
@@ -120,7 +120,7 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This file provides simple delay functions that do not involve timers or interrupts. These functions simply execute a series of nested loops with known and precise timing. </p>
 <p>For precision, these functions are all implemented directly in assembler.</p>
-<dl class="section note"><dt>Note</dt><dd>These functions all assume a 16 MHz clock cycle. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>These functions are implemented for (and automatically adjust to) either an 8 MHz or a 16 MHz clock cycle. </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a28e4e83c687b9e9cbe7dc0d8a2d4459b"></a>
 <div class="memitem">
@@ -136,14 +136,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Delay a given number of quarter microseconds. Due to function call overhead, the smallest possible delay is just under 6 quarter microseconds (~1.5 microseconds). Delays of 7 quarter microseconds or greater are reasonably accurate. </p>
-<p>Delays of less than 7 quarter microseconds produce a delay of just under 6 quarter microseconds (~1.5 microseconds). The maximum delay is 65535 quarter microseconds (equal to 16,383.75 microseconds, or about 16.4 milliseconds).</p>
+<p>Delay a given number of quarter microseconds. Due to function call overhead, at 16 MHz the smallest possible delay is just under 6 quarter microseconds (~1.5 microseconds). Delays of 7 quarter microseconds or greater are reasonably accurate. At 8 MHz the smallest possible delay is just under 12 quarter microseconds (~3 microseconds). Delays of 13 quarter microseconds or greater are reasonably accurate. </p>
+<p>At 16 MHz delays of less than 7 quarter microseconds produce a delay of just under 6 quarter microseconds (~1.5 microseconds). At 8 MHz delays of less than 12 quarter microseconds produce a delay of just under 12 quarter microseconds (~3 microseconds).</p>
+<p>The maximum delay is 65535 quarter microseconds (equal to 16,383.75 microseconds, or about 16.4 milliseconds).</p>
 <ul>
-<li><code>nbrOfQuartersOfMicroSeconds</code> the number of quarter microseconds to delay. Arguments less than 7 quarter microseconds all produce delays of just under 6 quarter microseconds.</li>
+<li><code>nbrOfQuartersOfMicroSeconds</code> the number of quarter microseconds to delay. For 16 MHz clocks, arguments less than 7 quarter microseconds for 16 MHz clocks all produce delays of just under 6 quarter microseconds. For 8 MHz clocks, arguments less than 13 quarter microseconds all produce delays of about 12 quarter microseconds.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>This delay function is only accurate if interrupts are disabled. If interrupts are enabled, the delays will be at least as long as requested, but may actually be longer. If accurate delays are desired, disable interrupts before calling this function (remember to enable interrupts afterwards).</dd>
 <dd>
-This function assumes a 16 MHz clock rate.</dd></dl>
+This function only works for CPU clocks running at either 8 MHz or 16 MHz.</dd></dl>
 <p>For precision, this function is implemented directly in assembler. </p>
 
 </div>
@@ -168,7 +169,7 @@ This function assumes a 16 MHz clock rate.</dd></dl>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>This delay function is only accurate if interrupts are disabled. If interrupts are enabled, the delays will be at least as long as requested, but may actually be longer. If accurate delays are desired, disable interrupts before calling this function (remember to enable interrupts afterwards).</dd>
 <dd>
-This function assumes a 16 MHz clock rate.</dd></dl>
+This function only works for CPU clocks running at either 8 MHz or 16 MHz.</dd></dl>
 <p>For precision, this function is implemented directly in assembler. </p>
 
 </div>
@@ -193,7 +194,7 @@ This function assumes a 16 MHz clock rate.</dd></dl>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>This delay function is only accurate if interrupts are disabled. If interrupts are enabled, the delays will be at least as long as requested, but may actually be longer. If accurate delays are desired, disable interrupts before calling this function (remember to enable interrupts afterwards).</dd>
 <dd>
-This function assumes a 16 MHz clock rate.</dd></dl>
+This function only works for CPU clocks running at either 8 MHz or 16 MHz.</dd></dl>
 <p>For precision, this function is implemented directly in assembler. </p>
 
 </div>
@@ -201,7 +202,7 @@ This function assumes a 16 MHz clock rate.</dd></dl>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 10 2015 20:37:47 for AVRTools by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 26 2016 22:46:06 for AVRTools by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
