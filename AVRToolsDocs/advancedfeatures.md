@@ -413,7 +413,7 @@ isGpioPinModeInput( pinMacro ) | isGpioPinModeInputV( const GpioPinVariable& pin
 setGpioPinModeOutput( pinMacro ) | setGpioPinModeOutputV( const GpioPinVariable& pinVar ) | Enable the corresponding DDRn bit
 setGpioPinModeInput( pinMacro ) | setGpioPinModeInputV( const GpioPinVariable& pinVar ) | Clear the corresponding DDRn bit
 setGpioPinModeInputPullup( pinMacro ) | setGpioPinModeInputPullupV( const GpioPinVariable& pinVar )  | Clear the corresponding DDRn and PORTn bits
-readGpioPinDigital( pinMacro ) | readGpioPinDigitalV( const GpioPinVariable& pinVar ) | Return the corresponding PINn bit
+readGpioPinDigital( pinMacro ) | readGpioPinDigitalV( const GpioPinVariable& pinVar ) | Return the value (0 or 1 ) of the corresponding PINn bit
 writeGpioPinDigital( pinMacro, value ) | writeGpioPinDigitalV( const GpioPinVariable& pinVar, bool value ) | Write a 0 or 1 to the corresponding PORTn bit
 setGpioPinHigh( pinMacro )  | setGpioPinHighV( const GpioPinVariable& pinVar ) | Set the corresponding PORTn bit
 setGpioPinLow( pinMacro ) | setGpioPinLowV( const GpioPinVariable& pinVar ) | Clear the corresponding PORTn bit
