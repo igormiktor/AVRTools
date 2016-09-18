@@ -2,7 +2,7 @@ var searchData=
 [
   ['a2dvoltagereference',['A2DVoltageReference',['../Analog2Digital_8h.html#af8bf41d2076abe69adc65e8b9865d237',1,'Analog2Digital.h']]],
   ['abi_2eh',['abi.h',['../abi_8h.html',1,'']]],
-  ['adcnbr',['adcNbr',['../classGpioPinVariable.html#a558984a6cc87e498c4c7dae44018fa31',1,'GpioPinVariable']]],
+  ['adcnbr',['adcNbr',['../classGpioPinVariable.html#a560fb57aa6ce3ec087ff2739c9743b79',1,'GpioPinVariable']]],
   ['advanced_20features',['Advanced Features',['../AdvancedFeatures.html',1,'']]],
   ['alloff',['AllOff',['../classInterrupts_1_1AllOff.html',1,'Interrupts']]],
   ['alloff',['AllOff',['../classInterrupts_1_1AllOff.html#af386a02c81a3cb99532bcf606b5e4af0',1,'Interrupts::AllOff']]],

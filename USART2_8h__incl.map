@@ -1,4 +1,4 @@
 <map id="USART2.h" name="USART2.h">
-<area shape="rect" id="node3" href="$Writer_8h.html" title="This file provides a generic interface to outgoing data streams of any kind. It is designed around ho..." alt="" coords="22,83,88,112"/>
-<area shape="rect" id="node9" href="$Reader_8h.html" title="This file provides a generic interface to incoming data streams of any kind. It is designed around ho..." alt="" coords="112,83,187,112"/>
+<area shape="rect" id="node2" href="$Writer_8h.html" title="This file provides a generic interface to outgoing data streams of any kind. It is designed around ho..." alt="" coords="22,80,90,107"/>
+<area shape="rect" id="node5" href="$Reader_8h.html" title="This file provides a generic interface to incoming data streams of any kind. It is designed around ho..." alt="" coords="115,80,190,107"/>
 </map>

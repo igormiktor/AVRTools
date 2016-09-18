@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['tccr',['tccr',['../classGpioPinVariable.html#a146af57df5a7bef829c53edd645b8905',1,'GpioPinVariable']]],
+  ['tccr',['tccr',['../classGpioPinVariable.html#ab079b73bc77deb404d145c340db3615f',1,'GpioPinVariable']]],
   ['transmit',['transmit',['../namespaceSPI.html#a9762564586a02baa41d3c0792c2ee33a',1,'SPI::transmit(uint8_t data)'],['../namespaceSPI.html#ab486e6d530e62818b2d1040f9183cac7',1,'SPI::transmit(uint8_t *buffer, size_t count)']]],
   ['transmit16',['transmit16',['../namespaceSPI.html#afd0b9c51daa418a40ca07c5399efebff',1,'SPI']]],
   ['transmit32',['transmit32',['../namespaceSPI.html#a12f57460395be05b937c802557d6690d',1,'SPI']]],

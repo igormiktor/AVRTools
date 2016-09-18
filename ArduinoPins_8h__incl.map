@@ -1,4 +1,4 @@
 <map id="ArduinoPins.h" name="ArduinoPins.h">
-<area shape="rect" id="node3" href="$ArduinoMegaPins_8h.html" title="This file defines the standard Arduino Uno pin name macros. It may be included directly by user code..." alt="" coords="5,83,139,112"/>
-<area shape="rect" id="node5" href="$GpioPinMacros_8h.html" title="This file contains the primary macros for naming and manipulating GPIO pin names. ..." alt="" coords="11,160,133,189"/>
+<area shape="rect" id="node2" href="$ArduinoMegaPins_8h.html" title="This file defines the standard Arduino Uno pin name macros. It may be included directly by user code..." alt="" coords="5,80,140,107"/>
+<area shape="rect" id="node3" href="$GpioPinMacros_8h.html" title="This file contains the primary macros for naming and manipulating GPIO pin names. ..." alt="" coords="11,155,134,181"/>
 </map>

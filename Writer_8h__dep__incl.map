@@ -1,7 +1,7 @@
 <map id="Writer.h" name="Writer.h">
-<area shape="rect" id="node3" href="$I2cLcd_8h.html" title="This file defines a class that provides a high&#45;level interface to an LCD offering an I2C interface..." alt="" coords="5,83,77,112"/>
-<area shape="rect" id="node5" href="$USART0_8h.html" title="This file provides functions that offer high&#45;level interfaces to USART0 hardware, which is available ..." alt="" coords="101,83,187,112"/>
-<area shape="rect" id="node7" href="$USART1_8h.html" title="This file provides functions that offer high&#45;level interfaces to USART1 hardware, which is available ..." alt="" coords="211,83,296,112"/>
-<area shape="rect" id="node9" href="$USART2_8h.html" title="This file provides functions that offer high&#45;level interfaces to USART2 hardware, which is available ..." alt="" coords="320,83,405,112"/>
-<area shape="rect" id="node11" href="$USART3_8h.html" title="This file provides functions that offer high&#45;level interfaces to USART3 hardware, which is available ..." alt="" coords="429,83,515,112"/>
+<area shape="rect" id="node2" href="$I2cLcd_8h.html" title="This file defines a class that provides a high&#45;level interface to an LCD offering an I2C interface..." alt="" coords="5,80,77,107"/>
+<area shape="rect" id="node3" href="$USART0_8h.html" title="This file provides functions that offer high&#45;level interfaces to USART0 hardware, which is available ..." alt="" coords="102,80,189,107"/>
+<area shape="rect" id="node4" href="$USART1_8h.html" title="This file provides functions that offer high&#45;level interfaces to USART1 hardware, which is available ..." alt="" coords="213,80,299,107"/>
+<area shape="rect" id="node5" href="$USART2_8h.html" title="This file provides functions that offer high&#45;level interfaces to USART2 hardware, which is available ..." alt="" coords="323,80,410,107"/>
+<area shape="rect" id="node6" href="$USART3_8h.html" title="This file provides functions that offer high&#45;level interfaces to USART3 hardware, which is available ..." alt="" coords="434,80,521,107"/>
 </map>

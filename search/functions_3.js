@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['ddr',['ddr',['../classGpioPinVariable.html#a146e08019cfcaa5550afffa0ff619053',1,'GpioPinVariable']]],
+  ['ddr',['ddr',['../classGpioPinVariable.html#a35e4118b8fc82e6d7a4ebde3985e8b7f',1,'GpioPinVariable']]],
   ['delay',['delay',['../SystemClock_8h.html#a6bc5f943544a887f8b23cadfb26a5e30',1,'SystemClock.h']]],
   ['delaymicroseconds',['delayMicroseconds',['../SystemClock_8h.html#a62e0a53bc261f9de8700cc5a92307e85',1,'SystemClock.cpp']]],
   ['delaymilliseconds',['delayMilliseconds',['../SystemClock_8h.html#a74d8aff40774c8a364845f0265776a24',1,'SystemClock.cpp']]],

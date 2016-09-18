@@ -1,7 +1,7 @@
 <map id="Writer" name="Writer">
-<area shape="rect" id="node3" href="$classI2cLcd.html" title="This class provides a high&#45;level interface via I2C to an LCD such as those offered by AdaFruit and Sp..." alt="" coords="5,83,67,112"/>
-<area shape="rect" id="node5" href="$classSerial0.html" title="Provides a high&#45;end interface to serial communications using USART0. " alt="" coords="91,83,152,112"/>
-<area shape="rect" id="node7" href="$classSerial1.html" title="Provides a high&#45;end interface to serial communications using USART1. " alt="" coords="176,83,237,112"/>
-<area shape="rect" id="node9" href="$classSerial2.html" title="Provides a high&#45;end interface to serial communications using USART2. " alt="" coords="261,83,323,112"/>
-<area shape="rect" id="node11" href="$classSerial3.html" title="Provides a high&#45;end interface to serial communications using USART3. " alt="" coords="347,83,408,112"/>
+<area shape="rect" id="node2" href="$classI2cLcd.html" title="This class provides a high&#45;level interface via I2C to an LCD such as those offered by AdaFruit and Sp..." alt="" coords="5,80,67,107"/>
+<area shape="rect" id="node3" href="$classSerial0.html" title="Provides a high&#45;end interface to serial communications using USART0. " alt="" coords="91,80,154,107"/>
+<area shape="rect" id="node4" href="$classSerial1.html" title="Provides a high&#45;end interface to serial communications using USART1. " alt="" coords="178,80,241,107"/>
+<area shape="rect" id="node5" href="$classSerial2.html" title="Provides a high&#45;end interface to serial communications using USART2. " alt="" coords="265,80,327,107"/>
+<area shape="rect" id="node6" href="$classSerial3.html" title="Provides a high&#45;end interface to serial communications using USART3. " alt="" coords="351,80,414,107"/>
 </map>
