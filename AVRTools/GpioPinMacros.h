@@ -82,7 +82,7 @@ enum
 
 #define _setGpioPinModeInputPullup( ddr, port, pin, nbr, adc, ocr, com, tccr )  ddr &= ~(1<<nbr), port |= (1<<nbr)
 
-#define _readGpioPinDigital( ddr, port, pin, nbr, adc, ocr, com, tccr )         pin & (1<<nbr)
+#define _readGpioPinDigital( ddr, port, pin, nbr, adc, ocr, com, tccr )         ( pin & (1<<nbr) )
 
 #define _writeGpioPinDigital( ddr, port, pin, nbr, adc, ocr, com, tccr, value )     \
                                         do { if (value) port |= (1<<nbr); else port &= ~(1<<nbr); } while ( 0 )
