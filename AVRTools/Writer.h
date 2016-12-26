@@ -188,7 +188,7 @@ public:
      * \hideinitializer
      */
     size_t print( int n, int base = kDec, bool addLn = false )
-    { print( static_cast<long>( n ), base, addLn ); }
+    { return print( static_cast<long>( n ), base, addLn ); }
 
 
     /*!
@@ -205,7 +205,7 @@ public:
      * \hideinitializer
      */
     size_t print( unsigned int n, int base = kDec, bool addLn = false )
-    { print( static_cast<unsigned long>( n ), base, addLn ); }
+    { return print( static_cast<unsigned long>( n ), base, addLn ); }
 
 
     /*!
@@ -263,7 +263,7 @@ public:
      *
      * \returns the number of bytes sent to the output stream.
      */
-    size_t println( const char* str )                       { print( str, true ); }
+    size_t println( const char* str )                       { return print( str, true ); }
 
     /*!
      * \brief Print a number of bytes to the output stream, adding
@@ -274,7 +274,7 @@ public:
      *
      * \returns the number of bytes sent to the output stream.
      */
-    size_t println( const uint8_t* buf, size_t size )       { print( buf, size, true ); }
+    size_t println( const uint8_t* buf, size_t size )       { return print( buf, size, true ); }
 
     /*!
      * \brief Print a single character to the output stream, adding
@@ -284,7 +284,7 @@ public:
      *
      * \returns the number of bytes sent to the output stream.
      */
-    size_t println( char c )                                { print( c, true ); }
+    size_t println( char c )                                { return print( c, true ); }
 
     /*!
      * \brief Print an unsigned character to the output stream, adding
@@ -298,7 +298,7 @@ public:
      *
      * \hideinitializer
      */
-    size_t println( unsigned char n, int base = kDec )      { print( static_cast<unsigned long>( n ), base, true ); }
+    size_t println( unsigned char n, int base = kDec )      { return print( static_cast<unsigned long>( n ), base, true ); }
 
     /*!
      * \brief Print an integer to the output stream, adding
@@ -312,7 +312,7 @@ public:
      *
      * \hideinitializer
      */
-    size_t println( int n, int base = kDec )                { print( n, base, true ); }
+    size_t println( int n, int base = kDec )                { return print( n, base, true ); }
 
     /*!
      * \brief Print an unsigned integer to the output stream, adding
@@ -326,7 +326,7 @@ public:
      *
      * \hideinitializer
      */
-    size_t println( unsigned int n, int base = kDec )       { print( n, base, true ); }
+    size_t println( unsigned int n, int base = kDec )       { return print( n, base, true ); }
 
     /*!
      * \brief Print a long integer to the output stream, adding
@@ -340,7 +340,7 @@ public:
      *
      * \hideinitializer
      */
-    size_t println( long n, int base = kDec )               { print( n, base, true ); }
+    size_t println( long n, int base = kDec )               { return print( n, base, true ); }
 
     /*!
      * \brief Print an unsigned long integer to the output stream, adding
@@ -354,7 +354,7 @@ public:
      *
      * \hideinitializer
      */
-    size_t println( unsigned long n, int base = kDec )      { print( n, base, true ); }
+    size_t println( unsigned long n, int base = kDec )      { return print( n, base, true ); }
 
     /*!
      * \brief Print a floating point number to the output stream, adding
@@ -367,7 +367,7 @@ public:
      *
      * \hideinitializer
      */
-    size_t println( double d, int digits = 2 )              { print( d, digits, true ); }
+    size_t println( double d, int digits = 2 )              { return print( d, digits, true ); }
 
     /*!
      * \brief Print a new line to the output stream.
