@@ -60,7 +60,7 @@ namespace
 {
 
     // Calculates the amount of free memory on the free list
-    size_t MemUtils::memoryAvailableOnFreeList()
+    size_t memoryAvailableOnFreeList()
     {
         struct __freelist* current;
         size_t total = 0;
