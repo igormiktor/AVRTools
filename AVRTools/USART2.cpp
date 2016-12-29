@@ -72,6 +72,9 @@ namespace
 
 
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-variable"
+
 ISR( USART2_RX_vect )
 {
     // If no parity error, put it in the rx buffer
@@ -87,7 +90,7 @@ ISR( USART2_RX_vect )
     }
 }
 
-
+#pragma GCC diagnostic pop
 
 
 ISR( USART2_UDRE_vect )
@@ -240,7 +243,7 @@ size_t USART2::write( const char* c )
 
 size_t USART2::write( const char* c, size_t n )
 {
-    write( reinterpret_cast< const uint8_t*>( c ) , n );
+    return write( reinterpret_cast< const uint8_t*>( c ) , n );
 }
 
 

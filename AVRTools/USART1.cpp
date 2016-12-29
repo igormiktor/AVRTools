@@ -71,6 +71,8 @@ namespace
 
 
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-variable"
 
 ISR( USART1_RX_vect )
 {
@@ -87,6 +89,7 @@ ISR( USART1_RX_vect )
     }
 }
 
+#pragma GCC diagnostic pop
 
 
 
@@ -240,7 +243,7 @@ size_t USART1::write( const char* c )
 
 size_t USART1::write( const char* c, size_t n )
 {
-    write( reinterpret_cast< const uint8_t*>( c ) , n );
+    return write( reinterpret_cast< const uint8_t*>( c ) , n );
 }
 
 

@@ -67,6 +67,8 @@ namespace
 
 
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-variable"
 
 #if defined(__AVR_ATmega2560__)
 ISR( USART0_RX_vect )
@@ -86,6 +88,8 @@ ISR( USART_RX_vect )
         unsigned char c = UDR0;
     }
 }
+
+#pragma GCC diagnostic pop
 
 
 
@@ -244,7 +248,7 @@ size_t USART0::write( const char* c )
 
 size_t USART0::write( const char* c, size_t n )
 {
-    write( reinterpret_cast< const uint8_t*>( c ) , n );
+    return write( reinterpret_cast< const uint8_t*>( c ) , n );
 }
 
 
