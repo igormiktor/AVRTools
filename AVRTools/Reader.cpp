@@ -47,17 +47,20 @@
 int read()
 {
     // Default does nothing
+    return 0;
 }
 
 
 int peek()
 {
     // Default does nothing
+    return 0;
 }
 
 bool available()
 {
     // Default does nothing
+    return false;
 }
 
 
