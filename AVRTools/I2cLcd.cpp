@@ -362,6 +362,8 @@ int I2cLcd::initHD44780U()
             }
         }
     }
+
+    return err;
 }
 
 
