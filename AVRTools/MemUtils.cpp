@@ -68,7 +68,7 @@ namespace
         for ( current = __flp; current; current = current->nx )
         {
             // Memory in the header (the "size" slot) is not available for allocation, so don't count it
-            total += static_cast<int>( current->sz );
+            total += current->sz;
         }
 
         return total;
