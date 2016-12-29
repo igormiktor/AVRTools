@@ -485,9 +485,9 @@ private:
     Gpio8Ptr        mPin;
     Gpio16Ptr       mOcr;
     Gpio8Ptr        mTccr;
-    uint8_t          mNbr;
-    uint8_t          mCom;
-    uint8_t          mAdc;
+    uint8_t         mCom;
+    uint8_t         mNbr;
+    uint8_t         mAdc;
 };
 
 
