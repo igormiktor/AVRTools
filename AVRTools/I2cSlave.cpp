@@ -47,8 +47,8 @@
 #error "DEBUG_I2cSlaveDiaryBufferSize exceeds size of a uint8_t"
 #endif
 
-#include "USART0.h"
 
+#include "USART0.h"
 
 
 namespace
@@ -223,7 +223,7 @@ bool I2cSlave::busy()
 
 #define getNextByteWithNACK()   TWCR =    (1<<TWEN)     /* TWI Interface enabled */         \
                                         | (1<<TWIE)     /* Enable Interupt */               \
-                                        | (1<<TWINT)    //* Clear the interrupt flag */     \
+                                        | (1<<TWINT)    /* Clear the interrupt flag */      \
                                         | (0<<TWEA)     /* Send NACK */                     \
                                         | (0<<TWSTA)                                        \
                                         | (0<<TWSTO)                                        \
@@ -231,7 +231,7 @@ bool I2cSlave::busy()
 
 #define pauseI2c()              TWCR =    (0<<TWEN)     /* TWI Interface disabled */        \
                                         | (0<<TWIE)     /* Disable Interupt */              \
-                                        | (1<<TWINT)    //* Clear the interrupt flag */     \
+                                        | (1<<TWINT)    /* Clear the interrupt flag */      \
                                         | (0<<TWEA)     /* Send NACK */                     \
                                         | (0<<TWSTA)                                        \
                                         | (0<<TWSTO)                                        \
@@ -366,7 +366,7 @@ ISR( TWI_vect )
             break;
 
         case TW_SR_STOP:                // A STOP condition or repeated START condition
-            gI2cMsgSize = processI2cMessage( gI2cBuffer, gI2cBufferIndex );
+            gI2cMsgSize = I2cSlave::processI2cMessage( gI2cBuffer, gI2cBufferIndex );
             gI2cBusy = false;
             if ( gI2cStatus == I2cSlave::kI2cInProgress )
             {
