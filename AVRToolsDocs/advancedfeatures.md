@@ -319,8 +319,8 @@ uint8_t sendData( uint8_t data )
 
 The [Memory Utilities module] (@ref MemUtils) provides functions that report the available
 memory in SRAM.  These help you gauge in real-time whether your application is approaching
-memory exhaustion. The primary function is `freeRam()` which returns the number of free bytes
-remaining in SRAM.
+memory exhaustion or the heap and stack are close to colliding. The primary function is
+`freeSRAM()` which returns the number of free bytes remaining in SRAM.
 
 
 
