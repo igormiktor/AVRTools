@@ -71,24 +71,24 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a5c1237997b485b03b8e3f95799433943"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMemUtils.html#a5c1237997b485b03b8e3f95799433943">freeRam</a> ()</td></tr>
-<tr class="memdesc:a5c1237997b485b03b8e3f95799433943"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of free bytes remaining in SRAM.  <a href="#a5c1237997b485b03b8e3f95799433943">More...</a><br /></td></tr>
-<tr class="separator:a5c1237997b485b03b8e3f95799433943"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58c94da87c8961b53006f520a91fb036"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMemUtils.html#a58c94da87c8961b53006f520a91fb036">freeRamQuickEstimate</a> ()</td></tr>
-<tr class="memdesc:a58c94da87c8961b53006f520a91fb036"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a quick estimate of the number of free bytes remaining in SRAM.  <a href="#a58c94da87c8961b53006f520a91fb036">More...</a><br /></td></tr>
-<tr class="separator:a58c94da87c8961b53006f520a91fb036"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20a6955ad3756abee955d6b77970060b"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMemUtils.html#a20a6955ad3756abee955d6b77970060b">freeSRAM</a> ()</td></tr>
+<tr class="memdesc:a20a6955ad3756abee955d6b77970060b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the total free memory remaining in SRAM.  <a href="#a20a6955ad3756abee955d6b77970060b">More...</a><br /></td></tr>
+<tr class="separator:a20a6955ad3756abee955d6b77970060b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e0f22e12070fa3dd9d1026319a86b60"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMemUtils.html#a1e0f22e12070fa3dd9d1026319a86b60">freeMemoryBetweenHeapAndStack</a> ()</td></tr>
+<tr class="memdesc:a1e0f22e12070fa3dd9d1026319a86b60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the free memory between the heap and the stack.  <a href="#a1e0f22e12070fa3dd9d1026319a86b60">More...</a><br /></td></tr>
+<tr class="separator:a1e0f22e12070fa3dd9d1026319a86b60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A namespace providing encapsulation for functions that report the available memory in SRAM. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a5c1237997b485b03b8e3f95799433943"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5c1237997b485b03b8e3f95799433943">&sect;&nbsp;</a></span>freeRam()</h2>
+<a id="a1e0f22e12070fa3dd9d1026319a86b60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e0f22e12070fa3dd9d1026319a86b60">&sect;&nbsp;</a></span>freeMemoryBetweenHeapAndStack()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned int MemUtils::freeRam </td>
+          <td class="memname">size_t MemUtils::freeMemoryBetweenHeapAndStack </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -96,19 +96,20 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Get the number of free bytes remaining in SRAM. </p>
-<dl class="section return"><dt>Returns</dt><dd>The number of free bytes remaining in SRAM. </dd></dl>
+<p>Get the free memory between the heap and the stack. </p>
+<p>This does not include any memory potentially available within the heap on the free list. It executes quickly, so this function is useful for checking to make sure the heap and stack aren't in danger of collision.</p>
+<dl class="section return"><dt>Returns</dt><dd>The number of free bytes remaining between the top of the heap and the top of the stack. </dd></dl>
 
 </div>
 </div>
-<a id="a58c94da87c8961b53006f520a91fb036"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58c94da87c8961b53006f520a91fb036">&sect;&nbsp;</a></span>freeRamQuickEstimate()</h2>
+<a id="a20a6955ad3756abee955d6b77970060b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20a6955ad3756abee955d6b77970060b">&sect;&nbsp;</a></span>freeSRAM()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned int MemUtils::freeRamQuickEstimate </td>
+          <td class="memname">size_t MemUtils::freeSRAM </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -116,8 +117,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Get a quick estimate of the number of free bytes remaining in SRAM. </p>
-<p>This provides a quicker, but perhaps slightly inaccurate, estimate of the amount of free memory.</p>
+<p>Get the total free memory remaining in SRAM. </p>
+<p>This includes memory on the free list (if the heap is used) as well as memory available between the heap and the stack (which grow towards each other). If the heap has been used, the function will walk the free list to determine the total amount of free memory.</p>
 <dl class="section return"><dt>Returns</dt><dd>The number of free bytes remaining in SRAM. </dd></dl>
 
 </div>
@@ -125,7 +126,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 26 2016 19:41:21 for AVRTools by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 29 2016 13:06:57 for AVRTools by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>
