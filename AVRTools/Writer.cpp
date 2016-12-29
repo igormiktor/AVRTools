@@ -33,24 +33,28 @@
 size_t Writer::write( char c )
 {
     // Default does nothing
+    return 0;
 }
 
 
 size_t Writer::write( const char* str )
 {
     // Default does nothing
+    return 0;
 }
 
 
 size_t Writer::write( const char* buffer, size_t size )
 {
     // Default does nothing
+    return 0;
 }
 
 
 size_t Writer::write( const uint8_t* buffer, size_t size )
 {
     // Default does nothing
+    return 0;
 }
 
 
