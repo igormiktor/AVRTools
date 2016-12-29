@@ -83,6 +83,8 @@ bool RingBuffer::push( unsigned char element )
 }
 
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wreturn-type"
 
 bool RingBuffer::isFull()
 {
@@ -101,6 +103,7 @@ bool RingBuffer::isNotFull()
     }
 }
 
+#pragma GCC diagnostic pop
 
 
 void RingBuffer::clear()

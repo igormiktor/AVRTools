@@ -239,6 +239,9 @@ namespace SPI
         }
 
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-variable"
+
         void initAlwaysInline( uint32_t maxSpeed, uint8_t bitOrder, uint8_t dataMode )  __attribute__((__always_inline__))
         {
             /*
@@ -340,6 +343,8 @@ namespace SPI
 
             mSpsr = clockDiv & kSpi2xClockMask;
         }
+
+#pragma GCC diagnostic pop
 
 
         uint8_t mSpcr;

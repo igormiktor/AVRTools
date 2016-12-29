@@ -126,6 +126,9 @@ namespace
 
         BufferI2cTx();
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wreturn-type"
+
         uint8_t getCurrentAddress()
         {
             ATOMIC_BLOCK( ATOMIC_RESTORESTATE )
@@ -206,6 +209,8 @@ namespace
                 return mNbrMsgs < kMaxNbrMsgs;
             }
         }
+
+#pragma GCC diagnostic pop
 
         bool noMessages()
         { return !static_cast<bool>( mNbrMsgs ); }
