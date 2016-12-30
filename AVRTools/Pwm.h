@@ -79,6 +79,8 @@
 
 #include <stdint.h>
 
+#include <util/atomic.h>
+
 #include "GpioPinMacros.h"
 
 
@@ -87,12 +89,25 @@
                                         do                                                  \
                                         {                                                   \
                                             if ( value <= 0 )                               \
-                                                { tccr &= ~(1<<com); port &= ~(1<<nbr); }   \
+                                            {                                               \
+                                                tccr &= ~(1<<com);                          \
+                                                port &= ~(1<<nbr);                          \
+                                            }                                               \
                                             else if ( value >= 255 )                        \
-                                                { tccr &= ~(1<<com); port |= (1<<nbr); }    \
+                                            {                                               \
+                                                tccr &= ~(1<<com);                          \
+                                                port |= (1<<nbr);                           \
+                                            }                                               \
                                             else                                            \
-                                                { tccr |= (1<<com); ocr = value; }          \
-                                        } while ( 0 )
+                                            {                                               \
+                                                tccr |= (1<<com);                           \
+                                                ATOMIC_BLOCK( ATOMIC_RESTORESTATE )         \
+                                                {                                           \
+                                                    ocr = value;                            \
+                                                }                                           \
+                                            }                                               \
+                                        }                                                   \
+                                        while ( 0 )
 
 
 
@@ -110,7 +125,7 @@
  *
  * \arg \c value a value between 0 and 255.
  *
- * \note Timer0 is also used by the system clock.  \e Do \e not \e initialize \e or \e clear \e timer0
+ * \warning Timer0 is also used by the system clock.  \e Do \e not \e initialize \e or \e clear \e timer0
  * if you are also using the system clock function from SystemClock.h.  If you are using
  * the system clock function, you can use timer0-based PWM functions \e without having
  * to call initPwmTimer0().
@@ -118,6 +133,9 @@
  * \note You can temporarily turn off PWM by writing a 0 to the pin with writePinPwm( pin, 0 ).
  * In particular, this is how to turn off PWM to pins associated with timer0 when timer0 is also
  * being used by the system clock.
+ *
+ * \note This macro ensures operations on 16-bit timers are atomic (at the cost of a small amount of
+ * overhead in the case of 8-bt timers).
  *
  * \hideinitializer
  */
@@ -141,7 +159,7 @@
  *
  * \arg \c value a value between 0 and 255.
  *
- * \note Timer0 is also used by the system clock.  \e Do \e not \e initialize \e or \e clear \e timer0
+ * \warning Timer0 is also used by the system clock.  \e Do \e not \e initialize \e or \e clear \e timer0
  * if you are also using the system clock function from SystemClock.h.  If you are using
  * the system clock function, you can use timer0-based PWM functions \e without having
  * to call initPwmTimer0().
@@ -150,7 +168,11 @@
  * In particular, this is how to turn off PWM to pins associated with timer0 when timer0 is also
  * being used by the system clock.
  *
+ * \note This function ensures operations on 16-bit timers are atomic (at the cost of a small amount of
+ * overhead in the case of 8-bt timers).
+ *
  */
+
 inline void writeGpioPinPwmV( const GpioPinVariable& pinVar, uint8_t value )
 {
     if ( value == 0 )
@@ -167,7 +189,11 @@ inline void writeGpioPinPwmV( const GpioPinVariable& pinVar, uint8_t value )
     else
     {
         *(pinVar.tccr()) |= ( 1 << pinVar.com() );
-        *(pinVar.ocr()) = value;
+        // Provide atomicity for 16-bit timers (not needed for 8-bit timers, but be safe)
+        ATOMIC_BLOCK( ATOMIC_RESTORESTATE )
+        {
+            *(pinVar.ocr()) = value;
+        }
     }
 }
 
