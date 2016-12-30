@@ -74,13 +74,14 @@ $(function() {
 <p>This file provides functions that access the PWM capability of the ATmega328 and ATmega2560 microcontrollers.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;util/atomic.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="GpioPinMacros_8h_source.html">GpioPinMacros.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Pwm.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="Pwm_8h__incl.png" border="0" usemap="#Pwm_8h" alt=""/></div>
 <map name="Pwm_8h" id="Pwm_8h">
-<area shape="rect" id="node3" href="GpioPinMacros_8h.html" title="This file contains the primary macros for naming and manipulating GPIO pin names. ..." alt="" coords="95,80,218,107"/>
+<area shape="rect" id="node4" href="GpioPinMacros_8h.html" title="This file contains the primary macros for naming and manipulating GPIO pin names. ..." alt="" coords="213,80,335,107"/>
 </map>
 </div>
 </div>
@@ -226,9 +227,10 @@ Functions</h2></td></tr>
 <ul>
 <li><code>value</code> a value between 0 and 255.</li>
 </ul>
-<dl class="section note"><dt>Note</dt><dd>Timer0 is also used by the system clock. <em>Do</em> <em>not</em> <em>initialize</em> <em>or</em> <em>clear</em> <em>timer0</em> if you are also using the system clock function from <a class="el" href="SystemClock_8h.html" title="Include this file to use the functions that instantiate and access a system clock that counts elapsed...">SystemClock.h</a>. If you are using the system clock function, you can use timer0-based PWM functions <em>without</em> having to call <a class="el" href="Pwm_8h.html#a621c7db58f9d92c0c51c6ae28ad50d68" title="Initialize timer0 for PWM. ">initPwmTimer0()</a>.</dd>
+<dl class="section warning"><dt>Warning</dt><dd>Timer0 is also used by the system clock. <em>Do</em> <em>not</em> <em>initialize</em> <em>or</em> <em>clear</em> <em>timer0</em> if you are also using the system clock function from <a class="el" href="SystemClock_8h.html" title="Include this file to use the functions that instantiate and access a system clock that counts elapsed...">SystemClock.h</a>. If you are using the system clock function, you can use timer0-based PWM functions <em>without</em> having to call <a class="el" href="Pwm_8h.html#a621c7db58f9d92c0c51c6ae28ad50d68" title="Initialize timer0 for PWM. ">initPwmTimer0()</a>.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>You can temporarily turn off PWM by writing a 0 to the pin with writePinPwm( pin, 0 ). In particular, this is how to turn off PWM to pins associated with timer0 when timer0 is also being used by the system clock.</dd>
 <dd>
-You can temporarily turn off PWM by writing a 0 to the pin with writePinPwm( pin, 0 ). In particular, this is how to turn off PWM to pins associated with timer0 when timer0 is also being used by the system clock. </dd></dl>
+This macro ensures operations on 16-bit timers are atomic (at the cost of a small amount of overhead in the case of 8-bt timers). </dd></dl>
 
 </div>
 </div>
@@ -550,16 +552,17 @@ You can temporarily turn off PWM by writing a 0 to the pin with writePinPwm( pin
 <ul>
 <li><code>value</code> a value between 0 and 255.</li>
 </ul>
-<dl class="section note"><dt>Note</dt><dd>Timer0 is also used by the system clock. <em>Do</em> <em>not</em> <em>initialize</em> <em>or</em> <em>clear</em> <em>timer0</em> if you are also using the system clock function from <a class="el" href="SystemClock_8h.html" title="Include this file to use the functions that instantiate and access a system clock that counts elapsed...">SystemClock.h</a>. If you are using the system clock function, you can use timer0-based PWM functions <em>without</em> having to call <a class="el" href="Pwm_8h.html#a621c7db58f9d92c0c51c6ae28ad50d68" title="Initialize timer0 for PWM. ">initPwmTimer0()</a>.</dd>
+<dl class="section warning"><dt>Warning</dt><dd>Timer0 is also used by the system clock. <em>Do</em> <em>not</em> <em>initialize</em> <em>or</em> <em>clear</em> <em>timer0</em> if you are also using the system clock function from <a class="el" href="SystemClock_8h.html" title="Include this file to use the functions that instantiate and access a system clock that counts elapsed...">SystemClock.h</a>. If you are using the system clock function, you can use timer0-based PWM functions <em>without</em> having to call <a class="el" href="Pwm_8h.html#a621c7db58f9d92c0c51c6ae28ad50d68" title="Initialize timer0 for PWM. ">initPwmTimer0()</a>.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>You can temporarily turn off PWM by writing a 0 to the pin with writePinPwm( pin, 0 ). In particular, this is how to turn off PWM to pins associated with timer0 when timer0 is also being used by the system clock.</dd>
 <dd>
-You can temporarily turn off PWM by writing a 0 to the pin with writePinPwm( pin, 0 ). In particular, this is how to turn off PWM to pins associated with timer0 when timer0 is also being used by the system clock. </dd></dl>
+This function ensures operations on 16-bit timers are atomic (at the cost of a small amount of overhead in the case of 8-bt timers). </dd></dl>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 29 2016 13:17:26 for AVRTools by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 30 2016 12:55:08 for AVRTools by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>
