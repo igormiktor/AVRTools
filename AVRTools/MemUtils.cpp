@@ -23,6 +23,7 @@
 #include "MemUtils.h"
 
 #include <stddef.h>
+
 #include <avr/io.h>
 
 
@@ -56,25 +57,59 @@ struct __freelist
 
 
 
-namespace
+size_t MemUtils::memoryAvailableOnFreeList()
 {
+    struct __freelist* current;
+    size_t total = 0;
 
-    // Calculates the amount of free memory on the free list
-    size_t memoryAvailableOnFreeList()
+    for ( current = __flp; current; current = current->nx )
     {
-        struct __freelist* current;
-        size_t total = 0;
-
-        for ( current = __flp; current; current = current->nx )
-        {
-            // Memory in the header (the "size" slot) is not available for allocation, so don't count it
-            total += current->sz;
-        }
-
-        return total;
+        // Memory in the header (the "size" slot) is not available for allocation, so don't count it
+        total += current->sz;
     }
 
-};
+    return total;
+}
+
+
+
+
+
+size_t MemUtils::getFreeListStats( int* nbrBlocks, size_t* sizeSmallestBlock, size_t* sizeLargestBlock )
+{
+    struct __freelist* current;
+    size_t total = 0;
+    int nbr = 0;
+    size_t max = 0;
+    size_t min = static_cast<size_t>( RAMEND ) - static_cast<size_t>( RAMSTART );
+
+    for ( current = __flp; current; current = current->nx )
+    {
+        size_t thisSize = current->sz;
+        ++nbr;
+        if ( thisSize > max )
+        {
+            max = thisSize;
+        }
+        if ( thisSize < min )
+        {
+            min = thisSize;
+        }
+        total += thisSize;
+    }
+
+    if ( !nbr )
+    {
+        // Avoid returning something stupid
+        min = 0;
+    }
+
+    *nbrBlocks = nbr;
+    *sizeSmallestBlock = min;
+    *sizeLargestBlock = max;
+
+    return total;
+}
 
 
 
@@ -119,4 +154,17 @@ size_t MemUtils::freeMemoryBetweenHeapAndStack()
     }
 
     return freeMemory;
+}
+
+
+
+
+
+void MemUtils::resetHeap()
+{
+    // This resets the free-list to "no free-list"
+    __flp = 0;
+
+    // This "forgets" any existing heap allocations
+    __brkval = 0;
 }
