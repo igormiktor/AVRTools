@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['getfreeliststats',['getFreeListStats',['../namespaceMemUtils.html#a31a90ff3e250838ee4c32c7c8734e296',1,'MemUtils']]],
   ['getgpioadc',['getGpioADC',['../GpioPinMacros_8h.html#ab0e46efb50d32bc6ef15151f49b62d5f',1,'GpioPinMacros.h']]],
   ['getgpiocom',['getGpioCOM',['../GpioPinMacros_8h.html#a71ead6674e5fe271954f9ba56188040d',1,'GpioPinMacros.h']]],
   ['getgpioddr',['getGpioDDR',['../GpioPinMacros_8h.html#aef7b4a3fb3d16299dbeb69c95a4ca133',1,'GpioPinMacros.h']]],

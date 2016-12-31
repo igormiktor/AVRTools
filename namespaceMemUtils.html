@@ -77,6 +77,15 @@ Functions</h2></td></tr>
 <tr class="memitem:a1e0f22e12070fa3dd9d1026319a86b60"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMemUtils.html#a1e0f22e12070fa3dd9d1026319a86b60">freeMemoryBetweenHeapAndStack</a> ()</td></tr>
 <tr class="memdesc:a1e0f22e12070fa3dd9d1026319a86b60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the free memory between the heap and the stack.  <a href="#a1e0f22e12070fa3dd9d1026319a86b60">More...</a><br /></td></tr>
 <tr class="separator:a1e0f22e12070fa3dd9d1026319a86b60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac22e9ca0ad61fb16c38a4ebc0bda4a96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMemUtils.html#ac22e9ca0ad61fb16c38a4ebc0bda4a96">resetHeap</a> ()</td></tr>
+<tr class="memdesc:ac22e9ca0ad61fb16c38a4ebc0bda4a96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the heap to an empty (virgin) state.  <a href="#ac22e9ca0ad61fb16c38a4ebc0bda4a96">More...</a><br /></td></tr>
+<tr class="separator:ac22e9ca0ad61fb16c38a4ebc0bda4a96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa52c9f0fedf0a2719b7860f5150844cc"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMemUtils.html#aa52c9f0fedf0a2719b7860f5150844cc">memoryAvailableOnFreeList</a> ()</td></tr>
+<tr class="memdesc:aa52c9f0fedf0a2719b7860f5150844cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the free memory on the heap free-list.  <a href="#aa52c9f0fedf0a2719b7860f5150844cc">More...</a><br /></td></tr>
+<tr class="separator:aa52c9f0fedf0a2719b7860f5150844cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31a90ff3e250838ee4c32c7c8734e296"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMemUtils.html#a31a90ff3e250838ee4c32c7c8734e296">getFreeListStats</a> (int *nbrBlocks, size_t *sizeSmallestBlock, size_t *sizeLargestBlock)</td></tr>
+<tr class="memdesc:a31a90ff3e250838ee4c32c7c8734e296"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get information about the heap free-list.  <a href="#a31a90ff3e250838ee4c32c7c8734e296">More...</a><br /></td></tr>
+<tr class="separator:a31a90ff3e250838ee4c32c7c8734e296"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A namespace providing encapsulation for functions that report the available memory in SRAM. </p>
@@ -97,7 +106,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get the free memory between the heap and the stack. </p>
-<p>This does not include any memory potentially available within the heap on the free list. It executes quickly, so this function is useful for checking to make sure the heap and stack aren't in danger of collision.</p>
+<p>This does not include any memory potentially available within the heap on the free-list. It executes quickly, so this function is useful for checking to make sure the heap and stack aren't in danger of collision.</p>
 <dl class="section return"><dt>Returns</dt><dd>The number of free bytes remaining between the top of the heap and the top of the stack. </dd></dl>
 
 </div>
@@ -118,15 +127,101 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get the total free memory remaining in SRAM. </p>
-<p>This includes memory on the free list (if the heap is used) as well as memory available between the heap and the stack (which grow towards each other). If the heap has been used, the function will walk the free list to determine the total amount of free memory.</p>
+<p>This includes memory on the free-list (if the heap is used) as well as memory available between the heap and the stack (which grow towards each other). If the heap has been used, the function will walk the free-list to determine the total amount of free memory.</p>
 <dl class="section return"><dt>Returns</dt><dd>The number of free bytes remaining in SRAM. </dd></dl>
+
+</div>
+</div>
+<a id="a31a90ff3e250838ee4c32c7c8734e296"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31a90ff3e250838ee4c32c7c8734e296">&sect;&nbsp;</a></span>getFreeListStats()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t MemUtils::getFreeListStats </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>nbrBlocks</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramname"><em>sizeSmallestBlock</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramname"><em>sizeLargestBlock</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get information about the heap free-list. </p>
+<p>This provides information about the number of blocks on the free list, the size of the largest and smallest block, as well as the total memory held on the free list.</p>
+<dl class="section note"><dt>Note</dt><dd>This does NOT include any unallocated memory available between the top of the heap and the top of the stack.</dd></dl>
+<ul>
+<li><code>nbrBlocks</code> returns the number of blocks in the free-list. </li>
+<li><code>sizeSmallestBlock</code> returns the size of the smallest block on the free-list. </li>
+<li><code>answerGeneralCall</code> returns the size of the largest block on the free-list.</li>
+</ul>
+<dl class="section return"><dt>Returns</dt><dd>The total number of free bytes on the heap's free list. </dd></dl>
+
+</div>
+</div>
+<a id="aa52c9f0fedf0a2719b7860f5150844cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa52c9f0fedf0a2719b7860f5150844cc">&sect;&nbsp;</a></span>memoryAvailableOnFreeList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t MemUtils::memoryAvailableOnFreeList </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the free memory on the heap free-list. </p>
+<p>This shows the total free memory available on the free-list. This is the sum of the free-blocks contained within the heap.</p>
+<dl class="section note"><dt>Note</dt><dd>This does NOT include any unallocated memory available between the top of the heap and the top of the stack.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The total number of free bytes on the heap's free-list. </dd></dl>
+
+</div>
+</div>
+<a id="ac22e9ca0ad61fb16c38a4ebc0bda4a96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac22e9ca0ad61fb16c38a4ebc0bda4a96">&sect;&nbsp;</a></span>resetHeap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MemUtils::resetHeap </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reset the heap to an empty (virgin) state. </p>
+<p>This function resets the heap to an empty, pristine state. Not only are all memory allocations abandoned, but the free list is also purged, leaving everything between the start of the heap and the top of the stack as unallocated (actually, never-allocated) memory. </p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Dec 30 2016 12:55:09 for AVRTools by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Dec 31 2016 18:17:42 for AVRTools by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

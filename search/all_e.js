@@ -24,6 +24,7 @@ var searchData=
   ['releaseusart1',['releaseUSART1',['../USART1Minimal_8h.html#a6ea899853b102102aeffc78e2bd653af',1,'USART1Minimal.cpp']]],
   ['releaseusart2',['releaseUSART2',['../USART2Minimal_8h.html#af8a55d8dcab37f71b6ebbe68546fcea7',1,'USART2Minimal.cpp']]],
   ['releaseusart3',['releaseUSART3',['../USART3Minimal_8h.html#aa390410f27ca0727aec1b980201b3c77',1,'USART3Minimal.cpp']]],
+  ['resetheap',['resetHeap',['../namespaceMemUtils.html#ac22e9ca0ad61fb16c38a4ebc0bda4a96',1,'MemUtils']]],
   ['ringbuffer',['RingBuffer',['../classRingBuffer.html',1,'RingBuffer'],['../classRingBuffer.html#af687e25596aca4113034b3f4a7545e20',1,'RingBuffer::RingBuffer()']]],
   ['ringbuffer_2eh',['RingBuffer.h',['../RingBuffer_8h.html',1,'']]],
   ['ringbuffert',['RingBufferT',['../classRingBufferT.html',1,'RingBufferT&lt; T, N, SIZE &gt;'],['../classRingBufferT.html#aebca8ea5b4d1948cec12d3597d6f9426',1,'RingBufferT::RingBufferT()']]],
