@@ -50,9 +50,9 @@ namespace
     const uint8_t kFractMax =  ( 1000 >> 3 );
 
     // Variables to keep track of time
-    volatile unsigned long      timer0_overflow_count = 0;
-    volatile unsigned long      timer0_millis = 0;
-    uint8_t                     timer0_fract = 0;
+    volatile unsigned long      timer0_overflow_count;
+    volatile unsigned long      timer0_millis;
+    uint8_t                     timer0_fract;
 
 };
 
@@ -223,6 +223,11 @@ void initSystemClock()
 
         // enable timer 0 overflow interrupt
         TIMSK0 |= (1 << TOIE0);
+
+        // Reset counters
+        timer0_overflow_count = 0;
+        timer0_millis = 0;
+        timer0_fract = 0;
     }
 }
 
