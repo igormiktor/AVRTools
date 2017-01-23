@@ -15,7 +15,7 @@ digital pin 7 or `pPinA03` for analog pin 3.  However, unlike the Arduino librar
 available for conveniently naming any pin on an ATmega328 or ATmega2560, providing easy and efficient access to all
 the functionality available on that pin (digital I/O, analog-to-digital conversion, PWM, etc).  In combination with
 these pin name macros, AVRTools provides
-functions to access the primary subsystems and functionality of the ATmega328 and ATmega2560 microcontrollers.
+functions to access the major subsystems and functionality of the ATmega328 and ATmega2560 microcontrollers.
 
 On the other hand, because "you don't pay for what you don't use," when using AVRTools nothing is initialized or
 configured unless
@@ -39,12 +39,12 @@ a call to the equivalent AVRTools function `writeGpioPinDigital()` takes
 
 # Audience #                                                          {#AvrAudience}
 
-If you are an Arduino programmer, you may want to try out AVRTools if:
+If you are an Arduino programmer, you may want to try AVRTools if:
 - You are comfortable programming the Arduino Uno and Mega directly using the the avr-gcc toolset.
 - You are frustrated by the slowness of even simple functions in the official Arduino libraries.
 - Your code doesn't fit into the available memory because the official Arduino libraries are so big.
 
-If you are an ATmega328 or ATmega2560 microcontroller programmer, you may want to try out AVRTools if:
+If you are an ATmega328 or ATmega2560 microcontroller programmer, you may want to try AVRTools if:
 - You are secretly jealous of how easy and convenient it is to use the Arduino libraries.
 - You wish you could bind together DDRs, PORTs, and PINs so you didn't have to write code like:
 
@@ -145,7 +145,7 @@ macro-functions to operate on the pin names.  These include:
 - `setGpioPinModeInputPullup( pin )`    Clear the corresponding DDRn and PORTn bits
 - `isGpioPinModeOutput( pin )`          Is the corresponding DDRn bit set?
 - `isGpioPinModeInput( pin )`           Is the corresponding DDRn bit clear?
-- `readGpioPinDigital( pin )`           Is the corresponding PINn bit is set? (returns zero or non-zero) 
+- `readGpioPinDigital( pin )`           Is the corresponding PINn bit is set? (returns zero or non-zero)
 - `writeGpioPinDigital( pin, value )`   Write a 0 or 1 to the corresponding PORTn bit
 - `setGpioPinHigh( pin )`               Set the corresponding PORTn bit
 - `setGpioPinLow( pin )`                Clear the corresponding PORTn bit
@@ -226,7 +226,7 @@ the header file `SystemClock.h` and link against `SystemClock.cpp`.  Some of key
 ~~~C
 void initSystemClock();
 unsigned long millis();
-void delay( unsigned long ms );
+void delayMilliseconds( unsigned long ms );
 ~~~
 
 Note that unlike the Arduino libary, you must explicitly initialize the clock functionality by calling `initSystemClock()`.
@@ -296,13 +296,14 @@ Serial0 in `USART0.h`.
 ### ABI module ###        {#AbiMod}
 
 You only need this module if building your code produces link errors regarding missing symbols with strange names
-like `__cxa_XXX` (where `XXX` is some unusual string).  In that case, simply link your code against abi.cpp.  These are symbols related to the way the
-avr-gcc C++ compiler implements abstract virtual functions.
+like `__cxa_XXX` (where `XXX` is some unusual string).  In that case, simply link your code against `abi.cpp`.  These are
+symbols related to the way the avr-gcc C++ compiler implements abstract virtual functions.
 
 ### New module ###           {#NewMod}
 
 This module implements `operator new` and `operator delete`.  You only need this if you use `new` and `delete` to
-manage objects on the heap.  AVRTools itself does not make any use of heap objects or operators `new` or `delete`.
+manage objects on the heap.  Link against `new.cpp` to make use of these operators.  AVRTools itself does not make
+any use of heap objects or operators `new` or `delete`.
 
 
 # Sample start up code using AVRTools #       {#SampleStartCode}
@@ -349,7 +350,7 @@ init main()
             setGpioPinLow( pLed );
         }
 
-        delay( 100 );
+        delayMilliseconds( 100 );
     }
 }
 ~~~
