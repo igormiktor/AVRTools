@@ -64,7 +64,7 @@ code.  I may well get around to doing it one day in any case, just for completen
 
 Getting maximum efficiency from the GPIO pin name macros while making them
 easy to use requires a series of recursive macro expansions.  To make this work,
-it is essential to force rescanning of macro expansions, and nested macro
+it is essential to force rescanning of macro expansions, and using nested macro
 function calls is a practical way to force macro rescanning.  So all of the
 GPIO pin related macro functions call a helper macro function that has the
 same name except for a prepended underscore.
