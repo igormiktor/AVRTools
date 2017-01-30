@@ -2,7 +2,7 @@ Advanced Features                   {#AdvancedFeatures}
 =================
 
 
-The AVRTools library includes either more advanced features:
+The AVRTools library includes a collection more advanced and/or specialized features:
 
 - [Advanced serial (USART) module] (@ref AdvancedSerial)
 - [I2C modules] (@ref AdvancedI2c)
@@ -16,14 +16,14 @@ The AVRTools library includes either more advanced features:
 These features provide functionality that is different from that provided by the Arduino
 libraries, either in the design of their interface or in the underlying implementation, or both.
 While the core modules of the AVRTools library are basically independent and can be used
-individually, these advanced features depend in various ways upon the core modules and, sometimes,
-each other.  These dependencies are highlighted in the corresponding sections.
+individually, these advanced features depend in various ways upon the AVRTools core modules
+and, sometimes, on each other.  These dependencies are highlighted in the corresponding sections.
 
 # Advanced serial (USART) module #       {#AdvancedSerial}
 
 The advanced USART module provides two different high-level interfaces to
 %USART0 hardware available on the Arduino Uno (ATmega328) and the Arduino Mega
-(ATmega2560). These provide serial input and output that is flexible, buffered,
+(ATmega2560). These interfaces provide serial input and output that is flexible, buffered,
 and asynchronous by exploiting the interrupts that are associated with the %USART0
 hardware. This means the transmit functions return immediately after queuing
 data in the output buffer for transmission, and the actual transmission happens
@@ -33,17 +33,18 @@ convenience.
 
 If you try to queue more data than the transmit buffer can hold, the write
 functions will block until there is room in the buffer (as a result of data
-being transmitted).  The receive buffer, however, will overwrite if it gets
-full.  You must clear the receive buffer by reading it regularly when receiving
+being transmitted).  When receiving data, however, the receive buffer will overwrite
+itself when it gets full (in a circular, first-in is first-overwritten fashion).
+You must clear the receive buffer by reading it regularly when receiving
 significant amounts of data.  The sizes of the transmit and receive buffers can
 be set at compile time via macro constants.
 
-Two interfaces are provided.  The first is provided in namespace USART0 and is a
-functional interface that makes use of the buffering and asynchronous transmit
-and receive capabilities of the microcontrollers. However, USART0 is limited to
-transmitting and receiving byte and character streams.  Think of USART0 as a
-buffered version of the receiveUSART0() and transmitUSART0() functions provided
-by the [Minimal USART modules] (@ref MinUsart).
+Two interfaces to %USART0 hardware are provided.  The first is provided in namespace
+USART0 and provides a functional interface that makes use of the buffering and
+asynchronous transmit and receive capabilities of the microcontroller hardware.
+However, USART0 functionality is limited to transmitting and receiving byte and
+character streams.  Think of USART0 as a buffered version of the receiveUSART0()
+and transmitUSART0() functions provided by the [Minimal USART modules] (@ref MinUsart).
 
 The second interface is Serial0.  Serial0 is the most advanced and capable
 interface to the %USART0 hardware.  Serial0 provides a object-oriented interface
@@ -65,7 +66,7 @@ using Serial0 and USART0 to access %USART0.
 
 
 Use of the timeout feature in Serial0
-or USART0 requires linking against SystemClock.cpp and
+and USART0 requires linking against SystemClock.cpp and
 calling initSystemClock() from your start-up code.
 
 If you are coding for the ATmega2560, you can also use USART1, USART2, and
@@ -81,16 +82,17 @@ configuration.
 
 # I2C modules #                        {#AdvancedI2c}
 
-These two modules provide two different interfaces to the two-wire serial interface (TWI) hardware
-of the Arduino Uno (ATmega328) and Arduino Mega (ATmega2560), providing a high-level interface to
-I2C protocol communications. There are two different modules corresponding to whether your application
-will function as a [Master] (@ref AdvI2cMaster) (as per the I2C protocol), or as a
-[Slave] (@ref AdvI2cSlave).
+There two modules providing different interfaces to the two-wire serial interface (TWI) hardware
+of the Arduino Uno (ATmega328) and Arduino Mega (ATmega2560). These modules provide a high-level interface to
+I2C protocol communications. There are two different modules corresponding to the role within the
+I2C protocol that your application will use:  if your application functions as an I2C "Master", use
+the [Master] (@ref AdvI2cMaster) module; if your application functions as an I2C "Slave", use the
+[Slave] (@ref AdvI2cSlave) module.
 
 \note AVRTools does not support applications that function both as I2C Masters and I2C Slaves.  The two
 I2C modules provided by AVRTools are incompatible and cannot be mixed.
 
-Both modules offer interfaces that are buffered for both input and output which operate using interrupts associated
+Both modules offer interfaces that are buffered for both input and output, making use of interrupts associated
 with the TWI hardware.  This means the asynchronous transmit functions return immediately after queuing data
 in the output buffer for transmission and the transmission happens asynchronously, using
 dedicated TWI hardware. Similarly, data is received asynchronously and placed into the input buffer.
@@ -105,7 +107,7 @@ to the TWI hardware that implements the Master portions of the I2C protocol. The
 interfaces are buffered for both input and output and operate using interrupts
 associated with the TWI hardware.  This means the asynchronous transmit
 functions return immediately after queuing data in the output buffer for
-transmission and the transmission happens asynchronously, using dedicated TWI
+transmission, and the transmission happens asynchronously, using dedicated TWI
 hardware. Similarly, data is received asynchronously and placed into the input
 buffer.
 
@@ -152,7 +154,7 @@ using the dedicated TWI hardware. Similarly, data is received asynchronously and
 placed into a buffer.
 
 The interface offered by the [I2C Slave module] (@ref I2cSlave) is designed
-designed around the normal operating modes of the I2C protocol.  From a Slave
+around the normal operating modes of the I2C protocol.  From a Slave
 device point of view, I2C communications consist of receiving a message from the
 Master telling it to do something, and in response:
 
@@ -172,7 +174,7 @@ controlled LCD driven by an MCP23017 that offers an I2C interface (such LCDs are
 available from Adafruit and SparkFun).   This module allows you to write to the
 LCD much as it if were a serial device and includes the ability to write numbers
 of various types in various formats. It also lets you detect button presses on
-the 5-button keypad generally assocaited with such devices.
+the 5-button keypad generally associated with such devices.
 
 \note The [I2C-based LCD module] (@ref I2cLcd) requires the [I2C Master module] (@ref I2cMaster).
 

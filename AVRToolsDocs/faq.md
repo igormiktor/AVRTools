@@ -74,7 +74,7 @@ why they are not formally documented.
 
 
 
-# _setGpioPinHigh() is defined with 8 arguments, but called with 1: how can that work? #      {#FaqHowWork}
+# _setGpioPinHigh() is defined with 8 arguments, but called with 1 argument: how can that work? #      {#FaqHowWork}
 
 Someone has been reading header files.  It works because of the magic of the
 C/C++ preprocessor rescanning rules.  The rescanning rules are described in
