@@ -128,6 +128,8 @@ inline uint16_t readGpioPinAnalogV( const GpioPinVariable& pinVar )
  * \arg \c ref provides the voltage reference to be used for analog-to-digital conversions.  Pass
  * one of the constants from enum A2DVoltageReference.  If no value is provided, the default is
  * kA2dReferenceAVCC.
+ *
+ * \note This function only works for CPU clocks running at either 8 MHz, 12 MHz, or 16 MHz.
  */
 
 void initA2D( uint8_t ref = kA2dReferenceAVCC );
