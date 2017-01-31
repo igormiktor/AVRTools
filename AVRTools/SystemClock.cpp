@@ -45,7 +45,7 @@ namespace
     const unsigned long kMillisInc = ( kMicrosecondsPerOverflowTIMER0 / 1000 );
 
     // The fractional number of milliseconds per timer0 overflow. Shift right
-    // by three to fit these numbers into a byte (for 8 MHz and 16 MHz this doesn't lose precision).
+    // by three to fit these numbers into a byte (for 8 MHz, 12 MHz, and 16 MHz this doesn't lose precision).
     const uint8_t kFractInc =  ( ( kMicrosecondsPerOverflowTIMER0 % 1000 ) >> 3 );
     const uint8_t kFractMax =  ( 1000 >> 3 );
 
@@ -138,7 +138,7 @@ void delayMilliseconds( unsigned long ms )
 
 
 
-// Delay for the given number of microseconds.  Assumes an 8 MHz or 16 MHz clock.
+// Delay for the given number of microseconds.  Assumes an 8 MHz, 12 MHz, or 16 MHz clock.
 void delayMicroseconds( unsigned int us )
 {
     // Code adapted from wiring.c, Copyright (c) 2005-2006 David A. Mellis
@@ -149,46 +149,100 @@ void delayMicroseconds( unsigned int us )
 
 #if F_CPU == 16000000L
 
-    // For the 16 MHz clock on most Arduino boards
+    // For the 16 MHz clock on most Arduino boards.
 
-    // For a one-microsecond delay, simply return.  The overhead
-    // of the function call yields a delay of approximately 1 1/8 us.
-    if ( --us == 0 )
+    // 16 cycles = 1 us
+
+    // The overhead of the function call is 14 cycles for
+    // constant delay, 16 for variable delay, which is 1us
+
+    // For a one-microsecond delay, simply return
+
+    // Takes 3 cycles if false, 4 cycles if true
+    if ( us <= 1 )
     {
         return;
     }
 
-    // The following loop takes a quarter of a microsecond (4 cycles)
-    // per iteration, so execute it four times for each microsecond of delay requested.
+    // The timing loop takes 1/4 of a microsecond (4 cycles) per iteration
+    // So execute it four times for each microsecond of delay requested.
+
+    // Multiply by 4; takes 4 cycles
     us <<= 2;
 
-    // Account for the time taken in the preceeding commands.
-    us -= 2;
+    // Account for the time taken in the preceeding commands.  We just
+    // burned 21 (23) cycles above, plus 2 cycles for the adjustment below.
+    // Total 23 (25) cycles, so remove 6 iterations, (6*4=24)
+    // us is at least 8 so we can substract 6
+
+    // Takes 2 cycles
+    us -= 6;
+
+#elif F_CPU == 12000000L
+
+    // For the 12 MHz clock of the Adafruit Trinket and others.
+
+    // 12 cycles - 1 us
+
+    // The overhead of the function call is 14 (16) cycles, which is 1.5us
+
+    // For a 1 microsecond delay, simply return
+
+    // Takes 3 cycles if false, 4 cycles if true
+    if ( us <= 1 )
+    {
+        return;
+    }
+
+    // The timing loop takes 1/3 of a microsecond (4 cycles) per iteration
+    // So execute it three times for each microsecond of delay requested.
+
+    // Multiply by 3 (actually by 2 and add again); takes 5 cycles
+    us = (us << 1) + us;
+
+    // Account for the time taken in the preceeding commands.  We just
+    // burned 22 (24) cycles above, plus 2 cycles for the adjustment below.
+    // Total 24 (26) cycles, so remove 6 iterations, (6*4=24)
+    // us is at least 6 so at most we can substract 5 (us ==0 breaks the loop)
+    // Close enough....
+
+    // Takes 2 cycles
+    us -= 5;
 
 #elif F_CPU == 8000000L
 
     // For the 8 MHz internal clock on the ATmega168
 
-    // For a one- or two-microsecond delay, simply return.  The overhead of
-    // the function calls takes more than two microseconds.  Can't just
-    // subtract two, since us is unsigned; we'd overflow.
-    if (--us == 0)
-        return;
-    if (--us == 0)
-        return;
+    // 8 cycles = 1 us
 
-    // The following loop takes half of a microsecond (4 cycles)
-    // per iteration, so execute it twice for each microsecond of
-    // delay requested.
+    // The overhead of the function call is 14 (16) cycles, which is 2us
+
+    // For a 1 or 2 microsecond delay, simply return
+
+    // Takes 3 cycles if false, 4 cycles if true
+    if ( us <= 2 )
+    {
+        return;
+    }
+
+    // The timing loop takes 1/2 of a microsecond (4 cycles) per iteration
+    // So execute it twice for each microsecond of delay requested.
+
+    // Multiply by 2; takes 2 cycles
     us <<= 1;
 
-    // Partially compensate for the time taken by the preceeding commands.
-    // we can't subtract any more than this or we'd overflow w/ small delays.
-    us--;
+    // Account for the time taken in the preceeding commands.  We just
+    // burned 19 (21) cycles above, plus 2 cycles for the adjustment below.
+    // Total 21 (23) cycles, so remove 5 iterations, (5*4=20)
+    // us is at least 6 so at most we can substract 5
+    // Close enough....
+
+    // Takes 2 cycles
+    us -= 5;
 
 #else
 
-#error "delayMicroseconds() is not implemented for CPU speeds other than 8 MHz or 16 MHz."
+#error "delayMicroseconds() is only implemented for CPU speeds of 8 MHz, 12 MHz, or 16 MHz."
 
 #endif
 

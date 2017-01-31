@@ -70,7 +70,7 @@ void initSystemClock();
  *
  * \arg \c us the number of microseconds to delay.
  *
- * \note This function only works for CPU clocks running at either 8 MHz or 16 MHz.
+ * \note This function only works for CPU clocks running at either 8 MHz, 12 MHz, or 16 MHz.
  *
  */
 
