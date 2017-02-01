@@ -69,8 +69,8 @@ AVRTools is not a general purpose AVR programming library.  I use the Arduino Un
 I wrote AVRTools to support these specific needs.  There is conditional code throughout the implementation that is tailored to the
 ATmega328 and ATmega2560 microcontrollers.  Additional conditional code could be added to create corresponding implementations for
 other AVR processors in the AT-family, but I haven't done it.  Furthermore, the code is written for (and works with) microcontrollers
-running at either 8 MHz or 16 MHz (the code automatically adapts to these two clock speeds).  I have not tested any other clock speeds,
-and some of the delay functions are specifically coded for 8 MHz and 16 MHz and will not work (as written) at other clock speeds.
+running at either 8 MHz, 12 MHz, or 16 MHz (the code automatically adapts to these three clock speeds).  I have not tested any other clock speeds,
+and some of the delay functions are specifically coded for 8 MHz, 12 MHz, and 16 MHz and will not work (as written) at other clock speeds.
 
 Finally, the AVRTools interface is designed to meet my needs and coding style.  That means the interfaces are designed in ways
 which may not reflect your usage.  A particular example of this is the I2C module, which is designed to support the I2C
