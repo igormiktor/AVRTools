@@ -90,10 +90,10 @@ Why does the SPI module only implement master mode?</h1>
 <p>If you need a slave mode SPI interface, let me know. It's pretty straightforward to code. I may well get around to doing it one day in any case, just for completeness.</p>
 <h1><a class="anchor" id="FaqWhyUnder"></a>
 Why is there a setGpioPinHigh() macro and a _setGpioPinHigh() macro?</h1>
-<p>Getting maximum efficiency from the GPIO pin name macros while making them easy to use requires a series of recursive macro expansions. To make this work, it is essential to force rescanning of macro expansions, and nested macro function calls is a practical way to force macro rescanning. So all of the GPIO pin related macro functions call a helper macro function that has the same name except for a prepended underscore.</p>
+<p>Getting maximum efficiency from the GPIO pin name macros while making them easy to use requires a series of recursive macro expansions. To make this work, it is essential to force rescanning of macro expansions, and using nested macro function calls is a practical way to force macro rescanning. So all of the GPIO pin related macro functions call a helper macro function that has the same name except for a prepended underscore.</p>
 <p>The helper macro functions are an internal implementation detail, and that is why they are not formally documented.</p>
 <h1><a class="anchor" id="FaqHowWork"></a>
-_setGpioPinHigh() is defined with 8 arguments, but called with 1: how can that work?</h1>
+_setGpioPinHigh() is defined with 8 arguments, but called with 1 argument: how can that work?</h1>
 <p>Someone has been reading header files. It works because of the magic of the C/C++ preprocessor rescanning rules. The rescanning rules are described in 6.10.3.4 of the <a href="http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1124.pdf">ISO Standard for C</a> (the same rules apply to C++). It requires lawyer-like abilities to completely comprehend the full implications of this short paragraph. However, the gist of it is that if you have the following three macros:</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#define BAR(X,Y) (X+Y)</span></div><div class="line"><span class="preprocessor">#define FOO(X) BAR(X)</span></div><div class="line"><span class="preprocessor">#define A B,C</span></div></div><!-- fragment --><p>And if you then call <code>FOO(A)</code> in your code, the preprocessor executes the following steps:</p><ul>
 <li>first <code>FOO(A)</code> is expanded to <code>BAR(A)</code></li>
@@ -107,7 +107,7 @@ Why is there a setGpioPinHigh() macro and a setGpioPinHighV() function?</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 31 2016 18:17:42 for AVRTools by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jan 31 2017 21:24:08 for AVRTools by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>
