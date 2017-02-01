@@ -40,7 +40,7 @@
     That parameter is the number of quarter milliseconds to delay.
 
     The delay loop using a 16-bit counter, so up to 65535 iterations are possible
-    (equal to 16383.75 microseconds or ~16.4 milliseconds).  The loop executes
+    (equal to 32761.5 microseconds or ~32.8 milliseconds).  The loop executes
     four CPU cycles per iteration, not including the function call overhead.
 */
 
@@ -79,7 +79,7 @@ delayQuartersOfMicroSeconds:
 2:                                  ; Get here after 5 cycles, regardless of branches used
                                     ; Subtract out the delay already accounted for
     sbiw rDelayL, kMinDelay         ; 2 cycles
-                                    ; Each loop is 4 cycles or 2 quarter seconds, so divide loop count in half
+                                    ; Each loop is 4 cycles or 2 quarter microseconds, so divide loop count in half
     lsr rDelayH                     ; 1 cycle
     ror rDelayL                     ; 1 cycle
                                     ; Because of the (kMinDelay + 2) above, know rDelayL will at least be 1
