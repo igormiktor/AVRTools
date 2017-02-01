@@ -21,13 +21,17 @@
 
 #include "SimpleDelays16MHz.inc.S"
 
+#elif F_CPU == 12000000L
+
+#include "SimpleDelays12MHz.inc.S"
+
 #elif F_CPU == 8000000L
 
 #include "SimpleDelays8MHz.inc.S"
 
 #else
 
-#error "SimpleDelays not implemented for CPU speeds other than 8 MHz or 16 MHz."
+#error "SimpleDelays only implemented for CPU speeds of 8 MHz, 12 MHz, or 16 MHz."
 
 #endif
 

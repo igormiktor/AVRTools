@@ -29,7 +29,7 @@
  * For precision, these functions are all implemented directly in assembler.
  *
  * \note These functions are implemented for (and automatically adjust to) either
- * an 8 MHz or a 16 MHz clock cycle.
+ * an 8 MHz, 12 MHz, or a 16 MHz clock cycle.
  *
  */
 
@@ -75,7 +75,7 @@ extern "C" {
  * longer.  If accurate delays are desired, disable interrupts before calling this
  * function (remember to enable interrupts afterwards).
  *
- * \note This function only works for CPU clocks running at either 8 MHz or 16 MHz.
+ * \note This function only works for CPU clocks running at either 8 MHz, 12 MHz, or 16 MHz.
  *
  * For precision, this function is implemented directly in assembler.
  */
@@ -99,7 +99,7 @@ void delayQuartersOfMicroSeconds( uint16_t nbrOfQuartersOfMicroSeconds );
  * longer.  If accurate delays are desired, disable interrupts before calling this
  * function (remember to enable interrupts afterwards).
  *
- * \note This function only works for CPU clocks running at either 8 MHz or 16 MHz.
+ * \note This function only works for CPU clocks running at either 8 MHz, 12 MHz, or 16 MHz.
  *
  * For precision, this function is implemented directly in assembler.
  */
@@ -123,7 +123,7 @@ void delayWholeMilliSeconds( uint8_t nbrOfMilliSeconds );
  * longer.  If accurate delays are desired, disable interrupts before calling this
  * function (remember to enable interrupts afterwards).
  *
- * \note This function only works for CPU clocks running at either 8 MHz or 16 MHz.
+ * \note This function only works for CPU clocks running at either 8 MHz, 12 MHz, or 16 MHz.
  *
  * For precision, this function is implemented directly in assembler.
  */
