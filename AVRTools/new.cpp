@@ -57,3 +57,20 @@ void operator delete[]( void* ptr )
 {
     free( ptr );
 }
+
+
+
+#if __cplusplus >= 201402L
+
+void operator delete( void* ptr, size_t sz )
+{
+    free( ptr );
+}
+
+
+void operator delete[]( void* ptr, size_t sz )
+{
+    free( ptr );
+}
+
+#endif

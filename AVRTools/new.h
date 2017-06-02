@@ -47,6 +47,13 @@ void* operator new[]( size_t size );
 void operator delete( void* ptr );
 void operator delete[]( void* ptr );
 
+#if __cplusplus >= 201402L
+
+void operator delete ( void* ptr, size_t sz );
+void operator delete[]( void* ptr, size_t sz );
+
+#endif
+
 
 // Placement new & delete operators
 
