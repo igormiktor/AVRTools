@@ -104,7 +104,7 @@ to switch input/output mode, read, or write a pin.  This single name provides
 access, as appropriate, to the DDRx, PORTx, PINx registers and also the specific
 pin number.  For pins that support analog-to-digital conversion, the single name
 also provides access the analog channel associated with the pin.  For pins that
-support PWM, the single name also provides access to control and compare
+support PWM, the single name also provides access to the control and compare
 registers and bits needed to configure and control the PWM functionality of that
 pin.
 
@@ -112,7 +112,7 @@ This is all done via preprocessor macros, both for the single pin name mechanism
 and for the "functions" that make use of that single pin name. This means that
 access to any pin-related functionality is as fast as possible, designed
 specifically so that the `avr-gcc` compiler will emit single-cycle `in`, `out`,
-`sbi`, `cbi`, `sbic`, or `sbis` instructions for such operations.  However, the
+`sbi`, `cbi`, `sbic`, or `sbis` instructions for such operations whenever possible.  However, the
 complex internal representation of the macros means that the pin names are
 strictly constant and can only be passed to the specialized macro-functions
 designed to manipulate them. Although they may look and feel like simple
@@ -241,7 +241,7 @@ this module include:
 ~~~C
 void initA2D();
 void turnOffA2D();
-readGpioPinAnalog( avrPort );   /* implemented as a macro */
+readGpioPinAnalog( pinName );   /* implemented as a macro */
 ~~~
 
 You must initialize the analog-to-digital subsystem by calling `initA2D()`
@@ -258,7 +258,7 @@ void initPwmTimer1();
 void initPwmTimer2();
 void clearTimer1();
 void clearTimer2();
-writeGpioPinPwm( avrPort, value );  /* implemented as a macro */
+writeGpioPinPwm( pinName, value );  /* implemented as a macro */
 ~~~
 
 Depending on which pins you wish to employ in PWM mode, you should initialize the appropriate timers by calling the appropriate
