@@ -67,7 +67,7 @@ using Serial0 and USART0 to access %USART0.
 
 Use of the timeout feature in Serial0
 and USART0 requires linking against SystemClock.cpp and
-calling initSystemClock() from your start-up code.
+calling the function initSystemClock() from your start-up code.
 
 If you are coding for the ATmega2560, you can also use USART1, USART2, and
 USART3 and/or Serial1, Serial2, and Serial3 to access the %USART1, %USART2, and
@@ -262,7 +262,7 @@ One potential complication may occur if you use %SPI to transmit data from insid
 routine and also use %SPI in the main execution thread.  In this situation, you have to make sure that
 a %SPI transmission in the main thread is not interrupted by a %SPI transmission from an interrupt
 routine.  You can do this very easily by disabling the appropriate interrupt (or interrupts) during the
-period of time that an %SPI transmission occurs in the main thread.  The classes in InterruptUtils
+period of time that an %SPI transmission occurs in the main thread.  The classes in Interrupts
 allow you to selectively disable interrupts.
 
 The following example code illustrates how to do this.  Assume that %SPI is used by interrupt routines
