@@ -152,5 +152,5 @@ int readA2D( int8_t channel )
         ;
 
     // NOTE: must read ADCL before ADCH
-    return  ADCL | ( ADCH << 8 );
+    return  ADCL | ( static_cast<uint16_t>(ADCH) << 8 );
 }
