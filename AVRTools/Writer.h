@@ -175,6 +175,38 @@ public:
 
 
     /*!
+     * \brief Print an 8-bit integer to the output stream, with or without adding
+     * a new line character at the end.
+     *
+     * \arg \c n is the integer to output.
+     * \arg \c base is the base used to represent the number; should be one of IntegerOutputBase; defaults to
+     * decimal representation (kDec).
+     * \arg \c addLn if true, a new line character is added at the end of the output; the default is false.
+     *
+     * \returns the number of bytes sent to the output stream.
+     *
+     * \hideinitializer
+     */
+    size_t print( int8_t n, int base = kDec, bool addLn = false );
+
+
+    /*!
+     * \brief Print an 8-bit unsigned integer to the output stream, with or without adding
+     * a new line character at the end.
+     *
+     * \arg \c n is the integer to output.
+     * \arg \c base is the base used to represent the number; should be one of IntegerOutputBase; defaults to
+     * decimal representation (kDec).
+     * \arg \c addLn if true, a new line character is added at the end of the output; the default is false.
+     *
+     * \returns the number of bytes sent to the output stream.
+     *
+     * \hideinitializer
+     */
+    size_t print( uint8_t n, int base = kDec, bool addLn = false )
+    { return print( static_cast<unsigned long>( n ), base, addLn ); }
+
+    /*!
      * \brief Print an integer to the output stream, with or without adding
      * a new line character at the end.
      *
@@ -187,8 +219,7 @@ public:
      *
      * \hideinitializer
      */
-    size_t print( int n, int base = kDec, bool addLn = false )
-    { return print( static_cast<long>( n ), base, addLn ); }
+    size_t print( int n, int base = kDec, bool addLn = false );
 
 
     /*!
@@ -287,10 +318,10 @@ public:
     size_t println( char c )                                { return print( c, true ); }
 
     /*!
-     * \brief Print an unsigned character to the output stream, adding
+     * \brief Print an 8-bit integer to the output stream, adding
      * a new line character at the end.
      *
-     * \arg \c n is the unsigned character to output.
+     * \arg \c n is the integer to output.
      * \arg \c base is the base used to represent the number; should be one of IntegerOutputBase; defaults to
      * decimal representation (kDec).
      *
@@ -298,7 +329,21 @@ public:
      *
      * \hideinitializer
      */
-    size_t println( unsigned char n, int base = kDec )      { return print( static_cast<unsigned long>( n ), base, true ); }
+    size_t println( int8_t n, int base = kDec )                { return print( n, base, true ); }
+
+    /*!
+     * \brief Print an 8-bit unsigned integer to the output stream, adding
+     * a new line character at the end.
+     *
+     * \arg \c n is the unsigned integer to output.
+     * \arg \c base is the base used to represent the number; should be one of IntegerOutputBase; defaults to
+     * decimal representation (kDec).
+     *
+     * \returns the number of bytes sent to the output stream.
+     *
+     * \hideinitializer
+     */
+    size_t println( uint8_t n, int base = kDec )       { return print( n, base, true ); }
 
     /*!
      * \brief Print an integer to the output stream, adding

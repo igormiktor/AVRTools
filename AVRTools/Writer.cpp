@@ -100,6 +100,45 @@ size_t Writer::print( char c, bool addLn )
 }
 
 
+
+size_t Writer::print( int8_t n, int base, bool addLn )
+{
+    uint8_t tmp = 0;
+    if ( base == kDec && n < 0 )
+    {
+        tmp += print( '-' );
+        n = -n;
+    }
+
+    tmp += printNumber( static_cast<unsigned int8_t>( n ), base );      // cast essential to correctly display 2's complement negatives
+    if ( addLn )
+    {
+        tmp += println();
+    }
+    return tmp;
+}
+
+
+
+size_t Writer::print( int n, int base, bool addLn )
+{
+    uint8_t tmp = 0;
+    if ( base == kDec && n < 0 )
+    {
+        tmp += print( '-' );
+        n = -n;
+    }
+
+    tmp += printNumber( static_cast<unsigned int>( n ), base );         // cast essential to correctly display 2's complement negatives
+    if ( addLn )
+    {
+        tmp += println();
+    }
+    return tmp;
+}
+
+
+
 size_t Writer::print( long n, int base, bool addLn )
 {
     uint8_t tmp = 0;
@@ -109,22 +148,7 @@ size_t Writer::print( long n, int base, bool addLn )
         n = -n;
     }
 
-    if ( base == kHex )
-    {
-        tmp += print( '0' );
-        tmp += print( 'x' );
-    }
-    else if ( base == kOct )
-    {
-        tmp += print( '0' );
-    }
-    else if ( base == kBin )
-    {
-        tmp += print( '0' );
-        tmp += print( 'b' );
-    }
-
-    tmp += printNumber( n, base );
+    tmp += printNumber( static_cast<unsigned long>( n ), base );
     if ( addLn )
     {
         tmp += println();
@@ -136,7 +160,9 @@ size_t Writer::print( long n, int base, bool addLn )
 
 size_t Writer::print( unsigned long n, int base, bool addLn )
 {
-    uint8_t tmp = printNumber( n, base );
+    uint8_t tmp = 0;
+
+    tmp = printNumber( n, base );
     if ( addLn )
     {
         tmp += println();
@@ -170,7 +196,7 @@ size_t Writer::println()
 
 size_t Writer::printNumber( unsigned long n, uint8_t base )
 {
-    char buf[ 8 * sizeof(long) + 1 ];     // Assumes 8-bit chars plus zero byte.
+    char buf[ 8 * sizeof(long) + 1 + 2 ];     // Assumes 8-bit chars plus zero byte plus optional 2-char base designator
     char* str = &buf[ sizeof(buf) - 1 ];
 
     *str = 0;
@@ -190,7 +216,32 @@ size_t Writer::printNumber( unsigned long n, uint8_t base )
     }
     while( n );
 
-  return write( str );
+    switch ( base )
+    {
+        case kBin:
+            *--str = 'b';
+            *--str = '0';
+            break;
+
+        case kOct:
+            *--str = 'o';           // Slightly non-standard, but more visible, way to represent octal numbers
+            *--str = '0';
+            break;
+
+        case kDec:
+            break;
+
+        case kHex:
+            *--str = 'x';
+            *--str = '0';
+            break;
+
+        default:
+            *--str = '?';           // Used to indicate a non-decimal, non-standard base
+            *--str = '0';
+    }
+
+    return write( str );
 }
 
 
