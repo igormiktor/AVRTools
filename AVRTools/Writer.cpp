@@ -28,6 +28,9 @@
 #include <stddef.h>
 #include <math.h>
 
+#include <avr/pgmspace.h>
+
+
 
 
 size_t Writer::write( char c )
@@ -246,25 +249,43 @@ size_t Writer::printNumber( unsigned long n, uint8_t base )
 
 
 
+namespace
+{
+    const PROGMEM char sNan[]   = "Nan";
+    const PROGMEM char sInf[]   = "Inf";
+    const PROGMEM char sOvf[]   = "Ovf";
+}
+
 size_t Writer::printFloat( double number, uint8_t digits )
 {
     size_t n = 0;
 
     if ( isnan( number ) )
     {
-        return print( "nan" );
+        char tmp[4];
+        strncpy_P( tmp, sNan, 3 );
+        // Ensure null-terminated
+        tmp[3] = 0;
+
+        return print( tmp );
     }
     if ( isinf( number ) )
     {
-        return print( "inf" );
+        char tmp[4];
+        strncpy_P( tmp, sInf, 3 );
+        // Ensure null-terminated
+        tmp[3] = 0;
+
+        return print( tmp );
     }
-    if ( number >  4294967040.0 )
+    if ( number >  4294967040.0 || number < -4294967040.0 )   // constants determined empirically
     {
-        return print ( "ovf" );  // constant determined empirically
-    }
-    if ( number < -4294967040.0 )
-    {
-        return print ( "ovf" );  // constant determined empirically
+        char tmp[4];
+        strncpy_P( tmp, sOvf, 3 );
+        // Ensure null-terminated
+        tmp[3] = 0;
+
+        return print( tmp );
     }
 
     // Handle negative numbers
