@@ -29,7 +29,7 @@ the programmer previously used the pin in PWM mode that he or she remembered to 
 pin digitally.  Assuming the programmer knows what he or she is doing allows the functions in AVRTools to be much faster
 than their Arduino library counterparts.  For example, a call to the Arduino function `digitalWrite()` takes about 70 cycles;
 a call to the equivalent AVRTools function `writeGpioPinDigital()` takes
-1 cycle (it's actually a macro in AVRTools).
+2 cycles (it's actually a macro in AVRTools).
 
 ## Audience ##
 
@@ -53,7 +53,7 @@ MY_PIN_DDR |= (1<<MY_PIN_NBR)
 MY_PIN_PORT |= (1<<MY_PIN_NBR)
 ```
 
-- You wish you could use a function-like syntax to switch input/output mode, read a pin, or set a pin high or low but still have the compiler generate single-cycle `in` and `out` instructions.
+- You wish you could use a function-like syntax to switch input/output mode, read a pin, or set a pin high or low but still have the compiler generate simple `in` and `out` type of instructions.
 
 
 ## What it is like to use AVRTools ##
@@ -109,8 +109,7 @@ int main()
 ~~~
 
 It is as simple to code and read as Arduino code.  Yet the setGpioPinXXX calls
-translate directly into single-cycle `in`, `out`, `sbi`, `cbi`, `sbic`, or
-`sbis` instructions.
+translate directly into `in`, `out`, `sbi`, `cbi`, `sbic`, or`sbis` instructions.
 
 If you find this appealing, download AVRTools and try it out.  You can learn
 more by reviewing the documentation found in the file AVRToolsDocumentation.pdf
