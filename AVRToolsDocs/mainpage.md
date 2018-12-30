@@ -325,7 +325,7 @@ value of the potentiometer.
 #define pPwmLed         pPin11
 #define pLed            pPin04
 
-init main()
+int main()
 {
     initSystem();
     initSystemClock();
