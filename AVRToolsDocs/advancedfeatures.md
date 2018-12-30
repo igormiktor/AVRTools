@@ -185,7 +185,7 @@ the 5-button keypad generally associated with such devices.
 It is often necessary to suppress interrupts to avoid conflicts between
 the main thread of code execution and code that runs in interrupts.  While
 it is easy to suppress all interrupts using the `avr-gcc` built-in `cli()` function,
-often a more selective approach is desireable.  And when interrupts
+often a more selective approach is desirable.  And when interrupts
 are suppressed, it is also easy to forget to re-enable them.
 
 The Interrupts module addresses these problems by providing simple utility C++
@@ -231,7 +231,7 @@ on the AVR ATMega328p (Arduino Uno) and ATMega2560 (Arduino Mega) microcontrolle
 module provides functions to initialize the %SPI hardware, configure it appropriately for
 your needs, and transmit (and receive) data.  While the %SPI hardware supports asynchronous
 transmission via an interrupt functions (analogous to the %I2C hardware), AVRTools does not
-implement asynchronous %SPI transmission, instead implementing sychronous transmission that
+implement asynchronous %SPI transmission, instead implementing synchronous transmission that
 polls the appropriate %SPI status register to determine when transmission of a byte has
 completed.  The reason for this is that testing of polling and interrupt implementations by
 [Tomaž Šolc] (https://www.tablix.org/~avian/blog/archives/2012/06/spi_interrupts_versus_polling/)
@@ -253,7 +253,7 @@ The SS pin can still be used as a general purpose output port, because it doesn'
 %SPI operations as long as it remains in output mode.
 
 To use the SPI module, call the SPI::enable() function as part of your initialization.
-Then when you are aready to transmit, configure the hardware appropriately using
+Then when you are ready to transmit, configure the hardware appropriately using
 SPI::configure(), write the receiving device's slave select pin LOW, call SPI::transmit() (or any one
 of the related transmit functions) any number of times to transfer data, and finally write the
 receiving device's SS pin HIGH to indicate that transmission has ended.
@@ -531,9 +531,3 @@ int main()
     }
 }
 ~~~
-
-
-
-
-
-

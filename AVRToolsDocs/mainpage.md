@@ -6,8 +6,8 @@ AVRTools:  A Library for the AVR ATmega328 and ATmega2560 Microcontrollers      
 This library provides an Arduino-like simple-to-use interface to the AVR ATmega328 and ATmega2560 microcontrollers
 without the bloat and slowness of the official Arduino libraries.
 
-AVRTools is an attempt to provide the convenience of the Ardiuno library interface while embracing the fundametal C/C++
-philosopy of "you don't pay for what you don't use" and "assume the programmer knows what he or she is doing."
+AVRTools is an attempt to provide the convenience of the Ardiuno library interface while embracing the fundamental C/C++
+philosophy of "you don't pay for what you don't use" and "assume the programmer knows what he or she is doing."
 
 Like the Arduino libraries, AVRTools allows you to refer to pins on an Arduino via simple names such as `pPin07` for
 digital pin 7 or `pPinA03` for analog pin 3.  However, unlike the Arduino libraries, these names are pure macros so that
@@ -129,7 +129,7 @@ so that users can access and manipulate the individual components as needed.
 To access the pin names of the Arduino Uno or Mega, you only need to include the file "ArduinoPins.h".  It will automatically detect
 whether you are compiling for Uno or Mega and it will correspondingly define the macros `pPinNN` (NN = 00 to 13 for Arduino Uno,
 NN = 00 to 53 for Mega) for digital ports and macros `pPinAnn` (nn = 00 to 07 for Uno, nn = 00 to 15 for Mega) for the
-analog ports.  These correspond directly to the labelled pins on the Arduino boards.  You can use these pin names to define
+analog ports.  These correspond directly to the labeled pins on the Arduino boards.  You can use these pin names to define
 your own macros:
 
 ~~~C
@@ -361,7 +361,7 @@ init main()
 AVRTools also includes modules that provide access to more complex microcontroller capabilities and provide advanced services.
 These include modules for I2C communication (both master and slave mode), a module for %SPI communications,
 a module for more advanced serial input and output (including conversion of various numerical types and strings),
-a module for temporarily surpressing selected interrupts, a module for driving an LCD display via I2C, a module for
+a module for temporarily suppressing selected interrupts, a module for driving an LCD display via I2C, a module for
 reporting memory utilization, a module for very precise delays, and a module for manipulating GPIO pins as actual
 variables.  Information on these modules can be found in the [Advanced Features] (@ref AdvancedFeatures) sections of
 the documentation.
@@ -375,4 +375,3 @@ Detailed documentation is provided by this PDF document located in the repositor
 # Questions #                           {#QuestionsIntro}
 
 If you have questions, please check out the [FAQ] (@ref AvrFaq).
-

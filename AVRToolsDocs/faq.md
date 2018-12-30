@@ -108,5 +108,3 @@ that do not end in a "V" are actually macros and work with the GPIO pin
 name macros (e.g, `pPin01`).  The versions that end with a "V" are true
 functions and work with GPIO variables.  See
 [GPIO pin variables] (@ref AdvancedGpioVars).
-
-
