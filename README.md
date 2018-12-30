@@ -5,8 +5,8 @@
 This library provides an Arduino-like, simple-to-use interface to the AVR ATmega328 and ATmega2560 microcontrollers
 without the bloat and slowness of the official Arduino libraries.
 
-AVRTools is an attempt to provide the convenience of the Ardiuno library interface while embracing the fundametal C/C++
-philosopy of "you don't pay for what you don't use" and "assume the programmer knows what he or she is doing."
+AVRTools is an attempt to provide the convenience of the Ardiuno library interface while embracing the fundamental C/C++
+philosophy of "you don't pay for what you don't use" and "assume the programmer knows what he or she is doing."
 
 Like the Arduino libraries, AVRTools allows you to refer to pins on an Arduino via simple names such as `pPin07` for
 digital pin 7 or `pPinA03` for analog pin 3.  Unlike the Arduino libraries, these names are pure macros so that
@@ -15,7 +15,7 @@ available for conveniently naming any pin on an ATmega328 or ATmega2560, and pro
 the functionality available on that pin (digital I/O, analog-to-digital conversion, PWM, etc).  AVRTools provides
 functions to access all the major functionality of the ATmega328 and ATmega2560 microcontrollers.
 
-On the otherhand, because "you don't pay for what you don't use", when using AVRTools nothing is initialized or configured unless
+On the other hand, because "you don't pay for what you don't use", when using AVRTools nothing is initialized or configured unless
 you explicitly do it.  If you need analog inputs, then you must explicitly initialize the analog-to-digital subsystem before
 reading any analog pins.  If you need an Arduino-style system clock (for functions like `delay()` or `millis()`), then
 you must explicitly start a system clock.  AVRTools provides functions to do any necessary initialization, but the
@@ -114,7 +114,4 @@ translate directly into `in`, `out`, `sbi`, `cbi`, `sbic`, or`sbis` instructions
 If you find this appealing, download AVRTools and try it out.  You can learn
 more by reviewing the documentation found in the file AVRToolsDocumentation.pdf
 that is part of the AVRTools package or in the equivalent
-[online documentation] (http://igormiktor.github.io/AVRTools/).
-
-
-
+[online documentation](http://igormiktor.github.io/AVRTools/).
