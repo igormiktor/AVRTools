@@ -4,14 +4,14 @@ Advanced Features                   {#AdvancedFeatures}
 
 The AVRTools library includes a collection more advanced and/or specialized features:
 
-- [Advanced serial (USART) module] (@ref AdvancedSerial)
-- [I2C modules] (@ref AdvancedI2c)
-- [I2C-based LCD module] (@ref AdvancedLcd)
-- [Interrupt utilities module] (@ref InterruptUtils)
-- [SPI module] (@ref SPI)
-- [Memory utilities module] (@ref MemUtil)
-- [Simple delays module] (@ref SimDelay)
-- [GPIO pin variables] (@ref AdvancedGpioVars)
+- [Advanced serial (USART) module](@ref AdvancedSerial)
+- [I2C modules](@ref AdvancedI2c)
+- [I2C-based LCD module](@ref AdvancedLcd)
+- [Interrupt utilities module](@ref InterruptUtils)
+- [SPI module](@ref SPI)
+- [Memory utilities module](@ref MemUtil)
+- [Simple delays module](@ref SimDelay)
+- [GPIO pin variables](@ref AdvancedGpioVars)
 
 These features provide functionality that is different from that provided by the Arduino
 libraries, either in the design of their interface or in the underlying implementation, or both.
@@ -44,7 +44,7 @@ USART0 and provides a functional interface that makes use of the buffering and
 asynchronous transmit and receive capabilities of the microcontroller hardware.
 However, USART0 functionality is limited to transmitting and receiving byte and
 character streams.  Think of USART0 as a buffered version of the receiveUSART0()
-and transmitUSART0() functions provided by the [Minimal USART modules] (@ref MinUsart).
+and transmitUSART0() functions provided by the [Minimal USART modules](@ref MinUsart).
 
 The second interface is Serial0.  Serial0 is the most advanced and capable
 interface to the %USART0 hardware.  Serial0 provides a object-oriented interface
@@ -86,8 +86,8 @@ There two modules providing different interfaces to the two-wire serial interfac
 of the Arduino Uno (ATmega328) and Arduino Mega (ATmega2560). These modules provide a high-level interface to
 I2C protocol communications. There are two different modules corresponding to the role within the
 I2C protocol that your application will use:  if your application functions as an I2C "Master", use
-the [Master] (@ref AdvI2cMaster) module; if your application functions as an I2C "Slave", use the
-[Slave] (@ref AdvI2cSlave) module.
+the [Master](@ref AdvI2cMaster) module; if your application functions as an I2C "Slave", use the
+[Slave](@ref AdvI2cSlave) module.
 
 \note AVRTools does not support applications that function both as I2C Masters and I2C Slaves.  The two
 I2C modules provided by AVRTools are incompatible and cannot be mixed.
@@ -102,7 +102,7 @@ dedicated TWI hardware. Similarly, data is received asynchronously and placed in
 
 ## I2C Master module ##              {#AdvI2cMaster}
 
-The [I2C Master module] (@ref I2cMaster) provides I2C-protocol-based interface
+The [I2C Master module](@ref I2cMaster) provides I2C-protocol-based interface
 to the TWI hardware that implements the Master portions of the I2C protocol. The
 interfaces are buffered for both input and output and operate using interrupts
 associated with the TWI hardware.  This means the asynchronous transmit
@@ -111,7 +111,7 @@ transmission, and the transmission happens asynchronously, using dedicated TWI
 hardware. Similarly, data is received asynchronously and placed into the input
 buffer.
 
-The interface offered by the [I2C Master module] (@ref I2cMaster) is designed
+The interface offered by the [I2C Master module](@ref I2cMaster) is designed
 around the normal operating modes of the I2C protocol. From a Master device
 point of view, I2C communications consist of sending a designated device a
 message to do something, and then either:
@@ -132,20 +132,20 @@ the designated device (e.g., 0x01 = report the temperature; 0x02 = set the units
 to either degrees F or degrees C (depending on additional data sent by the Master); 0x03 =
 report the humidity; etc.)
 
-The interface offered by the [I2C Master module] (@ref I2cMaster) conforms
+The interface offered by the [I2C Master module](@ref I2cMaster) conforms
 directly to the above I2C paradigm.  For convenience, the interface  functions
 come in both synchronous and asynchronous versions.  The synchronous versions
 simply call the asynchronous versions and block internally until the
 asynchronous operations are complete.
 
-\note The [I2C Master module] (@ref I2cMaster) is incompatible with the
-[I2C Slave module] (@ref I2cSlave): you must
+\note The [I2C Master module](@ref I2cMaster) is incompatible with the
+[I2C Slave module](@ref I2cSlave): you must
 use and link against only one of the two modules.
 
 
 ## I2C Slave module ##          {#AdvI2cSlave}
 
-The [I2C Slave module] (@ref I2cSlave) provides I2C-protocol-based interface to
+The [I2C Slave module](@ref I2cSlave) provides I2C-protocol-based interface to
 the TWI hardware that implements the Slave portions of the I2C protocol. The
 interfaces are buffered for both input and output and operate using interrupts
 associated with the TWI hardware.  This means the functions return immediately
@@ -153,7 +153,7 @@ after queuing data for transmission and the transmission happens asynchronously,
 using the dedicated TWI hardware. Similarly, data is received asynchronously and
 placed into a buffer.
 
-The interface offered by the [I2C Slave module] (@ref I2cSlave) is designed
+The interface offered by the [I2C Slave module](@ref I2cSlave) is designed
 around the normal operating modes of the I2C protocol.  From a Slave
 device point of view, I2C communications consist of receiving a message from the
 Master telling it to do something, and in response:
@@ -161,14 +161,14 @@ Master telling it to do something, and in response:
 - Processing the message and taking whatever action is appropriate.
 - If that action includes returning data to the Master, queuing the data for transmission.
 
-The interface offered by the [I2C Slave module] (@ref I2cSlave) conforms
+The interface offered by the [I2C Slave module](@ref I2cSlave) conforms
 directly to the above I2C paradigm.
 
 
 
 # I2C-based LCD module #               {#AdvancedLcd}
 
-The [I2C-based LCD module] (@ref I2cLcd) provides a high-level interface to an
+The [I2C-based LCD module](@ref I2cLcd) provides a high-level interface to an
 LCD offering an I2C interface. The most common variant of this is HD44780U
 controlled LCD driven by an MCP23017 that offers an I2C interface (such LCDs are
 available from Adafruit and SparkFun).   This module allows you to write to the
@@ -176,7 +176,7 @@ LCD much as it if were a serial device and includes the ability to write numbers
 of various types in various formats. It also lets you detect button presses on
 the 5-button keypad generally associated with such devices.
 
-\note The [I2C-based LCD module] (@ref I2cLcd) requires the [I2C Master module] (@ref I2cMaster).
+\note The [I2C-based LCD module](@ref I2cLcd) requires the [I2C Master module](@ref I2cMaster).
 
 
 
@@ -219,7 +219,7 @@ void dontLetPinChangeInterruptsHappenHere( uint8_t data )
 ~~~
 
 One common application for this is when using %SPI transmissions in both main thread code
-and interrupt routines.  See the documentation for the [SPI module] (@ref SPI) for an
+and interrupt routines.  See the documentation for the [SPI module](@ref SPI) for an
 example.
 
 
@@ -234,7 +234,7 @@ transmission via an interrupt functions (analogous to the %I2C hardware), AVRToo
 implement asynchronous %SPI transmission, instead implementing synchronous transmission that
 polls the appropriate %SPI status register to determine when transmission of a byte has
 completed.  The reason for this is that testing of polling and interrupt implementations by
-[Tomaž Šolc] (https://www.tablix.org/~avian/blog/archives/2012/06/spi_interrupts_versus_polling/)
+[Tomaž Šolc](https://www.tablix.org/~avian/blog/archives/2012/06/spi_interrupts_versus_polling/)
 has shown that polling implementations are faster than interrupt-based implementations by nearly
 a factor of 2.  This is because %SPI can work at half the CPU frequency; at this speed, the
 CPU can only execute about 16 instructions per byte sent via %SPI.  When the CPU is calling
@@ -319,7 +319,7 @@ uint8_t sendData( uint8_t data )
 
 # Memory utilities module #       {#MemUtil}
 
-The [Memory Utilities module] (@ref MemUtils) provides functions that report the available
+The [Memory Utilities module](@ref MemUtils) provides functions that report the available
 memory in SRAM.  These help you gauge in real-time whether your application is approaching
 memory exhaustion or the heap and stack are close to colliding. The primary function is
 `freeSRAM()` which returns the number of free bytes remaining in SRAM.
@@ -328,7 +328,7 @@ memory exhaustion or the heap and stack are close to colliding. The primary func
 
 # Simple delays module #       {#SimDelay}
 
-The [Simple Delays module] (@ref SimpleDelays.h) provides simple delay functions that do not
+The [Simple Delays module](@ref SimpleDelays.h) provides simple delay functions that do not
 involve timers or interrupts.  These functions simply execute a series of
 nested loops with known and precise timing.
 
@@ -365,7 +365,7 @@ the GPIO pin macros, most operations map directly to `in` and `out` AVR
 assembler instructions. However, due to the constraints on these instructions,
 when using variables to pass the pins, the compiler must use slower `ld` and
 `st` instruction to access the I/O registers (for more on this issue, see the section in the
-[AVR-GCC FAQ] (http://www.nongnu.org/avr-libc/user-manual/FAQ.html#faq_port_pass)).  In addition,
+[AVR-GCC FAQ](http://www.nongnu.org/avr-libc/user-manual/FAQ.html#faq_port_pass)).  In addition,
 when using variables and function calls the bit-shifts needed to generate suitable masks have
 to be generated at run-time (often using loops) instead of at compile-time.
 

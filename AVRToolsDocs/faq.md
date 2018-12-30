@@ -4,13 +4,13 @@ FAQ                   {#faq}
 
 # Frequently Asked Questions #              {#AvrFaq}
 
-- [Can AVRTools be installed as an Arduino IDE Library?] (@ref FaqIdeLib)
-- [Why can't I assign pins like pPin01 to a variable?] (@ref FaqPins)
-- [Why isn't the SPI module asynchronous?] (@ref FaqSpiAsynch)
-- [Why does the SPI module only implement master mode?] (@ref FaqSpiMaster)
-- [Why is there a setGpioPinHigh() macro and a _setGpioPinHigh() macro?] (@ref FaqWhyUnder)
-- [_setGpioPinHigh() is defined with 8 arguments, but called with 1: how can that work?] (@ref FaqHowWork)
-- [Why is there a setGpioPinHigh() macro and a setGpioPinHighV() function?] (@ref FaqWhyV)
+- [Can AVRTools be installed as an Arduino IDE Library?](@ref FaqIdeLib)
+- [Why can't I assign pins like pPin01 to a variable?](@ref FaqPins)
+- [Why isn't the SPI module asynchronous?](@ref FaqSpiAsynch)
+- [Why does the SPI module only implement master mode?](@ref FaqSpiMaster)
+- [Why is there a setGpioPinHigh() macro and a _setGpioPinHigh() macro?](@ref FaqWhyUnder)
+- [_setGpioPinHigh() is defined with 8 arguments, but called with 1: how can that work?](@ref FaqHowWork)
+- [Why is there a setGpioPinHigh() macro and a setGpioPinHighV() function?](@ref FaqWhyV)
 
 
 
@@ -27,10 +27,10 @@ Because pin names like `pPin01` are actually complex macros that expand to a
 comma separated list of other macros.  The macro pin names can only be understood
 and used by the function macros specifically designed to use them. This is
 explained in greater detail in
-[What you need to know about pin name macros] (@ref WhatNeedKnow).
+[What you need to know about pin name macros](@ref WhatNeedKnow).
 
 If you really need GPIO pin variables, there is a way to do it.
-See the section on [GPIO pin variables] (@ref AdvancedGpioVars). Note in particular
+See the section on [GPIO pin variables](@ref AdvancedGpioVars). Note in particular
 that GPIO pin variables come with high costs, both in speed and memory requirements.
 
 
@@ -41,7 +41,7 @@ The SPI module is implemented synchronously using polling loops because actual t
 has shown this to be nearly twice as fast as implementing the functionality
 asynchronously using interrupts.  Tomaž Šolc has done the research and posted the
 results on his
-[blog] (https://www.tablix.org/~avian/blog/archives/2012/06/spi_interrupts_versus_polling/).
+[blog](https://www.tablix.org/~avian/blog/archives/2012/06/spi_interrupts_versus_polling/).
 Check it out (and check out the other articles, his blog is pretty interesting).
 
 
@@ -107,4 +107,4 @@ All of the GPIO pin related "functions" come in two versions.  The versions
 that do not end in a "V" are actually macros and work with the GPIO pin
 name macros (e.g, `pPin01`).  The versions that end with a "V" are true
 functions and work with GPIO variables.  See
-[GPIO pin variables] (@ref AdvancedGpioVars).
+[GPIO pin variables](@ref AdvancedGpioVars).

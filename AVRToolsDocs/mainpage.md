@@ -118,8 +118,8 @@ complex internal representation of the macros means that the pin names are
 strictly constant and can only be passed to the specialized macro-functions
 designed to manipulate them. Although they may look and feel like simple
 constants, pin names cannot be assigned to variables, or passed to ordinary
-C/C++ functions (however, see the [GPIO Pin Variables section] (@ref AdvancedGpioVars)
-in the [Advanced Features] (@ref AdvancedFeatures) section for
+C/C++ functions (however, see the [GPIO Pin Variables section](@ref AdvancedGpioVars)
+in the [Advanced Features](@ref AdvancedFeatures) section for
 a way to create and use variables for the GPIO pins). The AVRTools library does
 include macro-functions to extract any of the components related to a pin name
 so that users can access and manipulate the individual components as needed.
@@ -195,16 +195,16 @@ core of AVRTools and provide access to basic functional elements of the ATmega32
 and ATmega2560 microcontrollers.  Together, these provide an Arduino-like interface to the microcontroller features.
 Five of the seven modules directly interface to microcontroller capabilities:
 
-- [System initialization module] (@ref SysInit)
-- [System clock module] (@ref SysClock)
-- [Analog-to-Digital module] (@ref A2dMod)
-- [PWM module] (@ref PwmMod)
-- [Minimal USART modules] (@ref MinUsart)
+- [System initialization module](@ref SysInit)
+- [System clock module](@ref SysClock)
+- [Analog-to-Digital module](@ref A2dMod)
+- [PWM module](@ref PwmMod)
+- [Minimal USART modules](@ref MinUsart)
 
 Two of the seven modules supplement the C++ implementation provided by the `avr-gcc` toolset:
 
-- [ABI module] (@ref AbiMod) (support for the C++ ABI not included in the `avr-gcc` distribution)
-- [New module] (@ref NewMod) (implementation for `operator new` and `operator delete`)
+- [ABI module](@ref AbiMod) (support for the C++ ABI not included in the `avr-gcc` distribution)
+- [New module](@ref NewMod) (implementation for `operator new` and `operator delete`)
 
 Brief descriptions of these modules follow.
 
@@ -363,15 +363,15 @@ These include modules for I2C communication (both master and slave mode), a modu
 a module for more advanced serial input and output (including conversion of various numerical types and strings),
 a module for temporarily suppressing selected interrupts, a module for driving an LCD display via I2C, a module for
 reporting memory utilization, a module for very precise delays, and a module for manipulating GPIO pins as actual
-variables.  Information on these modules can be found in the [Advanced Features] (@ref AdvancedFeatures) sections of
+variables.  Information on these modules can be found in the [Advanced Features](@ref AdvancedFeatures) sections of
 the documentation.
 
 # Documentation #
 
 Detailed documentation is provided by this PDF document located in the repository, or
-[online in HTML form] (http://igormiktor.github.io/AVRTools/).
+[online in HTML form](http://igormiktor.github.io/AVRTools/).
 
 
 # Questions #                           {#QuestionsIntro}
 
-If you have questions, please check out the [FAQ] (@ref AvrFaq).
+If you have questions, please check out the [FAQ](@ref AvrFaq).

@@ -114,4 +114,4 @@ translate directly into `in`, `out`, `sbi`, `cbi`, `sbic`, or`sbis` instructions
 If you find this appealing, download AVRTools and try it out.  You can learn
 more by reviewing the documentation found in the file AVRToolsDocumentation.pdf
 that is part of the AVRTools package or in the equivalent
-[online documentation] (http://igormiktor.github.io/AVRTools/).
+[online documentation](http://igormiktor.github.io/AVRTools/).
