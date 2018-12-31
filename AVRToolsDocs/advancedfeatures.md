@@ -82,7 +82,7 @@ configuration.
 
 # I2C modules #                        {#AdvancedI2c}
 
-There two modules providing different interfaces to the two-wire serial interface (TWI) hardware
+There are two modules providing different interfaces to the two-wire serial interface (TWI) hardware
 of the Arduino Uno (ATmega328) and Arduino Mega (ATmega2560). These modules provide a high-level interface to
 I2C protocol communications. There are two different modules corresponding to the role within the
 I2C protocol that your application will use:  if your application functions as an I2C "Master", use
@@ -189,7 +189,7 @@ often a more selective approach is desirable.  And when interrupts
 are suppressed, it is also easy to forget to re-enable them.
 
 The Interrupts module addresses these problems by providing simple utility C++
-classes whose constructors disable certain kinds of interrupts and corresponding
+classes whose constructors disable certain kinds of interrupts and whose corresponding
 destructors re-enable them.  A block of code can suppress interrupts by simply
 declaring an object of one of these classes; interrupts will be automatically
 restored when the block of code is exited for any reason.  For example, if you
@@ -230,7 +230,7 @@ The SPI module provides a high-level interface to the %SPI hardware subsystem pr
 on the AVR ATMega328p (Arduino Uno) and ATMega2560 (Arduino Mega) microcontrollers. This
 module provides functions to initialize the %SPI hardware, configure it appropriately for
 your needs, and transmit (and receive) data.  While the %SPI hardware supports asynchronous
-transmission via an interrupt functions (analogous to the %I2C hardware), AVRTools does not
+transmission via interrupt functions (analogous to the %I2C hardware), AVRTools does not
 implement asynchronous %SPI transmission, instead implementing synchronous transmission that
 polls the appropriate %SPI status register to determine when transmission of a byte has
 completed.  The reason for this is that testing of polling and interrupt implementations by
@@ -291,26 +291,27 @@ void initializeEverything()
 
 uint8_t sendData( uint8_t data )
 {
-  // SPI is used by the interrupt functions that respond to pin change interrupts 0 and 1,
-  // and external interrupt 1.  To prevent clashes, we suppress these three interrupts
-  // for the duration of this function
-  Interrupts::PinChangeOff pinChangeOff( kPinChangeInterrupt0 | kPinChangeInterrupt1 );
-  Interrupts::ExternalOff externalOff( kExternalInterrupt1 );
+    // For illustration, assume SPI is also used by interrupt functions, in particular
+    // SPI is used by the interrupt functions that respond to pin change interrupts 0 and 1,
+    // and external interrupt 1.  To prevent clashes, we suppress these three interrupts
+    // for the duration of this function
+    Interrupts::PinChangeOff pinChangeOff( kPinChangeInterrupt0 | kPinChangeInterrupt1 );
+    Interrupts::ExternalOff externalOff( kExternalInterrupt1 );
 
-  // Configure SPI
-  SPI::configure( SPISettings( 4000000, SPI::kLsbFirst, SPI::kSpiMode2 ) );
+    // Configure SPI
+    SPI::configure( SPISettings( 4000000, SPI::kLsbFirst, SPI::kSpiMode2 ) );
 
-  // Set the remote slave SS pin low to initiate a transmission
-  setGpioPinLow( pConnectedToSlaveSS );
+    // Set the remote slave SS pin low to initiate a transmission
+    setGpioPinLow( pConnectedToSlaveSS );
 
-  // Transmit (and receive)
-  uint8_t retVal = SPI::transmit( data );
+    // Transmit (and receive)
+    uint8_t retVal = SPI::transmit( data );
 
-  // Set the remote slave SS pin high to terminate the transmission
-  setGpioPinHigh( pConnectedToSlaveSSpin );
+    // Set the remote slave SS pin high to terminate the transmission
+    setGpioPinHigh( pConnectedToSlaveSS );
 
-  // Interrupts automatically reset when this function exits
-  return retVal;
+    // Interrupts automatically reset when this function exits
+    return retVal;
 }
 ~~~
 
@@ -321,8 +322,10 @@ uint8_t sendData( uint8_t data )
 
 The [Memory Utilities module](@ref MemUtils) provides functions that report the available
 memory in SRAM.  These help you gauge in real-time whether your application is approaching
-memory exhaustion or the heap and stack are close to colliding. The primary function is
-`freeSRAM()` which returns the number of free bytes remaining in SRAM.
+memory exhaustion or the heap and stack are close to colliding. The primary functions are
+`freeSRAM()` which returns the number of free bytes remaining in SRAM, and
+`freeMemoryBetweenHeapAndStack()` which returns the number of free bytes remaining between
+the top of the heap and top of the stack (recall that these grow towards each other).
 
 
 
@@ -334,7 +337,8 @@ nested loops with known and precise timing.
 
 These functions are all implemented directly in assembler to guarantee cycle counts.  However,
 if interrupts are enabled, then the delays will be at least as long as requested, but may actually be
-longer.  These delay functions are:
+longer.  Depending on the application, it may be appropriate to disable interrupts prior to calling
+one of these.  The delay functions are:
 
 - delayQuartersOfMicroSeconds( uint16_t nbrOfQuartersOfMicroSeconds );
 - delayWholeMilliSeconds( uint8_t nbrOfMilliSeconds );
@@ -371,7 +375,7 @@ to be generated at run-time (often using loops) instead of at compile-time.
 
 The second reason is that the variables that store GPIO pins are rather large.
 On the AVR hardware architecture, manipulating a GPIO pin requires knowing three different I/O registers (DDRn,
-PORTn, and PINn) and a bit number.  Access an analog pin requires a
+PORTn, and PINn) and a bit number.  Accessing an analog pin requires a
 corresponding analog-to-digital channel number.  Manipulating a PWM pin requires knowing
 two additional registers (OCRn[A/B] and TCCRnA) and another bit number
 (COMn[A/B]1).  So a general-purpose variable representing a GPIO pin has to store all of these
@@ -383,10 +387,9 @@ encoding schemes.
 
 
 In AVRTools, GPIO pin variables have type GpioPinVariable, which is a class defined in GpioPinMacros.h
-(recall that this file is automatically included by ArduinoPins.h). There are also three macros that you can use to initialize
-GPIO pin variables of type GpioPinVariable.  The three are: makeGpioVarFromGpioPin(), makeGpioVarFromGpioPinAnalog(), and
-makeGpioVarFromGpioPinPwm().
-These are used like this:
+(recall that this file is automatically included by ArduinoPins.h). There are three macros that you can use to initialize
+GPIO pin variables of type GpioPinVariable.  These are: makeGpioVarFromGpioPin(), makeGpioVarFromGpioPinAnalog(), and
+makeGpioVarFromGpioPinPwm(). They are used like this:
 
 ~~~C
     GpioPinVariable  pinA( makeGpioVarFromGpioPin( pPin10 ) );

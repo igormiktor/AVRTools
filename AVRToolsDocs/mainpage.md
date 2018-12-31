@@ -3,7 +3,7 @@ AVRTools:  A Library for the AVR ATmega328 and ATmega2560 Microcontrollers      
 
 # Overview #                                                                    {#AvrOverview}
 
-This library provides an Arduino-like simple-to-use interface to the AVR ATmega328 and ATmega2560 microcontrollers
+This library provides an Arduino-like, simple-to-use interface to the AVR ATmega328 and ATmega2560 microcontrollers
 without the bloat and slowness of the official Arduino libraries.
 
 AVRTools is an attempt to provide the convenience of the Ardiuno library interface while embracing the fundamental C/C++
@@ -142,8 +142,8 @@ While you cannot assign these to pin names to variables or pass them to ordinary
 macro-functions to operate on the pin names.  These include:
 
 - `setGpioPinModeOutput( pin )`         Enable the corresponding DDRn bit
-- `setGpioPinModeInput( pin )`          Clear the corresponding DDRn bit
-- `setGpioPinModeInputPullup( pin )`    Clear the corresponding DDRn and PORTn bits
+- `setGpioPinModeInput( pin )`          Clear the corresponding DDRn and PORTn bits
+- `setGpioPinModeInputPullup( pin )`    Clear the corresponding DDRn bit and set the PORTn bit
 - `isGpioPinModeOutput( pin )`          Is the corresponding DDRn bit set?
 - `isGpioPinModeInput( pin )`           Is the corresponding DDRn bit clear?
 - `readGpioPinDigital( pin )`           Is the corresponding PINn bit is set? (returns zero or non-zero)
@@ -217,12 +217,14 @@ header file `InitSystem.h` and link against `InitSystem.cpp`.  These files provi
 void initSystem();
 ~~~
 
-The `initSystem()` function clears any bootloader settings, clears all timers, and turns on interrupts.  This should be the first function your code calls at start up.
+The `initSystem()` function clears any bootloader settings, clears all timers, and turns on interrupts.  This should be
+the first function your code calls at start up.
 
 ### System clock module ###   {#SysClock}
 
-This module provides a system clock functionality similar to that in the Arduino library.  To employ this functionality include
-the header file `SystemClock.h` and link against `SystemClock.cpp`.  Some of key functions provided by this module include:
+This module provides a system clock functionality  using Timer0 similar to that in the Arduino library.  To employ this
+functionality include the header file `SystemClock.h` and link against `SystemClock.cpp`.  
+Some of key functions provided by this module include:
 
 ~~~C
 void initSystemClock();
@@ -231,7 +233,7 @@ void delayMilliseconds( unsigned long ms );
 ~~~
 
 Note that unlike the Arduino libary, you must explicitly initialize the clock functionality by calling `initSystemClock()`.
-This module also provides additional functions providing a richer interface to the system clock.
+This module also provides additional functions providing a richer interface to the system clock.  
 
 ### Analog-to-Digital module ###      {#A2dMod}
 
