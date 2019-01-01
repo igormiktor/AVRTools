@@ -9,7 +9,7 @@ FAQ                   {#faq}
 - [Why isn't the SPI module asynchronous?](@ref FaqSpiAsynch)
 - [Why does the SPI module only implement master mode?](@ref FaqSpiMaster)
 - [Why is there a setGpioPinHigh() macro and a _setGpioPinHigh() macro?](@ref FaqWhyUnder)
-- [_setGpioPinHigh() is defined with 8 arguments, but called with 1: how can that work?](@ref FaqHowWork)
+- [_setGpioPinHigh() is defined with 8 arguments, but called with 1 argument&mdash;how can that work?](@ref FaqHowWork)
 - [Why is there a setGpioPinHigh() macro and a setGpioPinHighV() function?](@ref FaqWhyV)
 
 
@@ -42,7 +42,7 @@ has shown this to be nearly twice as fast as implementing the functionality
 asynchronously using interrupts.  Tomaž Šolc has done the research and posted the
 results on his
 [blog](https://www.tablix.org/~avian/blog/archives/2012/06/spi_interrupts_versus_polling/).
-Check it out (and check out the other articles, his blog is pretty interesting).
+Check it out (and check out his other articles; his blog is pretty interesting).
 
 
 
@@ -74,9 +74,9 @@ why they are not formally documented.
 
 
 
-# _setGpioPinHigh() is defined with 8 arguments, but called with 1 argument: how can that work? #      {#FaqHowWork}
+# _setGpioPinHigh() is defined with 8 arguments, but called with 1 argument&mdash;how can that work? #      {#FaqHowWork}
 
-Someone has been reading header files.  It works because of the magic of the
+Someone has been reading the header files.  It works because of the magic of the
 C/C++ preprocessor rescanning rules.  The rescanning rules are described in
 6.10.3.4 of the [ISO Standard for C]
 (http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1124.pdf) (the same rules
