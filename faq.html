@@ -71,7 +71,7 @@ Frequently Asked Questions</h1>
 <li><a class="el" href="faq.html#FaqSpiAsynch">Why isn't the SPI module asynchronous?</a></li>
 <li><a class="el" href="faq.html#FaqSpiMaster">Why does the SPI module only implement master mode?</a></li>
 <li><a class="el" href="faq.html#FaqWhyUnder">Why is there a setGpioPinHigh() macro and a _setGpioPinHigh() macro?</a></li>
-<li><a class="el" href="faq.html#FaqHowWork">_setGpioPinHigh() is defined with 8 arguments, but called with 1: how can that work?</a></li>
+<li><a class="el" href="faq.html#FaqHowWork">_setGpioPinHigh() is defined with 8 arguments, but called with 1 argument&mdash;how can that work?</a></li>
 <li><a class="el" href="faq.html#FaqWhyV">Why is there a setGpioPinHigh() macro and a setGpioPinHighV() function?</a></li>
 </ul>
 <h1><a class="anchor" id="FaqIdeLib"></a>
@@ -83,7 +83,7 @@ Why can't I assign pins like pPin01 to a variable?</h1>
 <p>If you really need GPIO pin variables, there is a way to do it. See the section on <a class="el" href="AdvancedFeatures.html#AdvancedGpioVars">GPIO pin variables</a>. Note in particular that GPIO pin variables come with high costs, both in speed and memory requirements.</p>
 <h1><a class="anchor" id="FaqSpiAsynch"></a>
 Why isn't the SPI module asynchronous?</h1>
-<p>The <a class="el" href="namespaceSPI.html" title="This namespace bundles an interface to the SPI hardware subsystem on the AVR ATMega328p (Arduino Uno)...">SPI</a> module is implemented synchronously using polling loops because actual testing has shown this to be nearly twice as fast as implementing the functionality asynchronously using interrupts. Tomaž Šolc has done the research and posted the results on his <a href="https://www.tablix.org/~avian/blog/archives/2012/06/spi_interrupts_versus_polling/">blog</a>. Check it out (and check out the other articles, his blog is pretty interesting).</p>
+<p>The <a class="el" href="namespaceSPI.html" title="This namespace bundles an interface to the SPI hardware subsystem on the AVR ATMega328p (Arduino Uno)...">SPI</a> module is implemented synchronously using polling loops because actual testing has shown this to be nearly twice as fast as implementing the functionality asynchronously using interrupts. Tomaž Šolc has done the research and posted the results on his <a href="https://www.tablix.org/~avian/blog/archives/2012/06/spi_interrupts_versus_polling/">blog</a>. Check it out (and check out his other articles; his blog is pretty interesting).</p>
 <h1><a class="anchor" id="FaqSpiMaster"></a>
 Why does the SPI module only implement master mode?</h1>
 <p>Easy answer: I have never needed anything other than SPI master mode. In every case I use SPI, the AVR microcontroller is the master talking to some external sensor or device that is the slave. While AVR's SPI hardware supports slave mode, I don't think it is common. If you want to use SPI to communicate across two AVR microcontrollers, obviously one of them would have to be in slave mode. But in that situation, I'd probably have them communicate via a serial connection.</p>
@@ -93,8 +93,8 @@ Why is there a setGpioPinHigh() macro and a _setGpioPinHigh() macro?</h1>
 <p>Getting maximum efficiency from the GPIO pin name macros while making them easy to use requires a series of recursive macro expansions. To make this work, it is essential to force rescanning of macro expansions, and using nested macro function calls is a practical way to force macro rescanning. So all of the GPIO pin related macro functions call a helper macro function that has the same name except for a prepended underscore.</p>
 <p>The helper macro functions are an internal implementation detail, and that is why they are not formally documented.</p>
 <h1><a class="anchor" id="FaqHowWork"></a>
-_setGpioPinHigh() is defined with 8 arguments, but called with 1 argument: how can that work?</h1>
-<p>Someone has been reading header files. It works because of the magic of the C/C++ preprocessor rescanning rules. The rescanning rules are described in 6.10.3.4 of the <a href="http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1124.pdf">ISO Standard for C</a> (the same rules apply to C++). It requires lawyer-like abilities to completely comprehend the full implications of this short paragraph. However, the gist of it is that if you have the following three macros:</p>
+_setGpioPinHigh() is defined with 8 arguments, but called with 1 argument—how can that work?</h1>
+<p>Someone has been reading the header files. It works because of the magic of the C/C++ preprocessor rescanning rules. The rescanning rules are described in 6.10.3.4 of the <a href="http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1124.pdf">ISO Standard for C</a> (the same rules apply to C++). It requires lawyer-like abilities to completely comprehend the full implications of this short paragraph. However, the gist of it is that if you have the following three macros:</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#define BAR(X,Y) (X+Y)</span></div><div class="line"><span class="preprocessor">#define FOO(X) BAR(X)</span></div><div class="line"><span class="preprocessor">#define A B,C</span></div></div><!-- fragment --><p>And if you then call <code>FOO(A)</code> in your code, the preprocessor executes the following steps:</p><ul>
 <li>first <code>FOO(A)</code> is expanded to <code>BAR(A)</code></li>
 <li>next <code>BAR(A)</code> is expanded to <code>BAR(B,C)</code></li>
@@ -107,7 +107,7 @@ Why is there a setGpioPinHigh() macro and a setGpioPinHighV() function?</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Dec 30 2018 15:59:53 for AVRTools by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Dec 31 2018 23:49:37 for AVRTools by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>
