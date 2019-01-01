@@ -245,7 +245,7 @@ The SPI module only implements %SPI operation in master mode.  Slave mode %SPI o
 not supported at this time.  In master mode, you may use any free pin as the Slave Select (SS)
 for the remote device.
 
-The SPI module contains functions to enable and disable the SPI hardware.  Note that
+The SPI module contains functions to enable and disable the %SPI hardware.  Note that
 when enabled the %SPI hardware takes control of the MOSI, MISO, and CLK pins. It also
 sets the local SS pin to output mode to prevent inadvertent automatic triggering of
 slave-mode by the %SPI hardware.  This happens if a low signal is received on the SS pin.
