@@ -268,7 +268,7 @@ size_t USART1::write( const uint8_t* c, size_t n )
         }
 
         // Clear TXC flag by writing a 1 (*not* a typo); suffices to do this at the end
-        UCSR1A |= ( 1 << TXC1);
+        UCSR1A |= ( 1 << TXC1 );
     }
 
     return cnt;
