@@ -70,9 +70,9 @@ void transmitUSART0( unsigned char* data )
 
 unsigned char receiveUSART0()
 {
-    while ( !(UCSR0A & (1<<RXC0)) )                     // wait while data is being received
+    while ( !( UCSR0A & (1<<RXC0) ) )                       // wait while data is being received
         ;
-    return UDR0;                                     // return 8-bit data
+    return UDR0;                                            // return 8-bit data
 }
 
 
@@ -80,7 +80,3 @@ void releaseUSART0()
 {
     UCSR0B = 0;
 }
-
-
-
-

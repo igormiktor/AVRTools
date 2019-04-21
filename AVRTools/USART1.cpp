@@ -329,6 +329,3 @@ bool Serial1::available()
 {
     return USART1::available();
 }
-
-
-
