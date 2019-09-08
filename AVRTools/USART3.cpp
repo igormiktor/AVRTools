@@ -128,7 +128,9 @@ void USART3::start( unsigned long baudRate, UsartSerialConfiguration config )
         UCSR3A &= ~( (1<<U2X3) | (1<<MPCM3) );
         UCSR3B &= ~( (1<<RXCIE3) | (1<<TXCIE3) | (1<<UDRIE3) | (1<<RXEN3) | (1<<TXEN3)
                         | (1<< UCSZ32) | (1<<TXB83) );
-        UCSR3C = kSerial_8N1;
+
+        // Set data bits, stop bits, and parity
+        UCSR3C = static_cast<uint8_t>( config );
 
         // Set baud rate
         UBRR3H = baudSetting >> 8;
@@ -144,10 +146,6 @@ void USART3::start( unsigned long baudRate, UsartSerialConfiguration config )
 
         // Turn on TX and RX
         UCSR3B |= ( 1 << RXEN3 ) | ( 1 << TXEN3 );
-
-        // Set data bits, stop bits, and parity
-        // UCSR3C = static_cast<unsigned char>( config );
-        UCSR3C |= (1<<UCSZ30) | (1<<UCSZ31);
 
         // Configure interrupts
         UCSR3B |= ( 1 << RXCIE3 ) | ( 1 << UDRIE3 );
@@ -330,6 +328,3 @@ bool Serial3::available()
 {
     return USART3::available();
 }
-
-
-

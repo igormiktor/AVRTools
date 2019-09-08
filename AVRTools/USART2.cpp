@@ -127,7 +127,9 @@ void USART2::start( unsigned long baudRate, UsartSerialConfiguration config )
         UCSR2A &= ~( (1<<U2X2) | (1<<MPCM2) );
         UCSR2B &= ~( (1<<RXCIE2) | (1<<TXCIE2) | (1<<UDRIE2) | (1<<RXEN2) | (1<<TXEN2)
                         | (1<< UCSZ22) | (1<<TXB82) );
-        UCSR2C = kSerial_8N1;
+
+        // Set data bits, stop bits, and parity
+        UCSR2C = static_cast<uint8_t>( config );
 
         // Set baud rate
         UBRR2H = baudSetting >> 8;
@@ -143,10 +145,6 @@ void USART2::start( unsigned long baudRate, UsartSerialConfiguration config )
 
         // Turn on TX and RX
         UCSR2B |= ( 1 << RXEN2 ) | ( 1 << TXEN2 );
-
-        // Set data bits, stop bits, and parity
-        // UCSR2C = static_cast<unsigned char>( config );
-        UCSR2C |= (1<<UCSZ20) | (1<<UCSZ21);
 
         // Configure interrupts
         UCSR2B |= ( 1 << RXCIE2 ) | ( 1 << UDRIE2 );
@@ -329,6 +327,3 @@ bool Serial2::available()
 {
     return USART2::available();
 }
-
-
-

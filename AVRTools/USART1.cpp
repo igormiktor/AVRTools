@@ -127,7 +127,9 @@ void USART1::start( unsigned long baudRate, UsartSerialConfiguration config )
         UCSR1A &= ~( (1<<U2X1) | (1<<MPCM1) );
         UCSR1B &= ~( (1<<RXCIE1) | (1<<TXCIE1) | (1<<UDRIE1) | (1<<RXEN1) | (1<<TXEN1)
                         | (1<< UCSZ12) | (1<<TXB81) );
-        UCSR1C = kSerial_8N1;
+
+        // Set data bits, stop bits, and parity
+        UCSR1C = static_cast<uint8_t>( config );
 
         // Set baud rate
         UBRR1H = baudSetting >> 8;
@@ -143,10 +145,6 @@ void USART1::start( unsigned long baudRate, UsartSerialConfiguration config )
 
         // Turn on TX and RX
         UCSR1B |= ( 1 << RXEN1 ) | ( 1 << TXEN1 );
-
-        // Set data bits, stop bits, and parity
-        // UCSR1C = static_cast<unsigned char>( config );
-        UCSR1C |= (1<<UCSZ10) | (1<<UCSZ11);
 
         // Configure interrupts
         UCSR1B |= ( 1 << RXCIE1 ) | ( 1 << UDRIE1 );
