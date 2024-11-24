@@ -1,3 +1,11 @@
 <map id="I2cLcd.h" name="I2cLcd.h">
-<area shape="rect" id="node3" href="$Writer_8h.html" title="This file provides a generic interface to outgoing data streams of any kind. It is designed around ho..." alt="" coords="108,80,176,107"/>
+<area shape="rect" id="Node000001" title="This file defines a class that provides a high&#45;level interface to an LCD offering an I2C interface...." alt="" coords="57,5,129,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,84,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,33,62,69,58,66,83,30"/>
+<area shape="rect" id="Node000003" href="$Writer_8h.html" title="This file provides a generic interface to outgoing data streams of any kind. It is designed around ho..." alt="" coords="109,79,175,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="103,29,128,66,124,69,99,33"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="63,152,128,177"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="137,106,113,142,108,139,132,103"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="153,152,222,177"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="152,103,175,139,170,142,147,106"/>
 </map>

@@ -1,4 +1,7 @@
 <map id="Serial3" name="Serial3">
-<area shape="rect" id="node2" href="$classWriter.html" title="This is an abstract class defining a generic interface to write numbers and strings to a sequential s..." alt="" coords="5,5,63,32"/>
-<area shape="rect" id="node3" href="$classReader.html" title="This is an abstract class defining a generic interface to read numbers and strings from a sequential ..." alt="" coords="87,5,151,32"/>
+<area shape="rect" id="Node000001" title="Provides a high&#45;end interface to serial communications using USART3." alt="" coords="43,79,106,104"/>
+<area shape="rect" id="Node000002" href="$classWriter.html" title="This is an abstract class defining a generic interface to write numbers and strings to a sequential s..." alt="" coords="5,5,61,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="49,41,70,77,66,80,45,44"/>
+<area shape="rect" id="Node000003" href="$classReader.html" title="This is an abstract class defining a generic interface to read numbers and strings from a sequential ..." alt="" coords="85,5,149,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="106,44,84,80,79,77,101,41"/>
 </map>

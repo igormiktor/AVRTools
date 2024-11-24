@@ -1,9 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classReader.html" title="This is an abstract class defining a generic interface to read numbers and strings from a sequential ..." alt="" coords="5,56,69,83"/>
-<area shape="rect" id="node2" href="$classSerial0.html" title="Provides a high&#45;end interface to serial communications using USART0. " alt="" coords="117,56,180,83"/>
-<area shape="rect" id="node3" href="$classSerial1.html" title="Provides a high&#45;end interface to serial communications using USART1. " alt="" coords="117,107,180,133"/>
-<area shape="rect" id="node4" href="$classSerial2.html" title="Provides a high&#45;end interface to serial communications using USART2. " alt="" coords="117,157,180,184"/>
-<area shape="rect" id="node5" href="$classSerial3.html" title="Provides a high&#45;end interface to serial communications using USART3. " alt="" coords="117,5,180,32"/>
-<area shape="rect" id="node6" href="$classWriter.html" title="This is an abstract class defining a generic interface to write numbers and strings to a sequential s..." alt="" coords="9,107,66,133"/>
-<area shape="rect" id="node7" href="$classI2cLcd.html" title="This class provides a high&#45;level interface via I2C to an LCD such as those offered by AdaFruit and Sp..." alt="" coords="118,208,179,235"/>
+<area shape="rect" id="Node000000" href="$classSPI_1_1SPISettings.html" title="A class that binds settings for configuring SPI transmissions." alt="" coords="5,5,128,31"/>
 </map>

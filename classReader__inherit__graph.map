@@ -1,6 +1,11 @@
 <map id="Reader" name="Reader">
-<area shape="rect" id="node2" href="$classSerial0.html" title="Provides a high&#45;end interface to serial communications using USART0. " alt="" coords="5,80,68,107"/>
-<area shape="rect" id="node3" href="$classSerial1.html" title="Provides a high&#45;end interface to serial communications using USART1. " alt="" coords="92,80,155,107"/>
-<area shape="rect" id="node4" href="$classSerial2.html" title="Provides a high&#45;end interface to serial communications using USART2. " alt="" coords="179,80,241,107"/>
-<area shape="rect" id="node5" href="$classSerial3.html" title="Provides a high&#45;end interface to serial communications using USART3. " alt="" coords="265,80,328,107"/>
+<area shape="rect" id="Node000001" title="This is an abstract class defining a generic interface to read numbers and strings from a sequential ..." alt="" coords="134,5,198,31"/>
+<area shape="rect" id="Node000002" href="$classSerial0.html" title="Provides a high&#45;end interface to serial communications using USART0." alt="" coords="5,79,68,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="134,40,59,81,57,76,132,35"/>
+<area shape="rect" id="Node000003" href="$classSerial1.html" title="Provides a high&#45;end interface to serial communications using USART1." alt="" coords="92,79,155,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="154,44,133,80,128,77,150,41"/>
+<area shape="rect" id="Node000004" href="$classSerial2.html" title="Provides a high&#45;end interface to serial communications using USART2." alt="" coords="179,79,241,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="183,41,205,77,201,80,178,44"/>
+<area shape="rect" id="Node000005" href="$classSerial3.html" title="Provides a high&#45;end interface to serial communications using USART3." alt="" coords="265,79,328,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="201,35,277,76,274,81,198,40"/>
 </map>

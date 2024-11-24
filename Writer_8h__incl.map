@@ -1,2 +1,7 @@
 <map id="Writer.h" name="Writer.h">
+<area shape="rect" id="Node000001" title="This file provides a generic interface to outgoing data streams of any kind. It is designed around ho..." alt="" coords="50,5,117,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,71,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="78,32,55,69,50,66,74,30"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="95,79,165,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="93,30,117,66,113,69,89,32"/>
 </map>

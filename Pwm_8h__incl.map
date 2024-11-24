@@ -1,3 +1,11 @@
 <map id="Pwm.h" name="Pwm.h">
-<area shape="rect" id="node4" href="$GpioPinMacros_8h.html" title="This file contains the primary macros for naming and manipulating GPIO pin names. ..." alt="" coords="213,80,335,107"/>
+<area shape="rect" id="Node000001" title="This file provides functions that access the PWM capability of the ATmega328 and ATmega2560 microcont..." alt="" coords="111,5,173,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,71,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="127,33,68,73,65,68,124,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="95,79,189,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="145,31,145,65,139,65,139,31"/>
+<area shape="rect" id="Node000004" href="$GpioPinMacros_8h.html" title="This file contains the primary macros for naming and manipulating GPIO pin names." alt="" coords="213,79,335,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="164,28,242,70,239,74,162,33"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="241,152,307,177"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="277,104,277,138,271,138,271,104"/>
 </map>

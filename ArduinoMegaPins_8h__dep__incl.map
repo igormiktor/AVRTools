@@ -1,3 +1,5 @@
 <map id="ArduinoMegaPins.h" name="ArduinoMegaPins.h">
-<area shape="rect" id="node2" href="$ArduinoPins_8h.html" title="This file is the primary one that users should include to access and use the pin name macros..." alt="" coords="21,80,124,107"/>
+<area shape="rect" id="Node000001" title="This file defines the standard Arduino Uno pin name macros. It may be included directly by user code,..." alt="" coords="5,5,140,31"/>
+<area shape="rect" id="Node000002" href="$ArduinoPins_8h.html" title="This file is the primary one that users should include to access and use the pin name macros." alt="" coords="21,79,124,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,44,75,79,70,79,70,44"/>
 </map>

@@ -1,2 +1,9 @@
 <map id="SPI.h" name="SPI.h">
+<area shape="rect" id="Node000001" title="This file provides an interface to SPI subsystem available on the AVR ATMega328p (Arduino Uno) and AT..." alt="" coords="103,5,157,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,71,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,33,65,72,62,68,114,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="95,79,165,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="133,31,133,65,127,65,127,31"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="189,79,255,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="146,29,198,68,195,72,143,33"/>
 </map>

@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['t_20i_20assign_20pins_20like_20ppin01_20to_20a_20variable_0',['Why can&apos;t I assign pins like pPin01 to a variable?',['../faq.html#FaqPins',1,'']]],
+  ['t_20the_20spi_20module_20asynchronous_1',['Why isn&apos;t the SPI module asynchronous?',['../faq.html#FaqSpiAsynch',1,'']]],
+  ['tccr_2',['tccr',['../classGpioPinVariable.html#ab079b73bc77deb404d145c340db3615f',1,'GpioPinVariable']]],
+  ['that_20work_3',['_setGpioPinHigh() is defined with 8 arguments, but called with 1 argument&amp;mdash;how can that work?',['../faq.html#FaqHowWork',1,'']]],
+  ['the_20avr_20atmega328_20and_20atmega2560_20microcontrollers_4',['AVRTools:  A Library for the AVR ATmega328 and ATmega2560 Microcontrollers',['../index.html',1,'']]],
+  ['the_20core_20modules_5',['The core modules',['../index.html#CodeModules',1,'']]],
+  ['the_20spi_20module_20asynchronous_6',['Why isn&apos;t the SPI module asynchronous?',['../faq.html#FaqSpiAsynch',1,'']]],
+  ['the_20spi_20module_20only_20implement_20master_20mode_7',['Why does the SPI module only implement master mode?',['../faq.html#FaqSpiMaster',1,'']]],
+  ['there_20a_20setgpiopinhigh_20macro_20and_20a_20_5fsetgpiopinhigh_20macro_8',['Why is there a setGpioPinHigh() macro and a _setGpioPinHigh() macro?',['../faq.html#FaqWhyUnder',1,'']]],
+  ['there_20a_20setgpiopinhigh_20macro_20and_20a_20setgpiopinhighv_20function_9',['Why is there a setGpioPinHigh() macro and a setGpioPinHighV() function?',['../faq.html#FaqWhyV',1,'']]],
+  ['to_20a_20variable_10',['Why can&apos;t I assign pins like pPin01 to a variable?',['../faq.html#FaqPins',1,'']]],
+  ['to_20digital_20module_11',['Analog-to-Digital module',['../index.html#A2dMod',1,'']]],
+  ['to_20know_20about_20pin_20name_20macros_12',['What you need to know about pin name macros',['../index.html#WhatNeedKnow',1,'']]],
+  ['tour_20of_20avrtools_13',['Quick Tour of AVRTools',['../index.html#QuickTour',1,'']]],
+  ['transmit_14',['transmit',['../namespaceSPI.html#a9762564586a02baa41d3c0792c2ee33a',1,'SPI::transmit(uint8_t data)'],['../namespaceSPI.html#ab486e6d530e62818b2d1040f9183cac7',1,'SPI::transmit(uint8_t *buffer, size_t count)']]],
+  ['transmit16_15',['transmit16',['../namespaceSPI.html#afd0b9c51daa418a40ca07c5399efebff',1,'SPI']]],
+  ['transmit32_16',['transmit32',['../namespaceSPI.html#a12f57460395be05b937c802557d6690d',1,'SPI']]],
+  ['transmitusart0_17',['transmitusart0',['../USART0Minimal_8h.html#aad3eea28f446c94242d3e38ea4720743',1,'transmitUSART0(const char *data):&#160;USART0Minimal.h'],['../USART0Minimal_8h.html#a4b3f1118bf21ff46625919343b0b9d9d',1,'transmitUSART0(unsigned char data):&#160;USART0Minimal.cpp']]],
+  ['transmitusart1_18',['transmitusart1',['../USART1Minimal_8h.html#a900080a6df441aaf94044fcec793a641',1,'transmitUSART1(const char *data):&#160;USART1Minimal.h'],['../USART1Minimal_8h.html#a44e3d0911540985d12c8ca6ab2f21848',1,'transmitUSART1(unsigned char data):&#160;USART1Minimal.cpp']]],
+  ['transmitusart2_19',['transmitusart2',['../USART2Minimal_8h.html#a0838307986dfee2d241f9c393ec9bdfe',1,'transmitUSART2(const char *data):&#160;USART2Minimal.h'],['../USART2Minimal_8h.html#a1fe9c6fab6fe75694dc82cb0de7a7bf9',1,'transmitUSART2(unsigned char data):&#160;USART2Minimal.cpp']]],
+  ['transmitusart3_20',['transmitusart3',['../USART3Minimal_8h.html#a530c8d9f2ead8ca3e6b0992bee00f516',1,'transmitUSART3(const char *data):&#160;USART3Minimal.h'],['../USART3Minimal_8h.html#a01ec1b294b05797d2e324a82f5c70840',1,'transmitUSART3(unsigned char data):&#160;USART3Minimal.cpp']]],
+  ['turnoffa2d_21',['turnOffA2D',['../Analog2Digital_8h.html#a164c6dc4eaff35b5e2ff15ca580fc39a',1,'Analog2Digital.cpp']]]
+];

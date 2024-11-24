@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['spi',['SPI',['../namespaceSPI.html',1,'']]]
+  ['spi_0',['SPI',['../namespaceSPI.html',1,'']]]
 ];

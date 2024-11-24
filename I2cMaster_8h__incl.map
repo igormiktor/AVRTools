@@ -1,2 +1,9 @@
 <map id="I2cMaster.h" name="I2cMaster.h">
+<area shape="rect" id="Node000001" title="This file provides functions that interface to the TWI (two&#45;wire serial interface) hardware of the Ar..." alt="" coords="82,5,173,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,71,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,33,65,72,62,68,111,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="95,79,159,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="130,31,130,65,125,65,125,31"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="183,79,277,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="145,28,203,68,200,73,142,33"/>
 </map>

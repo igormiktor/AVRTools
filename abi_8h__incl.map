@@ -1,2 +1,5 @@
 <map id="abi.h" name="abi.h">
+<area shape="rect" id="Node000001" title="This file provides certain functions needed to complete the avr&#45;gcc C++ ABI. You never need to includ..." alt="" coords="12,5,63,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,69,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="40,31,40,65,35,65,35,31"/>
 </map>

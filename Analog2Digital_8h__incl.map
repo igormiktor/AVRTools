@@ -1,3 +1,9 @@
 <map id="Analog2Digital.h" name="Analog2Digital.h">
-<area shape="rect" id="node3" href="$GpioPinMacros_8h.html" title="This file contains the primary macros for naming and manipulating GPIO pin names. ..." alt="" coords="95,80,218,107"/>
+<area shape="rect" id="Node000001" title="This file provides functions that access the analog&#45;to&#45;digital conversion capability of the ATmega328..." alt="" coords="38,5,155,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,71,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,33,58,70,54,67,85,29"/>
+<area shape="rect" id="Node000003" href="$GpioPinMacros_8h.html" title="This file contains the primary macros for naming and manipulating GPIO pin names." alt="" coords="95,79,218,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="109,29,140,66,136,70,105,33"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="124,152,189,177"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="159,104,159,138,154,138,154,104"/>
 </map>

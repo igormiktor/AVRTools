@@ -1,4 +1,15 @@
 <map id="USART1.h" name="USART1.h">
-<area shape="rect" id="node2" href="$Writer_8h.html" title="This file provides a generic interface to outgoing data streams of any kind. It is designed around ho..." alt="" coords="22,80,90,107"/>
-<area shape="rect" id="node5" href="$Reader_8h.html" title="This file provides a generic interface to incoming data streams of any kind. It is designed around ho..." alt="" coords="115,80,190,107"/>
+<area shape="rect" id="Node000001" title="This file provides functions that offer high&#45;level interfaces to USART1 hardware, which is available ..." alt="" coords="58,5,145,31"/>
+<area shape="rect" id="Node000002" href="$Writer_8h.html" title="This file provides a generic interface to outgoing data streams of any kind. It is designed around ho..." alt="" coords="21,79,88,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,32,72,69,68,66,91,30"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="22,152,87,177"/>
+<area shape="poly" id="edge7_Node000001_Node000003" title=" " alt="" coords="70,33,37,52,23,65,12,80,8,95,12,111,33,141,29,144,7,113,3,95,7,78,19,61,34,47,67,29"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="115,152,184,177"/>
+<area shape="poly" id="edge8_Node000001_Node000004" title=" " alt="" coords="138,28,173,47,189,61,201,78,205,96,200,114,177,144,173,141,196,111,200,96,196,80,185,64,170,52,136,33"/>
+<area shape="rect" id="Node000005" href="$Reader_8h.html" title="This file provides a generic interface to incoming data streams of any kind. It is designed around ho..." alt="" coords="112,79,187,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="112,30,136,66,132,69,107,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="57,104,57,138,52,138,52,104"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="72,102,125,141,121,146,68,106"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="136,106,83,146,80,141,133,102"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="152,104,152,138,147,138,147,104"/>
 </map>

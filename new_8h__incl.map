@@ -1,2 +1,5 @@
 <map id="new.h" name="new.h">
+<area shape="rect" id="Node000001" title="This file provides operator new and operator delete. You only need this file if you use new and delet..." alt="" coords="10,5,65,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,69,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="40,31,40,65,35,65,35,31"/>
 </map>

@@ -1,2 +1,5 @@
 <map id="MemUtils.h" name="MemUtils.h">
+<area shape="rect" id="Node000001" title="This file provides functions that provide information on the available memory in SRAM." alt="" coords="5,5,95,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="15,79,85,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="53,31,53,65,47,65,47,31"/>
 </map>
