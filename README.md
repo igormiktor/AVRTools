@@ -25,8 +25,8 @@ Similarly, because AVRTools "assumes the programmer knows what he or she is doin
 to ensure you don't do something stupid.  For example when you set the output value of a digital pin using the Arduino library
 function `digitalWrite()`, it checks if that pin is currently configured for PWM and if it is, it automatically turns off PWM-mode
 before writing to the pin. The equivalent AVRTools function, `writeGpioPinDigital()` doesn't do that:  it assumes that if
-the programmer previously used the pin in PWM mode that he or she remembered to turn off PWM mode before using the
-pin digitally.  Assuming the programmer knows what he or she is doing allows the functions in AVRTools to be much faster
+the programmer previously used the pin in PWM mode that they remembered to turn off PWM mode before using the
+pin digitally.  Assuming the programmer knows what they are doing allows the functions in AVRTools to be much faster
 than their Arduino library counterparts.  For example, a call to the Arduino function `digitalWrite()` takes about 70 cycles;
 a call to the equivalent AVRTools function `writeGpioPinDigital()` takes
 2 cycles (it's actually a macro in AVRTools).

@@ -31,8 +31,8 @@ function `digitalWrite()`, it checks if that pin is currently configured for PWM
 turns off PWM-mode
 before writing to the pin. The equivalent of `digitalWrite()` in the AVRTools library, `writeGpioPinDigital()` doesn't do that:
 it assumes that if
-the programmer previously used the pin in PWM mode that he or she remembered to turn off PWM mode before using the
-pin digitally.  Assuming the programmer knows what he or she is doing allows the functions in AVRTools to be much faster
+the programmer previously used the pin in PWM mode that they remembered to turn off PWM mode before using the
+pin digitally.  Assuming the programmer knows what they are doing allows the functions in AVRTools to be much faster
 than their Arduino library counterparts.  For example, a call to the Arduino function `digitalWrite()` takes about 70 cycles;
 a call to the equivalent AVRTools function `writeGpioPinDigital()` takes
 2 cycles (it's actually a macro in AVRTools that the compiler translates to a single, 2-cycle assembler instruction).
@@ -104,7 +104,7 @@ enable you to refer to "pins" on the chips using a single name that can be used
 to switch input/output mode, read, or write a pin.  This single name provides
 access, as appropriate, to the DDRx, PORTx, PINx registers and also the specific
 pin number.  For pins that support analog-to-digital conversion, the single name
-also provides access the analog channel associated with the pin.  For pins that
+also provides access to the analog channel associated with the pin.  For pins that
 support PWM, the single name also provides access to the control and compare
 registers and bits needed to configure and control the PWM functionality of that
 pin.
@@ -179,7 +179,7 @@ If you are working directly with an AVR ATmega328 or ATmega2560, you can define 
 "ArduinoPins.h" if you are working on Arduinos) and using one of three pin naming macros:
 
 - `GpioPin( letter, number )`      An ordinary pin located on bank `letter` and bit `number`; for example the macro `GpioPin( B, 5 )` corresponds to pin PB5.
-- `GpioPinAnalog( letter, number, channel )`    An ADC capable pin on bank `letter` and bit `number` with ADC `channel`, e.g., `GpioPinAnalog( C, 5, 5 )` for Atmega328 pin PC5/ADC5.
+- `GpioPinAnalog( letter, number, channel )`    An ADC capable pin on bank `letter` and bit `number` with ADC `channel`, e.g., `GpioPinAnalog( C, 5, 5 )` for ATmega328 pin PC5/ADC5, or `GpioPinAnalog( K, 1, 9 )` for ATmega2560 pin PK1/ADC9.
 - `GpioPinPwm( letter, number, timer, channel )` A PWM capable pin on bank `letter` and bit `number` with `timer` and `channel` used to select the appropriate OCRn[A/B], TCCRnA registers, and COMn[A/B]1 bits needed to configure the PWM settings, e.g., GpioPinPwm( B, 2, 1, B ) for ATmega328 pin PB2/OC1B.
 
 So for example, pin 11 on the Arduino Uno, which corresponds to ATmega328 pin B3 which is PWM capable using OC2A, would be defined as follows:

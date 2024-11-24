@@ -39,7 +39,7 @@ You must clear the receive buffer by reading it regularly when receiving
 significant amounts of data.  The sizes of the transmit and receive buffers can
 be set at compile time via macro constants.
 
-Two interfaces to %USART0 hardware are provided.  The first is provided in namespace
+Two interfaces to %USART0 thardware are provided.  The first is provided in namespace
 USART0 and provides a functional interface that makes use of the buffering and
 asynchronous transmit and receive capabilities of the microcontroller hardware.
 However, USART0 functionality is limited to transmitting and receiving byte and
@@ -117,11 +117,11 @@ point of view, I2C communications consist of sending a designated device a
 message to do something, and then either:
 
 - doing nothing because no further action required on the Master's part
-(e.g., telling the designated device to shutdown)
+(e.g., telling the designated device to shutdown).
 - transmitting additional data needed by the designated device (e.g., you told
-the designated device to store some data, next you need to send the data)
+the designated device to store some data, next you need to send the data).
 - receiving data from the designated device (e.g., telling the designated
-device to report the current temperature or to read back some data from its memory)
+device to report the current temperature or to read back some data from its memory).
 
 For very simple devices, the receipt of the message itself can suffice to tell
 it to do something.  More commonly, the instruction to the designated device
@@ -130,7 +130,7 @@ called a register address because it often corresponds directly to a memory
 register on the device.  But it is best to think of it as an instruction code to
 the designated device (e.g., 0x01 = report the temperature; 0x02 = set the units
 to either degrees F or degrees C (depending on additional data sent by the Master); 0x03 =
-report the humidity; etc.)
+report the humidity; etc.).
 
 The interface offered by the [I2C Master module](@ref I2cMaster) conforms
 directly to the above I2C paradigm.  For convenience, the interface  functions
@@ -169,7 +169,7 @@ directly to the above I2C paradigm.
 # I2C-based LCD module #               {#AdvancedLcd}
 
 The [I2C-based LCD module](@ref I2cLcd) provides a high-level interface to an
-LCD offering an I2C interface. The most common variant of this is HD44780U
+LCD offering an I2C interface. The most common variant of this is an HD44780U
 controlled LCD driven by an MCP23017 that offers an I2C interface (such LCDs are
 available from Adafruit and SparkFun).   This module allows you to write to the
 LCD much as it if were a serial device and includes the ability to write numbers
