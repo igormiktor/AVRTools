@@ -40,6 +40,21 @@
 
 #include <stdint.h>
 
+// F_CPU defined by the CMakeLists configuration
+
+#if F_CPU == 16000000L || F_CPU == 12000000L || F_CPU == 8000000L
+    #define AVRTOOLS_USE_SIMPLEDELAYS 1
+#else
+    // Fall back to <util/delay.h>
+    // Note that <util/delay.h> functions require compile with optimization.
+    #warning "Non-standard F_CPU, falling back to <util/delay.h>, which require optimized compile"
+    #define AVRTOOLS_USE_SIMPLEDELAYS 0
+    #include <util/delay.h>
+#endif
+
+
+// #include <util/delay.h>
+
 
 #ifdef __cplusplus
 extern "C" {
@@ -80,8 +95,18 @@ extern "C" {
  * For precision, this function is implemented directly in assembler.
  */
 
+#if AVRTOOLS_USE_SIMPLEDELAYS
+
 void delayQuartersOfMicroSeconds( uint16_t nbrOfQuartersOfMicroSeconds );
 
+#else
+
+inline void delayQuartersOfMicroSeconds( uint16_t nbrOfQuartersOfMicroSeconds );
+{
+    _delay_us( 250.0 * nbrOfQuartersOfMicroSeconds );
+}
+
+#endif
 
 
 
@@ -104,8 +129,18 @@ void delayQuartersOfMicroSeconds( uint16_t nbrOfQuartersOfMicroSeconds );
  * For precision, this function is implemented directly in assembler.
  */
 
-void delayWholeMilliSeconds( uint8_t nbrOfMilliSeconds );
+#if AVRTOOLS_USE_SIMPLEDELAYS
 
+void delayWholeMilliSeconds( uint8_t nbrOfMilliSeconds ); 
+
+#else
+
+inline void delayWholeMilliSeconds( uint8_t nbrOfMilliSeconds )
+{
+    _delay_ms( static_cast<double>( nbrOfMilliSeconds ) );
+}
+
+#endif
 
 
 
@@ -128,8 +163,18 @@ void delayWholeMilliSeconds( uint8_t nbrOfMilliSeconds );
  * For precision, this function is implemented directly in assembler.
  */
 
+#if AVRTOOLS_USE_SIMPLEDELAYS
+
 void delayTenthsOfSeconds( uint8_t nbrOfTenthsOfSeconds );
 
+#else
+
+inline void delayTenthsOfSeconds( uint8_t nbrOfTenthsOfSeconds )
+{
+    _delay_ms( 100.0 * nbrOfTenthsOfSeconds );
+}
+
+#endif
 
 
 

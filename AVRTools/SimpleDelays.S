@@ -31,7 +31,8 @@
 
 #else
 
-#error "SimpleDelays only implemented for CPU speeds of 8 MHz, 12 MHz, or 16 MHz."
+#warning "SimpleDelays only implemented for CPU speeds of 8 MHz, 12 MHz, or 16 MHz."
+#warning "Falling back to <util/delay.h> functions that require compiler optimization."
 
 #endif
 
