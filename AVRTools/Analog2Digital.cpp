@@ -24,7 +24,23 @@
 #include "Analog2Digital.h"
 
 #include <avr/io.h>
-#include <util/delay.h>
+
+
+#if F_CPU == 16000000L
+    // 125us * 16ticks/us = 2000ticks
+    #define CYCLES_FOR_125US 2000
+#elif F_CPU == 12000000L
+    // 125us * 12ticks/us = 1500ticks
+    #define CYCLES_FOR_125US 1500
+#elif F_CPU == 8000000L
+    // 125us * 8ticks/us = 1000ticks
+    #define CYCLES_FOR_125US 1000
+#else
+    // Fall back to <util/delay.h>
+    // Note that <util/delay.h> functions require compile with optimization.
+    #warning "Non-standard F_CPU, falling back to <util/delay.h>, which require optimized compile"
+    #include <util/delay.h>
+#endif
 
 
 
@@ -102,7 +118,11 @@ void setA2DVoltageReference( A2DVoltageReference ref )
     ADMUX = ( ADMUX & ~0xc0 ) | ( ref << 6 );
 
     // Need to let ADC system restablize
+#if CYCLES_FOR_125US
+    __builtin_avr_delay_cycles( CYCLES_FOR_125US );
+#else
     _delay_us( 125 );
+#endif
 }
 
 
@@ -139,7 +159,11 @@ int readA2D( int8_t channel )
         ADMUX = ( ADMUX & ~0x1f ) | ( channel & 0x07 );
 
         // Need to let ADC system restablize
+#if CYCLES_FOR_125US
+        __builtin_avr_delay_cycles( CYCLES_FOR_125US );
+#else
         _delay_us( 125 );
+#endif
 
         sCurrentChannel = channel;
     }

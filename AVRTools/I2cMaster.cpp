@@ -27,10 +27,24 @@
 
 #include <util/atomic.h>
 #include <util/twi.h>
-#include <util/delay.h>
 
 #include "ArduinoPins.h"
 
+#if F_CPU == 16000000L
+    // 5us * 16ticks/us = 80ticks
+    #define CYCLES_FOR_5US 80
+#elif F_CPU == 12000000L
+    // 5us * 12ticks/us = 60ticks
+    #define CYCLES_FOR_5US 60
+#elif F_CPU == 8000000L
+    // 5us * 8ticks/us = 40ticks
+    #define CYCLES_FOR_5US 40
+#else
+    // Fall back to <util/delay.h>
+    // Note that <util/delay.h> functions require compile with optimization.
+    #warning "Non-standard F_CPU, falling back to <util/delay.h>, which require optimized compile"
+    #include <util/delay.h>
+#endif
 
 
 
@@ -383,7 +397,7 @@ uint8_t BufferI2cTx::push( uint8_t address, I2cTxMode txMode, const uint8_t* txD
 
 
 
-
+[[maybe_unused]]
 void BufferI2cTx::clear()
 {
     ATOMIC_BLOCK( ATOMIC_RESTORESTATE )
@@ -584,7 +598,11 @@ uint8_t I2cMaster::writeAsync( uint8_t address, uint8_t registerAddress, volatil
     while ( gI2cBuffer.isFull() )
     {
         // Delay 2 I2C cycles at 400 KHz
+#if CYCLES_FOR_5US
+        __builtin_avr_delay_cycles( CYCLES_FOR_5US );
+#else
         _delay_us( 5 );
+#endif
     }
 
     uint8_t err = gI2cBuffer.push( address, kI2cWrite, &registerAddress, 1, 0, 0, 0, status );
@@ -613,7 +631,11 @@ uint8_t I2cMaster::writeAsync( uint8_t address, uint8_t registerAddress, uint8_t
     while ( gI2cBuffer.isFull() )
     {
         // Delay 2 I2C cycles at 400 KHz
+#if CYCLES_FOR_5US
+        __builtin_avr_delay_cycles( CYCLES_FOR_5US );
+#else
         _delay_us( 5 );
+#endif
     }
 
     uint8_t err = gI2cBuffer.push( address, kI2cWrite, temp, 2, 0, 0, 0, status );
@@ -646,7 +668,11 @@ uint8_t I2cMaster::writeAsync( uint8_t address, uint8_t registerAddress, const c
     while ( gI2cBuffer.isFull() )
     {
         // Delay 2 I2C cycles at 400 KHz
+#if CYCLES_FOR_5US
+        __builtin_avr_delay_cycles( CYCLES_FOR_5US );
+#else
         _delay_us( 5 );
+#endif
     }
 
     uint8_t err = gI2cBuffer.push( address, kI2cWrite, temp, nbrBytes + 1, 0, 0, 0, status );
@@ -676,7 +702,11 @@ uint8_t I2cMaster::writeAsync( uint8_t address, uint8_t registerAddress, uint8_t
     while ( gI2cBuffer.isFull() )
     {
         // Delay 2 I2C cycles at 400 KHz
+#if CYCLES_FOR_5US
+        __builtin_avr_delay_cycles( CYCLES_FOR_5US );
+#else
         _delay_us( 5 );
+#endif
     }
 
     uint8_t err = gI2cBuffer.push( address, kI2cWrite, temp, numberBytes + 1, 0, 0, 0, status );
@@ -703,7 +733,11 @@ uint8_t I2cMaster::readAsync( uint8_t address, uint8_t numberBytes, volatile uin
     while ( gI2cBuffer.isFull() )
     {
         // Delay 2 I2C cycles at 400 KHz
+#if CYCLES_FOR_5US
+        __builtin_avr_delay_cycles( CYCLES_FOR_5US );
+#else
         _delay_us( 5 );
+#endif
     }
 
     uint8_t err = gI2cBuffer.push( address, kI2cRead, 0, 0, const_cast<uint8_t*>( destination ), numberBytes, bytesRead,
@@ -731,7 +765,11 @@ uint8_t I2cMaster::readAsync( uint8_t address, uint8_t registerAddress, uint8_t 
     while ( gI2cBuffer.isFull() )
     {
         // Delay 2 I2C cycles at 400 KHz
+#if CYCLES_FOR_5US
+        __builtin_avr_delay_cycles( CYCLES_FOR_5US );
+#else
         _delay_us( 5 );
+#endif
     }
 
     uint8_t err = gI2cBuffer.push( address, kI2cWriteRestartRead, &registerAddress, 1, const_cast<uint8_t*>( destination ),
@@ -1077,7 +1115,12 @@ ISR( TWI_vect )
 #ifdef DEBUG_I2cMasterDiary
                 DebugDiaryEntry( 0, kTryStartAgain, TW_STATUS );
 #endif
-                _delay_us( 5 );         // Two cycles at 400KHz
+                // Delay two I2C cycles at 400KHz
+#if CYCLES_FOR_5US
+                __builtin_avr_delay_cycles( CYCLES_FOR_5US );
+#else
+                _delay_us( 5 );
+#endif
                 sendStart();
             }
             else
