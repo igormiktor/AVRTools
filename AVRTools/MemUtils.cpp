@@ -46,7 +46,11 @@ struct __freelist
 
 // Utility macros
 
-#define STACK           reinterpret_cast<char*>( AVR_STACK_POINTER_REG )
+#if defined( AVR_STACK_POINTER_REG )
+    #define STACK           reinterpret_cast<char*>( AVR_STACK_POINTER_REG )
+#else
+    #define STACK           reinterpret_cast<char*>( SP )
+#endif
 
 #define HEAP_START      static_cast<char*>( &__heap_start )
 
